@@ -36,8 +36,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,22 +55,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainMenu\frmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\frmMainMenu.Designer.cs">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainMenu\frmMainMenu.resx">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -79,6 +96,81 @@
       <Project>{53f94933-d9c0-4f31-b95f-f7f31cd6af3f}</Project>
       <Name>Hotel_Business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImageSlide.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard-mian-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard-mian-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\booking-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\booking-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-type-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-type-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-service-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-service-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dining-room-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dining-room-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guest-orders-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guest-orders-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guests-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guests-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payments-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payments-main-purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout-main-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotel-main-white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
