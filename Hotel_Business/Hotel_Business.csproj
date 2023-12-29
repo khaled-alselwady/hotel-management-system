@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="clsBooking.cs" />
     <Compile Include="clsCountry.cs" />
-    <Compile Include="clsHotelInfo.cs" />
+    <Compile Include="clsGuest.cs" />
     <Compile Include="clsInvoice.cs" />
     <Compile Include="clsItem.cs" />
     <Compile Include="clsItemType.cs" />

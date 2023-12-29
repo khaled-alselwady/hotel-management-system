@@ -45,7 +45,7 @@
     <Compile Include="clsBookingData.cs" />
     <Compile Include="clsCountryData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
-    <Compile Include="clsHotelInfoData.cs" />
+    <Compile Include="clsGuestData.cs" />
     <Compile Include="clsInvoiceData.cs" />
     <Compile Include="clsItemData.cs" />
     <Compile Include="clsItemTypeData.cs" />

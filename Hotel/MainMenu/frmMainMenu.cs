@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Hotel.Dashboard;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -93,7 +94,7 @@ namespace Hotel.MainMenu
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmDashboard(), sender);
         }
 
         private void btnReservations_Click(object sender, EventArgs e)
@@ -144,6 +145,11 @@ namespace Hotel.MainMenu
         private void btnPayments_Click(object sender, EventArgs e)
         {
             _OpenChildFormAsync(new Form(), sender);
+        }
+
+        private void frmMainMenu_Load(object sender, EventArgs e)
+        {
+            btnDashboard.PerformClick();
         }
     }
 }

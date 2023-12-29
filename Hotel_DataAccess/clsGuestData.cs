@@ -1,13 +1,16 @@
-using System;
-using System.Data;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Hotel_DataAccess
 {
-    public class clsHotelInfoData
+    public class clsGuestData
     {
-        public static bool GetHotelInfoInfoByID(int? HotelInfoID, ref string HotelName, 
-            ref string Phone, ref string Email, ref string Address)
+        public static bool GetGuestInfoByID(int? GuestID, ref int? PersonID)
         {
             bool IsFound = false;
 
@@ -17,11 +20,11 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from HotelInfo where HotelInfoID = @HotelInfoID";
+                    string query = @"select * from Guests where GuestID = @GuestID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@HotelInfoID", (object)HotelInfoID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -30,10 +33,7 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                HotelName = (string)reader["HotelName"];
-                                Phone = (string)reader["Phone"];
-                                Email = (string)reader["Email"];
-                                Address = (string)reader["Address"];
+                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
                             }
                             else
                             {
@@ -60,11 +60,10 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewHotelInfo(string HotelName, string Phone, string Email,
-            string Address)
+        public static int? AddNewGuest(int? PersonID)
         {
             // This function will return the new person id if succeeded and null if not
-            int? HotelInfoID = null;
+            int? GuestID = null;
 
             try
             {
@@ -72,22 +71,19 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into HotelInfo (HotelName, Phone, Email, Address)
-values (@HotelName, @Phone, @Email, @Address)
+                    string query = @"insert into Guests (PersonID)
+values (@PersonID)
 select scope_identity()";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@HotelName", HotelName);
-                        command.Parameters.AddWithValue("@Phone", Phone);
-                        command.Parameters.AddWithValue("@Email", Email);
-                        command.Parameters.AddWithValue("@Address", Address);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int InsertID))
                         {
-                            HotelInfoID = InsertID;
+                            GuestID = InsertID;
                         }
                     }
                 }
@@ -101,11 +97,10 @@ select scope_identity()";
                 clsLogError.LogError("General Exception", ex);
             }
 
-            return HotelInfoID;
+            return GuestID;
         }
 
-        public static bool UpdateHotelInfo(int? HotelInfoID, string HotelName, string Phone,
-            string Email, string Address)
+        public static bool UpdateGuest(int? GuestID, int? PersonID)
         {
             int RowAffected = 0;
 
@@ -115,20 +110,14 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update HotelInfo
-set HotelName = @HotelName,
-Phone = @Phone,
-Email = @Email,
-Address = @Address
-where HotelInfoID = @HotelInfoID";
+                    string query = @"Update Guests
+set PersonID = @PersonID
+where GuestID = @GuestID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@HotelInfoID", (object)HotelInfoID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@HotelName", HotelName);
-                        command.Parameters.AddWithValue("@Phone", Phone);
-                        command.Parameters.AddWithValue("@Email", Email);
-                        command.Parameters.AddWithValue("@Address", Address);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -146,7 +135,7 @@ where HotelInfoID = @HotelInfoID";
             return (RowAffected > 0);
         }
 
-        public static bool DeleteHotelInfo(int? HotelInfoID)
+        public static bool DeleteGuest(int? GuestID)
         {
             int RowAffected = 0;
 
@@ -156,11 +145,11 @@ where HotelInfoID = @HotelInfoID";
                 {
                     connection.Open();
 
-                    string query = @"delete HotelInfo where HotelInfoID = @HotelInfoID";
+                    string query = @"delete Guests where GuestID = @GuestID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@HotelInfoID", (object)HotelInfoID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -178,7 +167,7 @@ where HotelInfoID = @HotelInfoID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesHotelInfoExist(int? HotelInfoID)
+        public static bool DoesGuestExist(int? GuestID)
         {
             bool IsFound = false;
 
@@ -188,11 +177,11 @@ where HotelInfoID = @HotelInfoID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from HotelInfo where HotelInfoID = @HotelInfoID";
+                    string query = @"select found = 1 from Guests where GuestID = @GuestID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@HotelInfoID", (object)HotelInfoID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         IsFound = (command.ExecuteScalar() != null);
                     }
@@ -214,7 +203,7 @@ where HotelInfoID = @HotelInfoID";
             return IsFound;
         }
 
-        public static DataTable GetAllHotelInfo()
+        public static DataTable GetAllGuests()
         {
             DataTable dt = new DataTable();
 
@@ -224,7 +213,7 @@ where HotelInfoID = @HotelInfoID";
                 {
                     connection.Open();
 
-                    string query = @"select * from HotelInfo";
+                    string query = @"select * from Guests";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -248,6 +237,41 @@ where HotelInfoID = @HotelInfoID";
             }
 
             return dt;
+        }
+
+        public static int GetGuestsCount()
+        {
+            int Count = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select count(*) from Guests";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return Count;
         }
     }
 }

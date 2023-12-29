@@ -83,6 +83,26 @@ namespace Hotel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookings_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("bookings-dashboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap change_password_32 {
+            get {
+                object obj = ResourceManager.GetObject("change-password-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dashboard_mian_purple {
             get {
                 object obj = ResourceManager.GetObject("dashboard-mian-purple", resourceCulture);
@@ -96,6 +116,26 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap dashboard_mian_white {
             get {
                 object obj = ResourceManager.GetObject("dashboard-mian-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap default_female {
+            get {
+                object obj = ResourceManager.GetObject("default-female", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap default_male {
+            get {
+                object obj = ResourceManager.GetObject("default-male", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +176,16 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap guest_orders_main_white {
             get {
                 object obj = ResourceManager.GetObject("guest-orders-main-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap guests_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("guests-dashboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +243,16 @@ namespace Hotel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap payments_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("payments-dashboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap payments_main_purple {
             get {
                 object obj = ResourceManager.GetObject("payments-main-purple", resourceCulture);
@@ -213,6 +273,16 @@ namespace Hotel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap profile_32 {
+            get {
+                object obj = ResourceManager.GetObject("profile-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reservation_main_purple {
             get {
                 object obj = ResourceManager.GetObject("reservation-main-purple", resourceCulture);
@@ -226,6 +296,16 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap reservation_main_white {
             get {
                 object obj = ResourceManager.GetObject("reservation-main-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reservations_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("reservations-dashboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,6 +366,36 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap room_type_main_white {
             get {
                 object obj = ResourceManager.GetObject("room-type-main-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rooms_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("rooms-dashboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_out_30 {
+            get {
+                object obj = ResourceManager.GetObject("sign_out-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap users_dashboard {
+            get {
+                object obj = ResourceManager.GetObject("users-dashboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
