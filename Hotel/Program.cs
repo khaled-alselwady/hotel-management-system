@@ -1,4 +1,5 @@
 ﻿using Hotel.MainMenu;
+using Hotel.People;
 using System;
 using System.Windows.Forms;
 

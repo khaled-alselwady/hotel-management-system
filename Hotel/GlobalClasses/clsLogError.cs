@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Hotel_DataAccess
+namespace Hotel.GlobalClasses
 {
     public static class clsLogError
     {

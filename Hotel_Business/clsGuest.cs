@@ -15,11 +15,13 @@ namespace Hotel_Business
 
         public int? GuestID { get; set; }
         public int? PersonID { get; set; }
+        public clsPerson PersonInfo { get; }
 
         public clsGuest()
         {
             this.GuestID = null;
             this.PersonID = null;
+
             Mode = enMode.AddNew;
         }
 
@@ -27,6 +29,9 @@ namespace Hotel_Business
         {
             this.GuestID = GuestID;
             this.PersonID = PersonID;
+
+            this.PersonInfo = clsPerson.Find(PersonID);
+
             Mode = enMode.Update;
         }
 
@@ -64,11 +69,27 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsGuest Find(int? GuestID)
+        public static clsGuest FindByGuestID(int? GuestID)
         {
             int? PersonID = null;
 
-            bool IsFound = clsGuestData.GetGuestInfoByID(GuestID, ref PersonID);
+            bool IsFound = clsGuestData.GetGuestInfoByGuestID(GuestID, ref PersonID);
+
+            if (IsFound)
+            {
+                return new clsGuest(GuestID, PersonID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static clsGuest FindByPersonID(int? PersonID)
+        {
+            int? GuestID = null;
+
+            bool IsFound = clsGuestData.GetGuestInfoByPersonID(PersonID, ref GuestID);
 
             if (IsFound)
             {

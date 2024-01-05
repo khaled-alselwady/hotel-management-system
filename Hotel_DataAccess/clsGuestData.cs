@@ -10,7 +10,7 @@ namespace Hotel_DataAccess
 {
     public class clsGuestData
     {
-        public static bool GetGuestInfoByID(int? GuestID, ref int? PersonID)
+        public static bool GetGuestInfoByGuestID(int? GuestID, ref int? PersonID)
         {
             bool IsFound = false;
 
@@ -34,6 +34,56 @@ namespace Hotel_DataAccess
                                 IsFound = true;
 
                                 PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool GetGuestInfoByPersonID(int? PersonID, ref int? GuestID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from Guests where PersonID = @PersonID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                GuestID = (reader["GuestID"] != DBNull.Value) ? (int?)reader["GuestID"] : null;
                             }
                             else
                             {

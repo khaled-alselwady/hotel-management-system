@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Hotel_DataAccess
+namespace Hotel.GlobalClasses
 {
     public static class clsLogError
     {
