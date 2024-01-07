@@ -263,7 +263,7 @@ where GuestID = @GuestID";
                 {
                     connection.Open();
 
-                    string query = @"select * from Guests";
+                    string query = @"select * from GuestsDetails_view order by GuestID desc";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

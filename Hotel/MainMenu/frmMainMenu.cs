@@ -1,5 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Hotel.Dashboard;
+using Hotel.Guests;
+using Hotel_Business;
 using System;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -30,7 +32,7 @@ namespace Hotel.MainMenu
                     _CurrentButton = (Guna2Button)btnSender;
                     _CurrentButton.BackColor = Color.White;             
                     _CurrentButton.ForeColor = Color.FromArgb(53, 41, 123);
-                    _CurrentButton.Font = new System.Drawing.Font("Tahoma", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    _CurrentButton.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
@@ -47,7 +49,7 @@ namespace Hotel.MainMenu
 
                     previousBtn.BackColor = Color.FromArgb(53, 41, 123);
                     previousBtn.ForeColor = Color.White;
-                    previousBtn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    previousBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
@@ -134,7 +136,7 @@ namespace Hotel.MainMenu
 
         private void btnGuests_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListGuests(), sender);
         }
 
         private void btnUsers_Click(object sender, EventArgs e)

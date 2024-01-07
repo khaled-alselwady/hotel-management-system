@@ -139,8 +139,14 @@
   <data name="room-type-main-purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\room-type-main-purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="guests-dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\guests-dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hotel-main-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hotel-main-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="person-details-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person-details-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reservations-dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reservations-dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,6 +202,9 @@
   <data name="room-type-main-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\room-type-main-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="dining-room-main-purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dining-room-main-purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="booking-main-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\booking-main-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -229,8 +238,8 @@
   <data name="reservation-main-purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reservation-main-purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="dining-room-main-purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dining-room-main-purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rooms-dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rooms-dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,13 +268,13 @@
   <data name="guest-orders-main-purple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\guest-orders-main-purple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="guests-list-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\guests-list-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="address" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\address.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="guests-dashboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\guests-dashboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="person-edit-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\person-edit-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

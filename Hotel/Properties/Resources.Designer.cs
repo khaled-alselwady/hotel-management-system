@@ -283,6 +283,16 @@ namespace Hotel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap guests_list_100 {
+            get {
+                object obj = ResourceManager.GetObject("guests-list-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap guests_main_purple {
             get {
                 object obj = ResourceManager.GetObject("guests-main-purple", resourceCulture);
@@ -386,6 +396,26 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap payments_main_white {
             get {
                 object obj = ResourceManager.GetObject("payments-main-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap person_details_32 {
+            get {
+                object obj = ResourceManager.GetObject("person-details-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap person_edit_32 {
+            get {
+                object obj = ResourceManager.GetObject("person-edit-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

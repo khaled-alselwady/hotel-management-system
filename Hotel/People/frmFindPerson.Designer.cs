@@ -42,7 +42,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(871, 59);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Show Person Info";
+            this.label1.Text = "Find Person";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucPersonCardWithFilter1

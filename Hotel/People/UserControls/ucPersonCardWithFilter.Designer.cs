@@ -54,7 +54,7 @@
             this.gbFilter.Name = "gbFilter";
             this.gbFilter.Size = new System.Drawing.Size(863, 120);
             this.gbFilter.TabIndex = 1;
-            this.gbFilter.Text = "Person Information";
+            this.gbFilter.Text = "Filter";
             // 
             // btnAddNewPerson
             // 

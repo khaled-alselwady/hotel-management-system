@@ -75,6 +75,12 @@
     <Compile Include="GlobalClasses\clsLogError.cs" />
     <Compile Include="GlobalClasses\clsUtil.cs" />
     <Compile Include="GlobalClasses\clsValidation.cs" />
+    <Compile Include="Guests\frmListGuests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Guests\frmListGuests.Designer.cs">
+      <DependentUpon>frmListGuests.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu\frmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Guests\frmListGuests.resx">
+      <DependentUpon>frmListGuests.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu\frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,8 +155,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -274,7 +283,7 @@
     <None Include="Resources\sign_out-30.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Guests\" />
+    <Folder Include="Guests\UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\id.png" />
@@ -317,6 +326,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guests-list-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person-details-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person-edit-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
