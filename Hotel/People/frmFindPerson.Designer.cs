@@ -49,7 +49,7 @@
             // 
             this.ucPersonCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ucPersonCardWithFilter1.BackColor = System.Drawing.Color.White;
-            this.ucPersonCardWithFilter1.FilterEnable = true;
+            this.ucPersonCardWithFilter1.FilterEnabled = true;
             this.ucPersonCardWithFilter1.Location = new System.Drawing.Point(2, 90);
             this.ucPersonCardWithFilter1.Name = "ucPersonCardWithFilter1";
             this.ucPersonCardWithFilter1.ShowAddPersonButton = true;
@@ -71,7 +71,7 @@
             this.guna2GradientButton1.ForeColor = System.Drawing.Color.White;
             this.guna2GradientButton1.Image = global::Hotel.Properties.Resources.close_48;
             this.guna2GradientButton1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2GradientButton1.ImageSize = new System.Drawing.Size(25, 25);
+            this.guna2GradientButton1.ImageSize = new System.Drawing.Size(30, 30);
             this.guna2GradientButton1.Location = new System.Drawing.Point(717, 524);
             this.guna2GradientButton1.Name = "guna2GradientButton1";
             this.guna2GradientButton1.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);

@@ -1,6 +1,7 @@
 using Hotel_DataAccess;
 using System;
 using System.Data;
+using System.Linq;
 
 namespace Hotel_Business
 {
@@ -9,11 +10,20 @@ namespace Hotel_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        public enum enFindBy
+        {
+            UserID,
+            PersonID,
+            Username,
+            UsernameAndPassword
+        };
+
         public int? UserID { get; set; }
         public int? PersonID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        public clsPerson PersonInfo { get; }
 
         public clsUser()
         {
@@ -22,16 +32,21 @@ namespace Hotel_Business
             this.Username = string.Empty;
             this.Password = string.Empty;
             this.IsActive = false;
+
             Mode = enMode.AddNew;
         }
 
-        private clsUser(int? UserID, int? PersonID, string Username, string Password, bool IsActive)
+        private clsUser(int? UserID, int? PersonID, string Username,
+            string Password, bool IsActive)
         {
             this.UserID = UserID;
             this.PersonID = PersonID;
             this.Username = Username;
             this.Password = Password;
             this.IsActive = IsActive;
+
+            this.PersonInfo = clsPerson.Find(PersonID);
+
             Mode = enMode.Update;
         }
 
@@ -71,61 +86,82 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsUser Find(int? UserID)
+        private static clsUser _FindByUserID(int? UserID)
         {
             int? PersonID = null;
             string Username = string.Empty;
             string Password = string.Empty;
             bool IsActive = false;
 
-            bool IsFound = clsUserData.GetUserInfoByID(UserID, ref PersonID, ref Username, ref Password, ref IsActive);
+            bool IsFound = clsUserData.GetUserInfoByUserID(UserID, ref PersonID,
+                ref Username, ref Password, ref IsActive);
 
-            if (IsFound)
-            {
-                return new clsUser(UserID, PersonID, Username, Password, IsActive);
-            }
-            else
-            {
-                return null;
-            }
+            return (IsFound) ? (new clsUser(UserID, PersonID, Username, Password, IsActive)) : null;
         }
 
-        public static clsUser Find(string Username)
+        private static clsUser _FindByPersonID(int? PersonID)
+        {
+            int? UserID = null;
+            string Username = string.Empty;
+            string Password = string.Empty;
+            bool IsActive = false;
+
+            bool IsFound = clsUserData.GetUserInfoByPersonID(PersonID, ref UserID,
+                ref Username, ref Password, ref IsActive);
+
+            return (IsFound) ? (new clsUser(UserID, PersonID, Username, Password, IsActive)) : null;
+        }
+
+        private static clsUser _FindByUsername(string Username)
         {
             int? UserID = null;
             int? PersonID = null;
             string Password = string.Empty;
             bool IsActive = false;
 
-            bool IsFound = clsUserData.GetUserInfoByUsername(ref UserID, ref PersonID, Username, ref Password, ref IsActive);
+            bool IsFound = clsUserData.GetUserInfoByUsername(ref UserID, ref PersonID,
+                Username, ref Password, ref IsActive);
 
-            if (IsFound)
-            {
-
-                return new clsUser(UserID, PersonID, Username, Password, IsActive);
-            }
-
-            else
-            {
-
-                return null;
-            }
-
+            return (IsFound) ? (new clsUser(UserID, PersonID, Username, Password, IsActive)) : null;
         }
 
-        public static clsUser Find(string Username, string Password)
+        private static clsUser _FindByUsernameAndPassword(string Username, string Password)
         {
             int? UserID = null;
             int? PersonID = null;
             bool IsActive = false;
             bool IsFound = clsUserData.GetUserInfoByUsernameAndPassword(ref UserID, ref PersonID, Username, Password, ref IsActive);
-            if (IsFound)
+
+            return (IsFound) ? (new clsUser(UserID, PersonID, Username, Password, IsActive)) : null;
+        }
+
+        public static clsUser FindBy(object Data, enFindBy ItemToFindBy)
+        {
+            switch (ItemToFindBy)
             {
-                return new clsUser(UserID, PersonID, Username, Password, IsActive);
+                case enFindBy.UserID:
+                    return _FindByUserID((int?)Data ?? null);
+
+                case enFindBy.PersonID:
+                    return _FindByPersonID((int?)Data ?? null);
+
+                case enFindBy.Username:
+                    return _FindByUsername((string)Data ?? null);
+
+                default:
+                    return null;
             }
-            else
+        }
+
+        public static clsUser FindBy(object Data1, object Data2, enFindBy ItemToFindBy = enFindBy.UsernameAndPassword)
+        {
+            switch (ItemToFindBy)
             {
-                return null;
+                case enFindBy.UsernameAndPassword:
+                    return _FindByUsernameAndPassword((string)Data1 ?? null, (string)Data2 ?? null);
+
+                default:
+                    return null;
             }
         }
 
@@ -134,19 +170,54 @@ namespace Hotel_Business
             return clsUserData.DeleteUser(UserID);
         }
 
-        public static bool DoesUserExist(int? UserID)
+        private static bool _DoesUserExistByUserID(int? UserID)
         {
-            return clsUserData.DoesUserExist(UserID);
+            return clsUserData.DoesUserExistByUserID(UserID);
         }
 
-        public static bool DoesUserExist(string Username)
+        private static bool _DoesUserExistByPersonID(int? PersonID)
         {
-            return clsUserData.DoesUserExist(Username);
+            return clsUserData.DoesUserExistByPersonID(PersonID);
         }
 
-        public static bool DoesUserExist(string Username, string Password)
+        private static bool _DoesUserExistByUsername(string Username)
         {
-            return clsUserData.DoesUserExist(Username, Password);
+            return clsUserData.DoesUserExistByUsername(Username);
+        }
+
+        private static bool _DoesUserExistByUsernameAndPassword(string Username, string Password)
+        {
+            return clsUserData.DoesUserExistByUsernameAndPassword(Username, Password);
+        }
+
+        public static bool DoesUserExist(object Data, enFindBy ItemToFindBy)
+        {
+            switch (ItemToFindBy)
+            {
+                case enFindBy.UserID:
+                    return _DoesUserExistByUserID((int?)Data ?? null);
+
+                case enFindBy.PersonID:
+                    return _DoesUserExistByPersonID((int?)Data ?? null);
+
+                case enFindBy.Username:
+                    return _DoesUserExistByUsername((string)Data ?? null);
+
+                default:
+                    return false;
+            }
+        }
+
+        public static bool DoesUserExist(object Data1, object Data2, enFindBy ItemToFindBy = enFindBy.UsernameAndPassword)
+        {
+            switch (ItemToFindBy)
+            {
+                case enFindBy.UsernameAndPassword:
+                    return _DoesUserExistByUsernameAndPassword((string)Data1 ?? null, (string)Data2 ?? null);
+
+                default:
+                    return false;
+            }
         }
 
         public static DataTable GetAllUsers()
@@ -157,6 +228,16 @@ namespace Hotel_Business
         public static int Count()
         {
             return clsUserData.GetUsersCount();
+        }
+
+        public bool ChangePassword(string NewPassword)
+        {
+            return ChangePassword(this.UserID, NewPassword);
+        }
+
+        public static bool ChangePassword(int? UserID, string NewPassword)
+        {
+            return clsUserData.ChangePassword(UserID, NewPassword);
         }
     }
 

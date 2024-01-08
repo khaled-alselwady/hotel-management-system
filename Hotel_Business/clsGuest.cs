@@ -75,14 +75,7 @@ namespace Hotel_Business
 
             bool IsFound = clsGuestData.GetGuestInfoByGuestID(GuestID, ref PersonID);
 
-            if (IsFound)
-            {
-                return new clsGuest(GuestID, PersonID);
-            }
-            else
-            {
-                return null;
-            }
+            return (IsFound) ? (new clsGuest(GuestID, PersonID)) : null;           
         }
 
         public static clsGuest FindByPersonID(int? PersonID)
@@ -91,14 +84,7 @@ namespace Hotel_Business
 
             bool IsFound = clsGuestData.GetGuestInfoByPersonID(PersonID, ref GuestID);
 
-            if (IsFound)
-            {
-                return new clsGuest(GuestID, PersonID);
-            }
-            else
-            {
-                return null;
-            }
+            return (IsFound) ? (new clsGuest(GuestID, PersonID)) : null;
         }
 
         public static bool DeleteGuest(int? GuestID)

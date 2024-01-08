@@ -141,7 +141,7 @@ namespace Hotel.Guests
 
             string ColumnName = _GetRealColumnNameInDB();
 
-            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()) || 
+            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()) ||
                 cbFilter.Text == "None")
             {
                 _dtGuests.DefaultView.RowFilter = "";
@@ -167,10 +167,8 @@ namespace Hotel.Guests
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cbFilter.Text == "Guest ID" || cbFilter.Text == "Person ID")
-            {
                 // make sure that the user can only enter the numbers
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-            }
         }
 
         private void cbGender_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -236,5 +234,12 @@ namespace Hotel.Guests
             cmsEditProfile.Enabled = (dgvGuestsList.Rows.Count > 0);
         }
 
+        private void dgvGuestsList_DoubleClick(object sender, System.EventArgs e)
+        {
+            frmShowPersonInfo ShowPersonInfo = new frmShowPersonInfo(_GetGuestIDFromDGV());
+            ShowPersonInfo.ShowDialog();
+
+            _RefreshGuestList();
+        }
     }
 }

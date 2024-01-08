@@ -1,6 +1,6 @@
-﻿namespace Hotel.People
+﻿namespace Hotel.Users
 {
-    partial class frmShowPersonInfo
+    partial class frmShowUserInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.ucPersonCard1 = new Hotel.People.UserControls.ucPersonCard();
+            this.ucUserCard1 = new Hotel.Users.UserControls.ucUserCard();
             this.btnClose = new Guna.UI2.WinForms.Guna2GradientButton();
             this.SuspendLayout();
             // 
@@ -37,21 +37,21 @@
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 38.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.label1.Location = new System.Drawing.Point(0, -5);
+            this.label1.Location = new System.Drawing.Point(1, 1);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(871, 61);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Show Person Info";
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Show User Info";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ucPersonCard1
+            // ucUserCard1
             // 
-            this.ucPersonCard1.BackColor = System.Drawing.Color.White;
-            this.ucPersonCard1.Location = new System.Drawing.Point(5, 75);
-            this.ucPersonCard1.Name = "ucPersonCard1";
-            this.ucPersonCard1.Size = new System.Drawing.Size(862, 285);
-            this.ucPersonCard1.TabIndex = 1;
+            this.ucUserCard1.BackColor = System.Drawing.Color.White;
+            this.ucUserCard1.Location = new System.Drawing.Point(5, 86);
+            this.ucUserCard1.Name = "ucUserCard1";
+            this.ucUserCard1.Size = new System.Drawing.Size(862, 423);
+            this.ucUserCard1.TabIndex = 2;
             // 
             // btnClose
             // 
@@ -69,28 +69,28 @@
             this.btnClose.Image = global::Hotel.Properties.Resources.close_48;
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnClose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnClose.Location = new System.Drawing.Point(714, 376);
+            this.btnClose.Location = new System.Drawing.Point(714, 523);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(155, 45);
-            this.btnClose.TabIndex = 198;
+            this.btnClose.TabIndex = 199;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // frmShowPersonInfo
+            // frmShowUserInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(872, 427);
+            this.ClientSize = new System.Drawing.Size(872, 570);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.ucPersonCard1);
+            this.Controls.Add(this.ucUserCard1);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmShowPersonInfo";
+            this.Name = "frmShowUserInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Show Person Info";
+            this.Text = "Show User Info";
             this.ResumeLayout(false);
 
         }
@@ -98,7 +98,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private UserControls.ucPersonCard ucPersonCard1;
+        private UserControls.ucUserCard ucUserCard1;
         private Guna.UI2.WinForms.Guna2GradientButton btnClose;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using Hotel.Dashboard;
 using Hotel.Guests;
+using Hotel.Users;
 using Hotel_Business;
 using System;
 using System.Drawing;
@@ -141,7 +142,7 @@ namespace Hotel.MainMenu
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListUsers(), sender);
         }
 
         private void btnPayments_Click(object sender, EventArgs e)

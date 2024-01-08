@@ -47,7 +47,7 @@ namespace Hotel.People.UserControls
         }
 
         private bool _FilterEnable = true;
-        public bool FilterEnable
+        public bool FilterEnabled
         {
             get => _FilterEnable;
             set => gbFilter.Enabled = _FilterEnable = value;
@@ -67,7 +67,7 @@ namespace Hotel.People.UserControls
             ucPersonCard1.LoadPersonInfo(PersonID);
 
             if (OnPersonSelected != null)
-                RaiseOnPersonSelected(ucPersonCard1.PersonID, ucPersonCard1.PersonInfo.NationalNo);
+                RaiseOnPersonSelected(ucPersonCard1.PersonID, ucPersonCard1.PersonInfo?.NationalNo);
         }
 
         public void LoadPersonInfo(string NationalNo)

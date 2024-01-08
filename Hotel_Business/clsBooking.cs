@@ -82,14 +82,7 @@ namespace Hotel_Business
 
             bool IsFound = clsBookingData.GetBookingInfoByID(BookingID, ref ReservationID, ref CheckInDate, ref CheckOutDate, ref Status, ref CreatedByUserID);
 
-            if (IsFound)
-            {
-                return new clsBooking(BookingID, ReservationID, CheckInDate, CheckOutDate, Status, CreatedByUserID);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound ? new clsBooking(BookingID, ReservationID, CheckInDate, CheckOutDate, Status, CreatedByUserID) : null;
         }
 
         public static bool DeleteBooking(int? BookingID)

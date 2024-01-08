@@ -90,14 +90,9 @@ namespace Hotel_Business
 
             bool IsFound = clsReservationData.GetReservationInfoByID(ReservationID, ref PersonID, ref RoomID, ref ReservedForDate, ref NumberOfPeople, ref Status, ref CreatedDate, ref CreatedByUserID);
 
-            if (IsFound)
-            {
-                return new clsReservation(ReservationID, PersonID, RoomID, ReservedForDate, NumberOfPeople, Status, CreatedDate, CreatedByUserID);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound
+                ? new clsReservation(ReservationID, PersonID, RoomID, ReservedForDate, NumberOfPeople, Status, CreatedDate, CreatedByUserID)
+                : null;
         }
 
         public static bool DeleteReservation(int? ReservationID)

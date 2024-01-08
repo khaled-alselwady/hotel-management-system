@@ -109,15 +109,10 @@ namespace Hotel_Business
                 ref FloorNumber, ref Size, ref Status, ref IsSmokingAllowed,
                  ref IsPetFriendly, ref Notes);
 
-            if (IsFound)
-            {
-                return new clsRoom(RoomID, RoomTypeID, RoomNumber, FloorNumber, Size,
-                    (enStatus)Status, IsSmokingAllowed, IsPetFriendly, Notes);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound
+                ? new clsRoom(RoomID, RoomTypeID, RoomNumber, FloorNumber, Size,
+                    (enStatus)Status, IsSmokingAllowed, IsPetFriendly, Notes)
+                : null;
         }
 
         public static bool DeleteRoom(int? RoomID)

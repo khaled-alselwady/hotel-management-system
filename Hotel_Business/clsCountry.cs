@@ -66,14 +66,7 @@ namespace Hotel_Business
 
             bool IsFound = clsCountryData.GetCountryInfoByID(CountryID, ref CountryName);
 
-            if (IsFound)
-            {
-                return new clsCountry(CountryID, CountryName);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound ? new clsCountry(CountryID, CountryName) : null;
         }
 
         public static clsCountry Find(string CountryName)
@@ -82,14 +75,7 @@ namespace Hotel_Business
 
             bool IsFound = clsCountryData.GetCountryInfoByName(CountryName, ref CountryID);
 
-            if (IsFound)
-            {
-                return new clsCountry(CountryID, CountryName);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound ? new clsCountry(CountryID, CountryName) : null;
         }
 
         public static bool DoesCountryExist(int? CountryID)

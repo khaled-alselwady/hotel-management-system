@@ -1,4 +1,6 @@
-﻿using Hotel_Business;
+﻿using Hotel.GlobalClasses;
+using Hotel.Users;
+using Hotel_Business;
 using System;
 using System.Data;
 using System.Diagnostics;
@@ -67,12 +69,14 @@ namespace Hotel.Dashboard
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not available yet!");
+            frmShowUserInfo ShowUserInfo = new frmShowUserInfo(clsGlobal.CurrentUser?.UserID);
+            ShowUserInfo.ShowDialog();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not available yet!");
+            frmChangePassword ChangePassword = new frmChangePassword(clsGlobal.CurrentUser?.UserID);
+            ChangePassword.ShowDialog();
         }
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)

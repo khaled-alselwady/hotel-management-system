@@ -3,18 +3,11 @@ using Guna.UI2.WinForms;
 using Hotel.GlobalClasses;
 using Hotel.Properties;
 using Hotel_Business;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Hotel.People
 {
@@ -245,7 +238,7 @@ namespace Hotel.People
 
             if (_Person.Save())
             {
-                lblTitle.Text = "Update User";
+                lblTitle.Text = "Update Person";
                 this.Text = lblTitle.Text;
                 lblPersonID.Text = _Person.PersonID.ToString();
 

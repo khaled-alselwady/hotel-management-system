@@ -33,6 +33,8 @@ namespace Hotel_Business
 
         public clsCountry CountryInfo { get; }
 
+        public bool IsUser => clsUser.DoesUserExist(this.PersonID, clsUser.enFindBy.PersonID);
+
         public clsPerson()
         {
             this.PersonID = null;
@@ -133,15 +135,10 @@ namespace Hotel_Business
                 ref SecondName, ref ThirdName, ref LastName, ref DateOfBirth, ref Gender, ref Address,
                 ref Phone, ref Email, ref NationalityCountryID, ref ImagePath);
 
-            if (IsFound)
-            {
-                return new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName,
-                    DateOfBirth, (enGender)Gender, Address, Phone, Email, NationalityCountryID, ImagePath);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound
+                ? new clsPerson(PersonID, NationalNo, FirstName, SecondName, ThirdName, LastName,
+                    DateOfBirth, (enGender)Gender, Address, Phone, Email, NationalityCountryID, ImagePath)
+                : null;
         }
 
         public static clsPerson Find(string NationalNo)
@@ -164,16 +161,11 @@ namespace Hotel_Business
                  ref DateOfBirth, ref Gender, ref Address, ref Phone,
                 ref Email, ref NationalityCountryID, ref ImagePath);
 
-            if (IsFound)
-            {
-                return new clsPerson(PersonID, NationalNo, FirstName, SecondName,
+            return IsFound
+                ? new clsPerson(PersonID, NationalNo, FirstName, SecondName,
                     ThirdName, LastName, DateOfBirth, (enGender)Gender, Address,
-                     Phone, Email, NationalityCountryID, ImagePath);
-            }
-            else
-            {
-                return null;
-            }
+                     Phone, Email, NationalityCountryID, ImagePath)
+                : null;
         }
 
         public static bool DeletePerson(int? PersonID)

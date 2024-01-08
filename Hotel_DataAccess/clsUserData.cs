@@ -6,8 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsUserData
     {
-        public static bool GetUserInfoByID(int? UserID, ref int? PersonID, ref string Username,
-            ref string Password, ref bool IsActive)
+        public static bool GetUserInfoByUserID(int? UserID, ref int? PersonID,
+            ref string Username, ref string Password, ref bool IsActive)
         {
             bool IsFound = false;
 
@@ -60,8 +60,63 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static bool GetUserInfoByUsername(ref int? UserID, ref int? PersonID, string Username,
-            ref string Password, ref bool IsActive)
+
+        public static bool GetUserInfoByPersonID(int? PersonID, ref int? UserID,
+            ref string Username, ref string Password, ref bool IsActive)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from Users where PersonID = @PersonID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                UserID = (reader["UserID"] != DBNull.Value) ? (int?)reader["UserID"] : null;
+                                Username = (string)reader["Username"];
+                                Password = (string)reader["Password"];
+                                IsActive = (bool)reader["IsActive"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool GetUserInfoByUsername(ref int? UserID, ref int? PersonID,
+            string Username, ref string Password, ref bool IsActive)
         {
             bool IsFound = false;
 
@@ -166,7 +221,8 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewUser(int? PersonID, string Username, string Password, bool IsActive)
+        public static int? AddNewUser(int? PersonID, string Username, string Password,
+            bool IsActive)
         {
             // This function will return the new person id if succeeded and null if not
             int? UserID = null;
@@ -286,7 +342,7 @@ where UserID = @UserID";
             return (RowAffected > 0);
         }
 
-        public static bool DoesUserExist(int? UserID)
+        public static bool DoesUserExistByUserID(int? UserID)
         {
             bool IsFound = false;
 
@@ -322,7 +378,43 @@ where UserID = @UserID";
             return IsFound;
         }
 
-        public static bool DoesUserExist(string Username)
+        public static bool DoesUserExistByPersonID(int? PersonID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select found = 1 from Users where PersonID = @PersonID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+
+                        IsFound = (command.ExecuteScalar() != null);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool DoesUserExistByUsername(string Username)
         {
             bool IsFound = false;
 
@@ -358,7 +450,7 @@ where UserID = @UserID";
             return IsFound;
         }
 
-        public static bool DoesUserExist(string Username, string Password)
+        public static bool DoesUserExistByUsernameAndPassword(string Username, string Password)
         {
             bool IsFound = false;
 
@@ -405,7 +497,7 @@ where UserID = @UserID";
                 {
                     connection.Open();
 
-                    string query = @"select * from Users";
+                    string query = @"select * from UsersDetails_view order by UserID desc";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -464,6 +556,41 @@ where UserID = @UserID";
             }
 
             return Count;
+        }
+
+        public static bool ChangePassword(int? UserID, string NewPassword)
+        {
+            int RowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"Update Users
+set Password = @NewPassword
+where UserID = @UserID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", (object)UserID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@NewPassword", NewPassword);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return (RowAffected > 0);
         }
     }
 }

@@ -78,14 +78,7 @@ namespace Hotel_Business
 
             bool IsFound = clsPaymentData.GetPaymentInfoByID(PaymentID, ref BookingID, ref PersonID, ref PaymentDate, ref PaymentAmount);
 
-            if (IsFound)
-            {
-                return new clsPayment(PaymentID, BookingID, PersonID, PaymentDate, PaymentAmount);
-            }
-            else
-            {
-                return null;
-            }
+            return IsFound ? new clsPayment(PaymentID, BookingID, PersonID, PaymentDate, PaymentAmount) : null;
         }
 
         public static bool DeletePayment(int? PaymentID)
