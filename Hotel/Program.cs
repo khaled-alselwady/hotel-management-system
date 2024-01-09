@@ -1,4 +1,5 @@
-﻿using Hotel.MainMenu;
+﻿using Hotel.Login;
+using Hotel.MainMenu;
 using Hotel.People;
 using System;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace Hotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMainMenu());
+            Application.Run(new frmLoginScreen());
         }
     }
 }

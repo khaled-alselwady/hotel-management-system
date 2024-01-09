@@ -343,6 +343,36 @@ namespace Hotel.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hotel_login {
+            get {
+                object obj = ResourceManager.GetObject("hotel-login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hotel_login_100 {
+            get {
+                object obj = ResourceManager.GetObject("hotel-login-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hotel_login_white_100 {
+            get {
+                object obj = ResourceManager.GetObject("hotel-login-white-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hotel_main_white {
             get {
                 object obj = ResourceManager.GetObject("hotel-main-white", resourceCulture);
@@ -416,6 +446,16 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap next {
             get {
                 object obj = ResourceManager.GetObject("next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password_login_50 {
+            get {
+                object obj = ResourceManager.GetObject("password-login-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -626,6 +666,16 @@ namespace Hotel.Properties {
         internal static System.Drawing.Bitmap sign_out_30 {
             get {
                 object obj = ResourceManager.GetObject("sign_out-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap username_login_64 {
+            get {
+                object obj = ResourceManager.GetObject("username-login-64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

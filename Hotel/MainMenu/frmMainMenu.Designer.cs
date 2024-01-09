@@ -279,6 +279,7 @@
             this.btnLogOut.Text = "Log Out";
             this.btnLogOut.UseTransparentBackground = true;
             this.btnLogOut.CheckedChanged += new System.EventHandler(this.btn_CheckedChanged);
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnGuests
             // 

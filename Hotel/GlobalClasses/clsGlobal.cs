@@ -12,7 +12,7 @@ namespace Hotel.GlobalClasses
 
         public static bool RememberUsernameAndPassword(string Username, string Password)
         {
-            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\CarRental";
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\Hotel";
 
             string UsernameName = "Username";
             string UsernameData = Username;
@@ -37,7 +37,7 @@ namespace Hotel.GlobalClasses
 
         public static bool RemoveStoredCredential()
         {
-            string keyPath = @"SOFTWARE\CarRental";
+            string keyPath = @"SOFTWARE\Hotel";
 
             string UsernameName = "Username";
             string PasswordName = "Password";
@@ -78,7 +78,7 @@ namespace Hotel.GlobalClasses
 
         public static bool GetStoredCredential(ref string Username, ref string Password)
         {
-            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\CarRental";
+            string keyPath = @"HKEY_CURRENT_USER\SOFTWARE\Hotel";
 
             string UsernameName = "Username";
             string PasswordName = "Password";

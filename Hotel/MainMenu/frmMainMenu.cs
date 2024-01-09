@@ -1,5 +1,6 @@
 ﻿using Guna.UI2.WinForms;
 using Hotel.Dashboard;
+using Hotel.GlobalClasses;
 using Hotel.Guests;
 using Hotel.Users;
 using Hotel_Business;
@@ -18,9 +19,11 @@ namespace Hotel.MainMenu
 
         private Form _frmLoginForm;
 
-        public frmMainMenu()
+        public frmMainMenu(Form frmLoginForm)
         {
             InitializeComponent();
+
+            _frmLoginForm = frmLoginForm;
         }
 
         private void _ActivateButton(object btnSender)
@@ -29,9 +32,9 @@ namespace Hotel.MainMenu
             {
                 if (_CurrentButton != (Guna2Button)btnSender)
                 {
-                    _DisableMenuButton();                    
+                    _DisableMenuButton();
                     _CurrentButton = (Guna2Button)btnSender;
-                    _CurrentButton.BackColor = Color.White;             
+                    _CurrentButton.BackColor = Color.White;
                     _CurrentButton.ForeColor = Color.FromArgb(53, 41, 123);
                     _CurrentButton.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -97,7 +100,7 @@ namespace Hotel.MainMenu
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new frmDashboard(), sender);
+            _OpenChildFormAsync(new frmDashboard(_frmLoginForm, this), sender);
         }
 
         private void btnReservations_Click(object sender, EventArgs e)
@@ -153,6 +156,13 @@ namespace Hotel.MainMenu
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
             btnDashboard.PerformClick();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            clsGlobal.CurrentUser = null;
+            _frmLoginForm.Show();
+            this.Close();
         }
     }
 }

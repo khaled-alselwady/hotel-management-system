@@ -81,6 +81,12 @@
     <Compile Include="Guests\frmListGuests.Designer.cs">
       <DependentUpon>frmListGuests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\frmLoginScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLoginScreen.Designer.cs">
+      <DependentUpon>frmLoginScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu\frmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Guests\frmListGuests.resx">
       <DependentUpon>frmListGuests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLoginScreen.resx">
+      <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu\frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
@@ -404,6 +413,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\users-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username-login-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password-login-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotel-login-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotel-login-white-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hotel-login.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

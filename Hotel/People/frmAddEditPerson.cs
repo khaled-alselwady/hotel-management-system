@@ -216,16 +216,16 @@ namespace Hotel.People
         {
             _Person.FirstName = txtFirstName.Text.Trim();
             _Person.SecondName = txtSecondName.Text.Trim();
-            _Person.ThirdName = txtThirdName.Text.Trim();
+            _Person.ThirdName = string.IsNullOrWhiteSpace(txtThirdName.Text.Trim()) ? null : txtThirdName.Text.Trim();
             _Person.LastName = txtLastName.Text.Trim();
-            _Person.Email = txtEmail.Text.Trim();
+            _Person.Email = string.IsNullOrWhiteSpace(txtEmail.Text.Trim()) ? null : txtEmail.Text.Trim();
             _Person.NationalNo = txtNationalNo.Text.Trim();
-            _Person.Address = txtAddress.Text.Trim();
+            _Person.Address = string.IsNullOrWhiteSpace(txtAddress.Text.Trim()) ? null : txtAddress.Text.Trim();
             _Person.Phone = txtPhone.Text.Trim();
             _Person.NationalityCountryID = clsCountry.Find(cbCountry.Text).CountryID;
             _Person.Gender = (rbMale.Checked) ? clsPerson.enGender.Male : clsPerson.enGender.Female;
             _Person.DateOfBirth = dtpDateOfBirth.Value;
-           
+
             if (pbPersonImage.ImageLocation != null)
                 _Person.ImagePath = pbPersonImage.ImageLocation;
             else

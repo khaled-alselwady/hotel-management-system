@@ -126,7 +126,7 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS";
+                    string query = @"select * from Users where Username = @Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -179,7 +179,7 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS AND Password = @Password COLLATE SQL_Latin1_General_CP1_CS_AS";
+                    string query = @"select * from Users where Username = @Username AND Password = @Password";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -424,7 +424,7 @@ where UserID = @UserID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS";
+                    string query = @"select found = 1 from Users where Username = @Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -460,7 +460,7 @@ where UserID = @UserID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Users where Username = @Username COLLATE SQL_Latin1_General_CP1_CS_AS and Password = @Password COLLATE SQL_Latin1_General_CP1_CS_AS";
+                    string query = @"select found = 1 from Users where Username = @Username and Password = @Password";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

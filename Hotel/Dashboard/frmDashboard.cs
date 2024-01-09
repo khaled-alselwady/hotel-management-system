@@ -1,4 +1,5 @@
 ﻿using Hotel.GlobalClasses;
+using Hotel.Properties;
 using Hotel.Users;
 using Hotel_Business;
 using System;
@@ -12,12 +13,33 @@ namespace Hotel.Dashboard
 {
     public partial class frmDashboard : Form
     {
-        public frmDashboard()
+        private Form _frmLoginForm;
+        private Form _frmMainMenu;
+
+        public frmDashboard(Form frmLoginForm, Form frmMainMenu)
         {
             InitializeComponent();
 
             _CountElements();
+            _PrintChart();
+            _RefreshUserInfo();
 
+            _frmLoginForm = frmLoginForm;
+            _frmMainMenu = frmMainMenu;
+        }
+
+        private void _CountElements()
+        {
+            lblNumberOfGuests.Text = clsGuest.Count().ToString();
+            lblNumberOfUsers.Text = clsUser.Count().ToString();
+            lblNumberOfRooms.Text = clsRoom.Count().ToString();
+            lblNumberOfReservations.Text = clsReservation.Count().ToString();
+            lblNumberOfBookings.Text = clsBooking.Count().ToString();
+            lblNumberOfPayments.Text = clsPayment.Count().ToString();
+        }
+
+        private void _PrintChart()
+        {
             int AvailableRooms = clsRoom.GetAvailableRoomsCount();
             int BookedRooms = clsRoom.GetBookedRoomsCount();
             int UnderMaintenanceRooms = clsRoom.GetUnderMaintenanceRoomsCount();
@@ -42,18 +64,32 @@ namespace Hotel.Dashboard
 
                 chartVehiclesStatus.Series["s1"].Points.Add(DataPointCategory);
             }
-
-            //lblHiUsername.Text = $"Hi {clsGlobal.CurrentUser.Username}";
         }
 
-        private void _CountElements()
+        private void _HandleUserImage()
         {
-            lblNumberOfGuests.Text = clsGuest.Count().ToString();
-            lblNumberOfUsers.Text = clsUser.Count().ToString();
-            lblNumberOfRooms.Text = clsRoom.Count().ToString();
-            lblNumberOfReservations.Text = clsReservation.Count().ToString();
-            lblNumberOfBookings.Text = clsBooking.Count().ToString();
-            lblNumberOfPayments.Text = clsPayment.Count().ToString();
+            if (clsGlobal.CurrentUser?.PersonInfo?.ImagePath != null)
+            {
+                pbUserImage.ImageLocation = clsGlobal.CurrentUser.PersonInfo?.ImagePath;
+            }
+            else
+            {
+                if (clsGlobal.CurrentUser.PersonInfo?.Gender == clsPerson.enGender.Male)
+                    pbUserImage.Image = Resources.default_male;
+                else
+                    pbUserImage.Image = Resources.default_female;
+            }
+        }
+
+        private void _RefreshUserInfo()
+        {
+            clsGlobal.CurrentUser = clsUser.FindBy(clsGlobal.CurrentUser?.UserID, clsUser.enFindBy.UserID);
+
+            lblFullName.Text = clsGlobal.CurrentUser?.PersonInfo?.FullName;
+            lblEmail.Text = clsGlobal.CurrentUser?.PersonInfo?.Email;
+            lblHiUsername.Text = $"Hi {clsGlobal.CurrentUser?.Username}";
+
+            _HandleUserImage();
         }
 
         private void btnShowSubMenu_Click(object sender, EventArgs e)
@@ -71,6 +107,8 @@ namespace Hotel.Dashboard
         {
             frmShowUserInfo ShowUserInfo = new frmShowUserInfo(clsGlobal.CurrentUser?.UserID);
             ShowUserInfo.ShowDialog();
+
+            _RefreshUserInfo();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,7 +119,10 @@ namespace Hotel.Dashboard
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not available yet!");
+            clsGlobal.CurrentUser = null;
+            _frmMainMenu.Hide();
+            _frmLoginForm.Show();
+            this.Close();
         }
     }
 }
