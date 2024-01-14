@@ -125,6 +125,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservations\frmAddEditReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmAddEditReservation.Designer.cs">
+      <DependentUpon>frmAddEditReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmListReservations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmListReservations.Designer.cs">
+      <DependentUpon>frmListReservations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmShowReservationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmShowReservationInfo.Designer.cs">
+      <DependentUpon>frmShowReservationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\UserControls\ucReservationsCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reservations\UserControls\ucReservationsCard.Designer.cs">
+      <DependentUpon>ucReservationsCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmAddEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +210,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmAddEditReservation.resx">
+      <DependentUpon>frmAddEditReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmListReservations.resx">
+      <DependentUpon>frmListReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmShowReservationInfo.resx">
+      <DependentUpon>frmShowReservationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\UserControls\ucReservationsCard.resx">
+      <DependentUpon>ucReservationsCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
@@ -428,6 +464,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hotel-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room-number.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-reservation-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-reservation-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-reservation-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\details-reservation-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-reservation32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-reservation-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show-reservation-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirm-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check-in-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add--guest-companion-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change-password-321.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

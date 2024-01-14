@@ -1,5 +1,6 @@
 using Hotel_DataAccess;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Hotel_Business
@@ -9,11 +10,20 @@ namespace Hotel_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int? RoomTypeID { get; set; }
+        public byte? RoomTypeID { get; set; }
         public string RoomTypeTitle { get; set; }
         public byte Capacity { get; set; }
         public decimal PricePerNight { get; set; }
         public string Description { get; set; }
+
+        public static Dictionary<clsRoom.enRoomTypes, byte> KeyValueTypeTitleAndCapacity =
+            new Dictionary<clsRoom.enRoomTypes, byte>()
+        {
+            { clsRoom.enRoomTypes.Single, 1 },
+            { clsRoom.enRoomTypes.Double, 2 },
+            { clsRoom.enRoomTypes.DeluxeSuite, 4 },
+            { clsRoom.enRoomTypes.FamilyRoom, 6 }
+        };
 
         public clsRoomType()
         {
@@ -25,7 +35,8 @@ namespace Hotel_Business
             Mode = enMode.AddNew;
         }
 
-        private clsRoomType(int? RoomTypeID, string RoomTypeTitle, byte Capacity, decimal PricePerNight, string Description)
+        private clsRoomType(byte? RoomTypeID, string RoomTypeTitle,
+            byte Capacity, decimal PricePerNight, string Description)
         {
             this.RoomTypeID = RoomTypeID;
             this.RoomTypeTitle = RoomTypeTitle;
@@ -37,14 +48,16 @@ namespace Hotel_Business
 
         private bool _AddNewRoomType()
         {
-            this.RoomTypeID = clsRoomTypeData.AddNewRoomType(this.RoomTypeTitle, this.Capacity, this.PricePerNight, this.Description);
+            this.RoomTypeID = clsRoomTypeData.AddNewRoomType(this.RoomTypeTitle,
+                this.Capacity, this.PricePerNight, this.Description);
 
             return (this.RoomTypeID.HasValue);
         }
 
         private bool _UpdateRoomType()
         {
-            return clsRoomTypeData.UpdateRoomType(this.RoomTypeID, this.RoomTypeTitle, this.Capacity, this.PricePerNight, this.Description);
+            return clsRoomTypeData.UpdateRoomType(this.RoomTypeID, this.RoomTypeTitle,
+                this.Capacity, this.PricePerNight, this.Description);
         }
 
         public bool Save()
@@ -69,7 +82,7 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsRoomType Find(int? RoomTypeID)
+        public static clsRoomType Find(byte? RoomTypeID)
         {
             string RoomTypeTitle = string.Empty;
             byte Capacity = 0;
@@ -81,12 +94,12 @@ namespace Hotel_Business
             return (IsFound) ? (new clsRoomType(RoomTypeID, RoomTypeTitle, Capacity, PricePerNight, Description)) : null;
         }
 
-        public static bool DeleteRoomType(int? RoomTypeID)
+        public static bool DeleteRoomType(byte? RoomTypeID)
         {
             return clsRoomTypeData.DeleteRoomType(RoomTypeID);
         }
 
-        public static bool DoesRoomTypeExist(int? RoomTypeID)
+        public static bool DoesRoomTypeExist(byte? RoomTypeID)
         {
             return clsRoomTypeData.DoesRoomTypeExist(RoomTypeID);
         }
@@ -94,6 +107,11 @@ namespace Hotel_Business
         public static DataTable GetAllRoomTypes()
         {
             return clsRoomTypeData.GetAllRoomTypes();
+        }
+
+        public static DataTable GetAllRoomTypesTitle()
+        {
+            return clsRoomTypeData.GetAllRoomTypesTitle();
         }
 
     }

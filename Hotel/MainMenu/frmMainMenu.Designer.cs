@@ -176,6 +176,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
+            this.panelMenu.Controls.Add(this.btnReservations);
             this.panelMenu.Controls.Add(this.btnPayments);
             this.panelMenu.Controls.Add(this.btnUsers);
             this.panelMenu.Controls.Add(this.btnLogOut);
@@ -189,7 +190,6 @@
             this.panelMenu.Controls.Add(this.btnDashboard);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Controls.Add(this.pbImgaeSlide);
-            this.panelMenu.Controls.Add(this.btnReservations);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";

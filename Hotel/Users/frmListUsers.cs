@@ -65,9 +65,9 @@ namespace Hotel.Users
             }
         }
 
-        private int _GetUserIDFromDGV()
+        private int? _GetUserIDFromDGV()
         {
-            return (int)dgvUsersList.CurrentRow.Cells["UserID"].Value;
+            return (int?)dgvUsersList.CurrentRow.Cells["UserID"].Value;
         }
 
         private void frmListUsers_Load(object sender, EventArgs e)

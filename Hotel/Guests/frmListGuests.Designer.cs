@@ -28,15 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvGuestsList = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.cmsEditProfile = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
-            this.ShowGuestDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.EditGuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,119 +41,15 @@
             this.cbNationality = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.pbImage = new System.Windows.Forms.PictureBox();
+            this.dgvGuestsList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ShowGuestDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.EditGuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuestsList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvGuestsList
-            // 
-            this.dgvGuestsList.AllowUserToAddRows = false;
-            this.dgvGuestsList.AllowUserToDeleteRows = false;
-            this.dgvGuestsList.AllowUserToOrderColumns = true;
-            this.dgvGuestsList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvGuestsList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvGuestsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvGuestsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvGuestsList.ColumnHeadersHeight = 35;
-            this.dgvGuestsList.ContextMenuStrip = this.cmsEditProfile;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGuestsList.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvGuestsList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvGuestsList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
-            this.dgvGuestsList.Location = new System.Drawing.Point(11, 256);
-            this.dgvGuestsList.Name = "dgvGuestsList";
-            this.dgvGuestsList.ReadOnly = true;
-            this.dgvGuestsList.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvGuestsList.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvGuestsList.RowTemplate.Height = 33;
-            this.dgvGuestsList.ShowCellToolTips = false;
-            this.dgvGuestsList.Size = new System.Drawing.Size(1318, 469);
-            this.dgvGuestsList.TabIndex = 182;
-            this.dgvGuestsList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WetAsphalt;
-            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dgvGuestsList.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dgvGuestsList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvGuestsList.ThemeStyle.HeaderStyle.Height = 35;
-            this.dgvGuestsList.ThemeStyle.ReadOnly = true;
-            this.dgvGuestsList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            this.dgvGuestsList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvGuestsList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvGuestsList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.dgvGuestsList.ThemeStyle.RowsStyle.Height = 33;
-            this.dgvGuestsList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
-            this.dgvGuestsList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvGuestsList.DoubleClick += new System.EventHandler(this.dgvGuestsList_DoubleClick);
-            // 
-            // cmsEditProfile
-            // 
-            this.cmsEditProfile.BackColor = System.Drawing.Color.White;
-            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowGuestDetailsToolStripMenuItem1,
-            this.toolStripSeparator2,
-            this.EditGuestToolStripMenuItem});
-            this.cmsEditProfile.Name = "guna2ContextMenuStrip1";
-            this.cmsEditProfile.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.cmsEditProfile.RenderStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.cmsEditProfile.RenderStyle.ColorTable = null;
-            this.cmsEditProfile.RenderStyle.RoundedEdges = true;
-            this.cmsEditProfile.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SelectionBackColor = System.Drawing.Color.Gray;
-            this.cmsEditProfile.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.cmsEditProfile.RenderStyle.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.cmsEditProfile.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.cmsEditProfile.Size = new System.Drawing.Size(234, 86);
-            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
-            // 
-            // ShowGuestDetailsToolStripMenuItem1
-            // 
-            this.ShowGuestDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.ShowGuestDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.person_details_32;
-            this.ShowGuestDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowGuestDetailsToolStripMenuItem1.Name = "ShowGuestDetailsToolStripMenuItem1";
-            this.ShowGuestDetailsToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
-            this.ShowGuestDetailsToolStripMenuItem1.Text = "   Show Guest Details";
-            this.ShowGuestDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowGuestDetailsToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(230, 6);
-            // 
-            // EditGuestToolStripMenuItem
-            // 
-            this.EditGuestToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.EditGuestToolStripMenuItem.Image = global::Hotel.Properties.Resources.person_edit_32;
-            this.EditGuestToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditGuestToolStripMenuItem.Name = "EditGuestToolStripMenuItem";
-            this.EditGuestToolStripMenuItem.Size = new System.Drawing.Size(233, 38);
-            this.EditGuestToolStripMenuItem.Text = "   Edit";
-            this.EditGuestToolStripMenuItem.Click += new System.EventHandler(this.EditGuestToolStripMenuItem_Click);
             // 
             // lblNumberOfRecords
             // 
@@ -212,6 +104,7 @@
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(273, 36);
             this.txtSearch.TabIndex = 183;
+            this.txtSearch.Visible = false;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
@@ -290,7 +183,7 @@
             // pbImage
             // 
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbImage.Image = global::Hotel.Properties.Resources.guests_list_100;
+            this.pbImage.Image = global::Hotel.Properties.Resources.guests_dashboard;
             this.pbImage.InitialImage = null;
             this.pbImage.Location = new System.Drawing.Point(489, 13);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -300,6 +193,106 @@
             this.pbImage.TabIndex = 179;
             this.pbImage.TabStop = false;
             // 
+            // dgvGuestsList
+            // 
+            this.dgvGuestsList.AllowUserToAddRows = false;
+            this.dgvGuestsList.AllowUserToDeleteRows = false;
+            this.dgvGuestsList.AllowUserToOrderColumns = true;
+            this.dgvGuestsList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvGuestsList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvGuestsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvGuestsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvGuestsList.ColumnHeadersHeight = 35;
+            this.dgvGuestsList.ContextMenuStrip = this.cmsEditProfile;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGuestsList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvGuestsList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvGuestsList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvGuestsList.Location = new System.Drawing.Point(13, 256);
+            this.dgvGuestsList.Name = "dgvGuestsList";
+            this.dgvGuestsList.ReadOnly = true;
+            this.dgvGuestsList.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvGuestsList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvGuestsList.RowTemplate.Height = 33;
+            this.dgvGuestsList.ShowCellToolTips = false;
+            this.dgvGuestsList.Size = new System.Drawing.Size(1318, 469);
+            this.dgvGuestsList.TabIndex = 200;
+            this.dgvGuestsList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.WetAsphalt;
+            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvGuestsList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvGuestsList.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvGuestsList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvGuestsList.ThemeStyle.HeaderStyle.Height = 35;
+            this.dgvGuestsList.ThemeStyle.ReadOnly = true;
+            this.dgvGuestsList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            this.dgvGuestsList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvGuestsList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvGuestsList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.dgvGuestsList.ThemeStyle.RowsStyle.Height = 33;
+            this.dgvGuestsList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
+            this.dgvGuestsList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvGuestsList.DoubleClick += new System.EventHandler(this.dgvGuestsList_DoubleClick);
+            // 
+            // cmsEditProfile
+            // 
+            this.cmsEditProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowGuestDetailsToolStripMenuItem1,
+            this.toolStripSeparator6,
+            this.EditGuestToolStripMenuItem});
+            this.cmsEditProfile.Name = "contextMenuStrip1";
+            this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.cmsEditProfile.Size = new System.Drawing.Size(230, 86);
+            // 
+            // ShowGuestDetailsToolStripMenuItem1
+            // 
+            this.ShowGuestDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.ShowGuestDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.show_reservation_32;
+            this.ShowGuestDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowGuestDetailsToolStripMenuItem1.Name = "ShowGuestDetailsToolStripMenuItem1";
+            this.ShowGuestDetailsToolStripMenuItem1.Size = new System.Drawing.Size(229, 38);
+            this.ShowGuestDetailsToolStripMenuItem1.Text = "Show Guest Details";
+            this.ShowGuestDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowGuestDetailsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(226, 6);
+            // 
+            // EditGuestToolStripMenuItem
+            // 
+            this.EditGuestToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.EditGuestToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
+            this.EditGuestToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditGuestToolStripMenuItem.Name = "EditGuestToolStripMenuItem";
+            this.EditGuestToolStripMenuItem.Size = new System.Drawing.Size(229, 38);
+            this.EditGuestToolStripMenuItem.Text = "Edit";
+            this.EditGuestToolStripMenuItem.Click += new System.EventHandler(this.EditGuestToolStripMenuItem_Click);
+            // 
             // frmListGuests
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,10 +300,10 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1344, 759);
+            this.Controls.Add(this.dgvGuestsList);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.cbGender);
-            this.Controls.Add(this.dgvGuestsList);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.lblNumberOfRecords);
             this.Controls.Add(this.label2);
@@ -323,21 +316,15 @@
             this.Tag = "Manage Guests";
             this.Text = "frmListGuests";
             this.Load += new System.EventHandler(this.frmListGuests_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuestsList)).EndInit();
             this.cmsEditProfile.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2DataGridView dgvGuestsList;
-        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsEditProfile;
-        private System.Windows.Forms.ToolStripMenuItem ShowGuestDetailsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem EditGuestToolStripMenuItem;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label label2;
@@ -346,5 +333,10 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbGender;
         private Guna.UI2.WinForms.Guna2ComboBox cbNationality;
         private Guna.UI2.WinForms.Guna2ComboBox cbFilter;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvGuestsList;
+        private System.Windows.Forms.ContextMenuStrip cmsEditProfile;
+        private System.Windows.Forms.ToolStripMenuItem ShowGuestDetailsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem EditGuestToolStripMenuItem;
     }
 }

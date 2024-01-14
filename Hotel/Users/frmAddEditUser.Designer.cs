@@ -340,6 +340,7 @@
             this.txtConfirmPassword.SelectedText = "";
             this.txtConfirmPassword.Size = new System.Drawing.Size(210, 36);
             this.txtConfirmPassword.TabIndex = 212;
+            this.txtConfirmPassword.TextChanged += new System.EventHandler(this.txtPasswordAndConfirm_TextChanged);
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // label3
@@ -376,6 +377,7 @@
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(210, 36);
             this.txtPassword.TabIndex = 211;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPasswordAndConfirm_TextChanged);
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // label5

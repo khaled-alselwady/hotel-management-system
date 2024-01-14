@@ -6,7 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsRoomData
     {
-        public static bool GetRoomInfoByID(int? RoomID, ref int RoomTypeID, ref int RoomNumber,
+        public static bool GetRoomInfoByID(int? RoomID, ref byte? RoomTypeID, ref int RoomNumber,
             ref byte FloorNumber, ref decimal Size, ref byte Status, ref bool IsSmokingAllowed,
             ref bool IsPetFriendly, ref string Notes)
         {
@@ -31,7 +31,7 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                RoomTypeID = (int)reader["RoomTypeID"];
+                                RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
                                 RoomNumber = (int)reader["RoomNumber"];
                                 FloorNumber = (byte)reader["FloorNumber"];
                                 Size = (decimal)reader["Size"];
@@ -65,7 +65,66 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewRoom(int RoomTypeID, int RoomNumber, byte FloorNumber,
+        public static bool GetRoomInfoByRoomNumber(int RoomNumber, ref int? RoomID, ref byte? RoomTypeID,
+            ref byte FloorNumber, ref decimal Size, ref byte Status, ref bool IsSmokingAllowed,
+            ref bool IsPetFriendly, ref string Notes)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select * from Rooms where RoomNumber = @RoomNumber";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
+                                RoomID = (reader["RoomID"] != DBNull.Value) ? (int?)reader["RoomID"] : null;
+                                FloorNumber = (byte)reader["FloorNumber"];
+                                Size = (decimal)reader["Size"];
+                                Status = (byte)reader["Status"];
+                                IsSmokingAllowed = (bool)reader["IsSmokingAllowed"];
+                                IsPetFriendly = (bool)reader["IsPetFriendly"];
+                                Notes = (reader["Notes"] != DBNull.Value) ? (string)reader["Notes"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static int? AddNewRoom(byte? RoomTypeID, int RoomNumber, byte FloorNumber,
             decimal Size, byte Status, bool IsSmokingAllowed, bool IsPetFriendly, string Notes)
         {
             // This function will return the new person id if succeeded and null if not
@@ -83,7 +142,7 @@ select scope_identity()";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@RoomTypeID", RoomTypeID);
+                        command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                         command.Parameters.AddWithValue("@FloorNumber", FloorNumber);
                         command.Parameters.AddWithValue("@Size", Size);
@@ -113,7 +172,7 @@ select scope_identity()";
             return RoomID;
         }
 
-        public static bool UpdateRoom(int? RoomID, int RoomTypeID, int RoomNumber,
+        public static bool UpdateRoom(int? RoomID, byte? RoomTypeID, int RoomNumber,
             byte FloorNumber, decimal Size, byte Status, bool IsSmokingAllowed,
             bool IsPetFriendly, string Notes)
         {
@@ -139,7 +198,7 @@ where RoomID = @RoomID";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@RoomTypeID", RoomTypeID);
+                        command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                         command.Parameters.AddWithValue("@FloorNumber", FloorNumber);
                         command.Parameters.AddWithValue("@Size", Size);
@@ -246,6 +305,45 @@ where RoomID = @RoomID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllAvailableRoomsBySpecificRoomType(byte? RoomTypeID)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select RoomNumber from Rooms
+                                     where RoomTypeID = @RoomTypeID and Status = 0";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)

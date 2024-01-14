@@ -56,7 +56,7 @@ namespace CarRental.GlobalClasses
             // project images folder after renaming it
             // with GUID with the same extension, then it will update the sourceFileName with the new name.
 
-            string DestinationFolder = @"D:\car-rental-user-images\";
+            string DestinationFolder = @"D:\hotel-people-images\";
             if (!CreateFolderIfDoesNotExist(DestinationFolder))
             {
                 return false;

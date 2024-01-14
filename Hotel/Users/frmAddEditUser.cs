@@ -77,7 +77,7 @@ namespace Hotel.Users
 
             if (_User == null)
             {
-                MessageBox.Show("No User with ID = " + _User, "User Not Found",
+                MessageBox.Show("No User with ID = " + _UserID, "User Not Found",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 this.Close();
@@ -85,7 +85,7 @@ namespace Hotel.Users
                 return;
             }
 
-            //the following code will not be executed if the person was not found
+            
             lblUserID.Text = _User.UserID.ToString();
             txtUsername.Text = _User.Username;
             txtPassword.Text = _User.Password;
@@ -283,6 +283,11 @@ namespace Hotel.Users
         {
             frmChangePassword ChangePassword = new frmChangePassword(_UserID);
             ChangePassword.ShowDialog();
+        }
+
+        private void txtPasswordAndConfirm_TextChanged(object sender, EventArgs e)
+        {
+            ((Guna2TextBox)sender).UseSystemPasswordChar = true;
         }
     }
 }

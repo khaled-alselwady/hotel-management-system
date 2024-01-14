@@ -96,9 +96,9 @@ namespace Hotel.Guests
             }
         }
 
-        private int _GetGuestIDFromDGV()
+        private int? _GetGuestIDFromDGV()
         {
-            return (int)dgvGuestsList.CurrentRow.Cells["GuestID"].Value;
+            return (int?)dgvGuestsList.CurrentRow.Cells["PersonID"].Value;
         }
 
         private void frmListGuests_Load(object sender, System.EventArgs e)

@@ -4,54 +4,75 @@ using System.Data;
 
 namespace Hotel_Business
 {
-    public class clsBooking
+    public class clsBooking : clsReservation
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
+        public enum enBookingStatus { Ongoing = 0, Completed = 1 }
+
         public int? BookingID { get; set; }
-        public int ReservationID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime? CheckOutDate { get; set; }
-        public byte Status { get; set; }
-        public int CreatedByUserID { get; set; }
+        public enBookingStatus BookingStatus { get; set; }
+        public override int? CreatedByUserID { get; set; }
 
         public clsBooking()
         {
             this.BookingID = null;
-            this.ReservationID = -1;
             this.CheckInDate = DateTime.Now;
             this.CheckOutDate = null;
-            this.Status = 0;
-            this.CreatedByUserID = -1;
+            this.BookingStatus = enBookingStatus.Ongoing;
+            this.CreatedByUserID = null;
+
             Mode = enMode.AddNew;
         }
 
-        private clsBooking(int? BookingID, int ReservationID, DateTime CheckInDate, DateTime? CheckOutDate, byte Status, int CreatedByUserID)
+        private clsBooking(int? BookingID, DateTime CheckInDate,
+            DateTime? CheckOutDate, enBookingStatus BookingStatus, int? CreatedByUserIDForBooking,
+            int? ReservationID, int? PersonID, int? RoomID, DateTime ReservedForDate,
+             byte NumberOfPeople, enReservationStatus ReservationStatus, DateTime CreatedDate,
+              int? CreatedByUserIDForReservation)
+
         {
+            base.ReservationID = ReservationID;
+            base.PersonID = PersonID;
+            base.RoomID = RoomID;
+            base.ReservedForDate = ReservedForDate;
+            base.NumberOfPeople = NumberOfPeople;
+            base.ReservationStatus = ReservationStatus;
+            base.CreatedDate = CreatedDate;
+            base.CreatedByUserID = CreatedByUserIDForReservation;
+
             this.BookingID = BookingID;
-            this.ReservationID = ReservationID;
             this.CheckInDate = CheckInDate;
             this.CheckOutDate = CheckOutDate;
-            this.Status = Status;
-            this.CreatedByUserID = CreatedByUserID;
+            this.BookingStatus = BookingStatus;
+            this.CreatedByUserID = CreatedByUserIDForBooking;
+
             Mode = enMode.Update;
         }
 
         private bool _AddNewBooking()
         {
-            this.BookingID = clsBookingData.AddNewBooking(this.ReservationID, this.CheckInDate, this.CheckOutDate, this.Status, this.CreatedByUserID);
+            this.BookingID = clsBookingData.AddNewBooking(this.ReservationID,
+                this.CheckOutDate, this.CreatedByUserID);
 
             return (this.BookingID.HasValue);
         }
 
         private bool _UpdateBooking()
         {
-            return clsBookingData.UpdateBooking(this.BookingID, this.ReservationID, this.CheckInDate, this.CheckOutDate, this.Status, this.CreatedByUserID);
+            return clsBookingData.UpdateBooking(this.BookingID, this.ReservationID, this.CheckInDate,
+                this.CheckOutDate, (byte)this.BookingStatus, this.CreatedByUserID);
         }
 
         public bool Save()
         {
+            base.Mode = (clsReservation.enMode)Mode;
+            if (!base.Save())
+                return false;
+
             switch (Mode)
             {
                 case enMode.AddNew:
@@ -74,15 +95,30 @@ namespace Hotel_Business
 
         public static clsBooking Find(int? BookingID)
         {
-            int ReservationID = -1;
+            int? ReservationID = null;
             DateTime CheckInDate = DateTime.Now;
             DateTime? CheckOutDate = null;
             byte Status = 0;
-            int CreatedByUserID = -1;
+            int? CreatedByUserID = null;
 
-            bool IsFound = clsBookingData.GetBookingInfoByID(BookingID, ref ReservationID, ref CheckInDate, ref CheckOutDate, ref Status, ref CreatedByUserID);
+            bool IsFound = clsBookingData.GetBookingInfoByID(BookingID, ref ReservationID,
+                ref CheckInDate, ref CheckOutDate, ref Status, ref CreatedByUserID);
 
-            return IsFound ? new clsBooking(BookingID, ReservationID, CheckInDate, CheckOutDate, Status, CreatedByUserID) : null;
+            if (IsFound)
+            {
+                clsReservation CurrentReservation = clsReservation.Find(ReservationID);
+
+                if (CurrentReservation == null)
+                    return null;
+
+                return new clsBooking(BookingID, CheckInDate, CheckOutDate, (enBookingStatus)Status,
+                    CreatedByUserID, CurrentReservation.ReservationID, CurrentReservation.PersonID,
+                    CurrentReservation.RoomID, CurrentReservation.ReservedForDate,
+                    CurrentReservation.NumberOfPeople, CurrentReservation.ReservationStatus,
+                    CurrentReservation.CreatedDate, CurrentReservation.CreatedByUserID);
+            }
+            else
+                return null;
         }
 
         public static bool DeleteBooking(int? BookingID)
@@ -100,9 +136,19 @@ namespace Hotel_Business
             return clsBookingData.GetAllBookings();
         }
 
-        public static int Count()
+        public static new int Count()
         {
             return clsBookingData.GetBookingsCount();
+        }
+
+        public static bool IsReservationChecked(int? ReservationID)
+        {
+            return clsBookingData.IsReservationChecked(ReservationID);
+        }
+
+        public bool CheckIn()
+        {
+            return _AddNewBooking();
         }
     }
 

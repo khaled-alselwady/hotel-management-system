@@ -6,9 +6,9 @@ namespace Hotel_DataAccess
 {
     public class clsBookingData
     {
-        public static bool GetBookingInfoByID(int? BookingID, ref int ReservationID,
-            ref DateTime CheckInDate, ref DateTime? CheckOutDate, ref byte Status, 
-            ref int CreatedByUserID)
+        public static bool GetBookingInfoByID(int? BookingID, ref int? ReservationID,
+            ref DateTime CheckInDate, ref DateTime? CheckOutDate, ref byte Status,
+            ref int? CreatedByUserID)
         {
             bool IsFound = false;
 
@@ -31,7 +31,7 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                ReservationID = (int)reader["ReservationID"];
+                                ReservationID = (reader["ReservationID"] != DBNull.Value) ? (int?)reader["ReservationID"] : null;
                                 CheckInDate = (DateTime)reader["CheckInDate"];
                                 CheckOutDate = (reader["CheckOutDate"] != DBNull.Value) ? (DateTime?)reader["CheckOutDate"] : null;
                                 Status = (byte)reader["Status"];
@@ -62,8 +62,8 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewBooking(int ReservationID, DateTime CheckInDate,
-            DateTime? CheckOutDate, byte Status, int CreatedByUserID)
+        public static int? AddNewBooking(int? ReservationID,
+            DateTime? CheckOutDate, int? CreatedByUserID)
         {
             // This function will return the new person id if succeeded and null if not
             int? BookingID = null;
@@ -75,16 +75,14 @@ namespace Hotel_DataAccess
                     connection.Open();
 
                     string query = @"insert into Bookings (ReservationID, CheckInDate, CheckOutDate, Status, CreatedByUserID)
-values (@ReservationID, @CheckInDate, @CheckOutDate, @Status, @CreatedByUserID)
+values (@ReservationID, GetDate(), @CheckOutDate, 0, @CreatedByUserID)
 select scope_identity()";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ReservationID", ReservationID);
-                        command.Parameters.AddWithValue("@CheckInDate", CheckInDate);
+                        command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CheckOutDate", (object)CheckOutDate ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@Status", Status);
-                        command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                        command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
 
@@ -107,8 +105,8 @@ select scope_identity()";
             return BookingID;
         }
 
-        public static bool UpdateBooking(int? BookingID, int ReservationID, DateTime CheckInDate,
-            DateTime? CheckOutDate, byte Status, int CreatedByUserID)
+        public static bool UpdateBooking(int? BookingID, int? ReservationID, DateTime CheckInDate,
+            DateTime? CheckOutDate, byte Status, int? CreatedByUserID)
         {
             int RowAffected = 0;
 
@@ -129,11 +127,11 @@ where BookingID = @BookingID";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@ReservationID", ReservationID);
+                        command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CheckInDate", CheckInDate);
                         command.Parameters.AddWithValue("@CheckOutDate", (object)CheckOutDate ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Status", Status);
-                        command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                        command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -288,6 +286,42 @@ where BookingID = @BookingID";
             }
 
             return Count;
+        }
+
+        public static bool IsReservationChecked(int? ReservationID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    string query = @"select top 1 found = 1 from Bookings where ReservationID = @ReservationID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
+
+                        IsFound = (command.ExecuteScalar() != null);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
         }
     }
 }
