@@ -20,10 +20,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from People where PersonID = @PersonID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetPersonInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -85,10 +85,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from People where NationalNo = @NationalNo";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetPersonInfoByNationalNo", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@NationalNo", NationalNo);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -149,12 +149,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into People (NationalNo, FirstName, SecondName, ThirdName, LastName, DateOfBirth, Gender, Address, Phone, Email, NationalityCountryID, ImagePath)
-values (@NationalNo, @FirstName, @SecondName, @ThirdName, @LastName, @DateOfBirth, @Gender, @Address, @Phone, @Email, @NationalityCountryID, @ImagePath)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewPerson", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@NationalNo", NationalNo);
                         command.Parameters.AddWithValue("@FirstName", FirstName);
                         command.Parameters.AddWithValue("@SecondName", SecondName);
@@ -202,23 +200,10 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update People
-set NationalNo = @NationalNo,
-FirstName = @FirstName,
-SecondName = @SecondName,
-ThirdName = @ThirdName,
-LastName = @LastName,
-DateOfBirth = @DateOfBirth,
-Gender = @Gender,
-Address = @Address,
-Phone = @Phone,
-Email = @Email,
-NationalityCountryID = @NationalityCountryID,
-ImagePath = @ImagePath
-where PersonID = @PersonID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdatePerson", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@NationalNo", NationalNo);
                         command.Parameters.AddWithValue("@FirstName", FirstName);
@@ -259,10 +244,10 @@ where PersonID = @PersonID";
                 {
                     connection.Open();
 
-                    string query = @"delete People where PersonID = @PersonID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeletePerson", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -291,13 +276,13 @@ where PersonID = @PersonID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from People where PersonID = @PersonID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesPersonExistByID", connection))
                     {
+                        command.CommandType= CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -327,13 +312,13 @@ where PersonID = @PersonID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from People where NationalNo = @NationalNo";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesPersonExistByNationalNo", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@NationalNo", NationalNo);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -363,10 +348,10 @@ where PersonID = @PersonID";
                 {
                     connection.Open();
 
-                    string query = @"select * from People";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllPeople", connection))
                     {
+                        command.CommandType= CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)

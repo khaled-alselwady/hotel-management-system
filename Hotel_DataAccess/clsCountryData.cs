@@ -16,10 +16,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Countries where CountryID = @CountryID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetCountryInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@CountryID", (object)CountryID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -66,10 +66,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Countries where CountryName = @CountryName";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetCountryInfoByName", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@CountryName", CountryName);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -117,12 +117,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into Countries (CountryName)
-values (@CountryName)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewCountry", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@CountryName", CountryName);
 
                         object result = command.ExecuteScalar();
@@ -156,14 +154,44 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update Countries
-set CountryName = @CountryName
-where CountryID = @CountryID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdateCountry", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@CountryID", (object)CountryID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CountryName", CountryName);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return (RowAffected > 0);
+        }
+
+        public static bool DeleteCountry(int? CountryID)
+        {
+            int RowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_DeleteCountry", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@CountryID", (object)CountryID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -191,13 +219,13 @@ where CountryID = @CountryID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Countries where CountryID = @CountryID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesCountryExist", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@CountryID", (object)CountryID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -227,10 +255,10 @@ where CountryID = @CountryID";
                 {
                     connection.Open();
 
-                    string query = @"select * from Countries";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllCountries", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -263,10 +291,10 @@ where CountryID = @CountryID";
                 {
                     connection.Open();
 
-                    string query = @"select CountryName from Countries";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllCountriesName", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)

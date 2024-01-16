@@ -20,10 +20,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Guests where GuestID = @GuestID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetGuestInfoByGuestID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -70,10 +70,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Guests where PersonID = @PersonID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetGuestInfoByPersonID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -121,12 +121,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into Guests (PersonID)
-values (@PersonID)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewGuest", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         object result = command.ExecuteScalar();
@@ -160,12 +158,10 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update Guests
-set PersonID = @PersonID
-where GuestID = @GuestID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdateGuest", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
@@ -195,10 +191,10 @@ where GuestID = @GuestID";
                 {
                     connection.Open();
 
-                    string query = @"delete Guests where GuestID = @GuestID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeleteGuest", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -227,13 +223,13 @@ where GuestID = @GuestID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Guests where GuestID = @GuestID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesGuestExist", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -263,10 +259,10 @@ where GuestID = @GuestID";
                 {
                     connection.Open();
 
-                    string query = @"select * from GuestsDetails_view order by GuestID desc";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllGuests", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -299,10 +295,10 @@ where GuestID = @GuestID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Guests";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetGuestsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))

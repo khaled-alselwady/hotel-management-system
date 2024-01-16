@@ -18,10 +18,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Reservations where ReservationID = @ReservationID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetReservationInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -76,32 +76,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"
-BEGIN TRANSACTION;
-
-BEGIN TRY
-if not exists (select top 1 found = 1 from Guests where PersonID = @PersonID)
-begin
-	insert into Guests (PersonID)
-	values (@PersonID)
-end
-
-insert into Reservations (PersonID, RoomID, ReservedForDate, NumberOfPeople, Status, CreatedDate, CreatedByUserID)
-values (@PersonID, @RoomID, @ReservedForDate, @NumberOfPeople, 0, GetDate(), @CreatedByUserID)
-select scope_identity()
-
-COMMIT;
-
-END TRY
-
-BEGIN CATCH
-    
-    ROLLBACK;
-    
-END CATCH;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewReservation", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ReservedForDate", ReservedForDate);
@@ -141,16 +119,10 @@ END CATCH;";
                 {
                     connection.Open();
 
-                    string query = @"Update Reservations
-set PersonID = @PersonID,
-RoomID = @RoomID,
-ReservedForDate = @ReservedForDate,
-NumberOfPeople = @NumberOfPeople,
-CreatedByUserID = @CreatedByUserID
-where ReservationID = @ReservationID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdateReservation", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
@@ -184,10 +156,10 @@ where ReservationID = @ReservationID";
                 {
                     connection.Open();
 
-                    string query = @"delete Reservations where ReservationID = @ReservationID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeleteReservation", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -216,13 +188,13 @@ where ReservationID = @ReservationID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Reservations where ReservationID = @ReservationID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesReservationExistByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -252,10 +224,10 @@ where ReservationID = @ReservationID";
                 {
                     connection.Open();
 
-                    string query = @"select * from ReservationsDetails_view order by ReservationID desc";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllReservations", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -288,10 +260,10 @@ where ReservationID = @ReservationID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Reservations";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetReservationsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -323,12 +295,10 @@ where ReservationID = @ReservationID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Reservations
-inner join Rooms on Rooms.RoomID = Reservations.RoomID
-where Rooms.RoomNumber = @RoomNumber and Reservations.Status in (0, 1) and convert(Date,Reservations.ReservedForDate) = @ReservedDate;";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_IsRoomReserved", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomNumber", (object)RoomNumber ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ReservedDate", ReservedDate);
 
@@ -362,12 +332,10 @@ where Rooms.RoomNumber = @RoomNumber and Reservations.Status in (0, 1) and conve
                 {
                     connection.Open();
 
-                    string query = @"Update Reservations
-set Status = @NewStatus
-where ReservationID = @ReservationID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_SetReservationStatus", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@NewStatus", NewStatus);
 

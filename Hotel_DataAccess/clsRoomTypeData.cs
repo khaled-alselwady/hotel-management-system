@@ -6,8 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsRoomTypeData
     {
-        public static bool GetRoomTypeInfoByID(byte? RoomTypeID, ref string RoomTypeTitle,
-            ref byte Capacity, ref decimal PricePerNight, ref string Description)
+        public static bool GetRoomTypeInfoByID(byte? RoomTypeID, ref string RoomTypeTitle, ref byte Capacity, ref decimal PricePerNight, ref string Description)
         {
             bool IsFound = false;
 
@@ -17,10 +16,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from RoomTypes where RoomTypeID = @RoomTypeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomTypeInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -60,8 +59,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static byte? AddNewRoomType(string RoomTypeTitle, byte Capacity,
-            decimal PricePerNight, string Description)
+        public static byte? AddNewRoomType(string RoomTypeTitle, byte Capacity, decimal PricePerNight, string Description)
         {
             // This function will return the new person id if succeeded and null if not
             byte? RoomTypeID = null;
@@ -72,12 +70,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into RoomTypes (RoomTypeTitle, Capacity, PricePerNight, Description)
-values (@RoomTypeTitle, @Capacity, @PricePerNight, @Description)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewRoomType", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeTitle", RoomTypeTitle);
                         command.Parameters.AddWithValue("@Capacity", Capacity);
                         command.Parameters.AddWithValue("@PricePerNight", PricePerNight);
@@ -104,8 +100,7 @@ select scope_identity()";
             return RoomTypeID;
         }
 
-        public static bool UpdateRoomType(byte? RoomTypeID, string RoomTypeTitle,
-            byte Capacity, decimal PricePerNight, string Description)
+        public static bool UpdateRoomType(byte? RoomTypeID, string RoomTypeTitle, byte Capacity, decimal PricePerNight, string Description)
         {
             int RowAffected = 0;
 
@@ -115,15 +110,10 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update RoomTypes
-set RoomTypeTitle = @RoomTypeTitle,
-Capacity = @Capacity,
-PricePerNight = @PricePerNight,
-Description = @Description
-where RoomTypeID = @RoomTypeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdateRoomType", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomTypeTitle", RoomTypeTitle);
                         command.Parameters.AddWithValue("@Capacity", Capacity);
@@ -156,10 +146,10 @@ where RoomTypeID = @RoomTypeID";
                 {
                     connection.Open();
 
-                    string query = @"delete RoomTypes where RoomTypeID = @RoomTypeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeleteRoomType", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -188,13 +178,13 @@ where RoomTypeID = @RoomTypeID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from RoomTypes where RoomTypeID = @RoomTypeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesRoomTypeExist", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -224,10 +214,10 @@ where RoomTypeID = @RoomTypeID";
                 {
                     connection.Open();
 
-                    string query = @"select * from RoomTypes";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllRoomTypes", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -260,10 +250,10 @@ where RoomTypeID = @RoomTypeID";
                 {
                     connection.Open();
 
-                    string query = @"select RoomTypeTitle from RoomTypes order by RoomTypeID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllRoomTypesTitle", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)

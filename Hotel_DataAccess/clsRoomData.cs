@@ -18,10 +18,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Rooms where RoomID = @RoomID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -77,11 +77,11 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Rooms where RoomNumber = @RoomNumber";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomInfoByRoomNumber", connection))
                     {
-                        command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@RoomNumber", (object)RoomNumber ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -90,8 +90,8 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
                                 RoomID = (reader["RoomID"] != DBNull.Value) ? (int?)reader["RoomID"] : null;
+                                RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
                                 FloorNumber = (byte)reader["FloorNumber"];
                                 Size = (decimal)reader["Size"];
                                 Status = (byte)reader["Status"];
@@ -136,12 +136,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into Rooms (RoomTypeID, RoomNumber, FloorNumber, Size, Status, IsSmokingAllowed, IsPetFriendly, Notes)
-values (@RoomTypeID, @RoomNumber, @FloorNumber, @Size, @Status, @IsSmokingAllowed, @IsPetFriendly, @Notes)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewRoom", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
                         command.Parameters.AddWithValue("@FloorNumber", FloorNumber);
@@ -184,19 +182,10 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update Rooms
-set RoomTypeID = @RoomTypeID,
-RoomNumber = @RoomNumber,
-FloorNumber = @FloorNumber,
-Size = @Size,
-Status = @Status,
-IsSmokingAllowed = @IsSmokingAllowed,
-IsPetFriendly = @IsPetFriendly,
-Notes = @Notes
-where RoomID = @RoomID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdateRoom", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomNumber", RoomNumber);
@@ -233,10 +222,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"delete Rooms where RoomID = @RoomID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeleteRoom", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -265,13 +254,13 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Rooms where RoomID = @RoomID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesRoomExist", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -301,10 +290,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select * from Rooms";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllRooms", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -337,11 +326,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select RoomNumber from Rooms
-                                     where RoomTypeID = @RoomTypeID and Status = 0";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllAvailableRoomsBySpecificRoomType", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -376,10 +364,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Rooms";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -411,10 +399,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Rooms where Status = 0";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAvailableRoomsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -446,10 +434,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Rooms where Status = 1";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetBookedRoomsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -481,10 +469,10 @@ where RoomID = @RoomID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Rooms where Status = 2";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetUnderMaintenanceRoomsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -505,6 +493,5 @@ where RoomID = @RoomID";
 
             return Count;
         }
-
     }
 }

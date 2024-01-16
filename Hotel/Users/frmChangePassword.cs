@@ -1,4 +1,5 @@
-﻿using Hotel.GlobalClasses;
+﻿using Guna.UI2.WinForms;
+using Hotel.GlobalClasses;
 using Hotel_Business;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace Hotel.Users
 
         private void _TextBox_TextChanged(object sender, EventArgs e)
         {
-            ((TextBox)sender).UseSystemPasswordChar = true;
+            ((Guna2TextBox)sender).UseSystemPasswordChar = true;
         }
 
         private void frmChangePassword_Load(object sender, EventArgs e)

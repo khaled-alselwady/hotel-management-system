@@ -113,7 +113,7 @@
             this.txtConfirmPassword.SelectedText = "";
             this.txtConfirmPassword.Size = new System.Drawing.Size(210, 36);
             this.txtConfirmPassword.TabIndex = 213;
-            this.txtConfirmPassword.TabIndexChanged += new System.EventHandler(this._TextBox_TextChanged);
+            this.txtConfirmPassword.TextChanged += new System.EventHandler(this._TextBox_TextChanged);
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // txtNewPassword
@@ -139,7 +139,7 @@
             this.txtNewPassword.SelectedText = "";
             this.txtNewPassword.Size = new System.Drawing.Size(210, 36);
             this.txtNewPassword.TabIndex = 212;
-            this.txtNewPassword.TabIndexChanged += new System.EventHandler(this._TextBox_TextChanged);
+            this.txtNewPassword.TextChanged += new System.EventHandler(this._TextBox_TextChanged);
             this.txtNewPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewPassword_Validating);
             // 
             // txtCurrentPassword
@@ -165,7 +165,7 @@
             this.txtCurrentPassword.SelectedText = "";
             this.txtCurrentPassword.Size = new System.Drawing.Size(210, 36);
             this.txtCurrentPassword.TabIndex = 211;
-            this.txtCurrentPassword.TabIndexChanged += new System.EventHandler(this._TextBox_TextChanged);
+            this.txtCurrentPassword.TextChanged += new System.EventHandler(this._TextBox_TextChanged);
             this.txtCurrentPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtCurrentPassword_Validating);
             // 
             // label2

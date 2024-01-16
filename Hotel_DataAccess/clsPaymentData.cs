@@ -6,8 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsPaymentData
     {
-        public static bool GetPaymentInfoByID(int? PaymentID, ref int BookingID,
-            ref int PersonID, ref DateTime PaymentDate, ref decimal PaymentAmount)
+        public static bool GetPaymentInfoByID(int? PaymentID, ref int BookingID, ref int PersonID, ref DateTime PaymentDate, ref decimal PaymentAmount)
         {
             bool IsFound = false;
 
@@ -17,10 +16,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"select * from Payments where PaymentID = @PaymentID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetPaymentInfoByID", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
@@ -60,8 +59,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewPayment(int BookingID, int PersonID, DateTime PaymentDate,
-            decimal PaymentAmount)
+        public static int? AddNewPayment(int BookingID, int PersonID, DateTime PaymentDate, decimal PaymentAmount)
         {
             // This function will return the new person id if succeeded and null if not
             int? PaymentID = null;
@@ -72,12 +70,10 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    string query = @"insert into Payments (BookingID, PersonID, PaymentDate, PaymentAmount)
-values (@BookingID, @PersonID, @PaymentDate, @PaymentAmount)
-select scope_identity()";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_AddNewPayment", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@BookingID", BookingID);
                         command.Parameters.AddWithValue("@PersonID", PersonID);
                         command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
@@ -104,8 +100,7 @@ select scope_identity()";
             return PaymentID;
         }
 
-        public static bool UpdatePayment(int? PaymentID, int BookingID, int PersonID, 
-            DateTime PaymentDate, decimal PaymentAmount)
+        public static bool UpdatePayment(int? PaymentID, int BookingID, int PersonID, DateTime PaymentDate, decimal PaymentAmount)
         {
             int RowAffected = 0;
 
@@ -115,15 +110,10 @@ select scope_identity()";
                 {
                     connection.Open();
 
-                    string query = @"Update Payments
-set BookingID = @BookingID,
-PersonID = @PersonID,
-PaymentDate = @PaymentDate,
-PaymentAmount = @PaymentAmount
-where PaymentID = @PaymentID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_UpdatePayment", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@BookingID", BookingID);
                         command.Parameters.AddWithValue("@PersonID", PersonID);
@@ -156,10 +146,10 @@ where PaymentID = @PaymentID";
                 {
                     connection.Open();
 
-                    string query = @"delete Payments where PaymentID = @PaymentID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DeletePayment", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -188,13 +178,13 @@ where PaymentID = @PaymentID";
                 {
                     connection.Open();
 
-                    string query = @"select found = 1 from Payments where PaymentID = @PaymentID";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesPaymentExist", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
                     }
                 }
             }
@@ -224,10 +214,10 @@ where PaymentID = @PaymentID";
                 {
                     connection.Open();
 
-                    string query = @"select * from Payments";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetAllPayments", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
@@ -260,10 +250,10 @@ where PaymentID = @PaymentID";
                 {
                     connection.Open();
 
-                    string query = @"select count(*) from Payments";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetPaymentsCount", connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure;
+
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
