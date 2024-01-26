@@ -75,12 +75,15 @@ namespace Hotel_DataAccess
                         command.Parameters.AddWithValue("@PaymentID", PaymentID);
                         command.Parameters.AddWithValue("@InvoiceDate", InvoiceDate);
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        SqlParameter outputIdParam = new SqlParameter("@NewInvoiceID", SqlDbType.Int)
                         {
-                            InvoiceID = InsertID;
-                        }
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputIdParam);
+
+                        command.ExecuteNonQuery();
+
+                        InvoiceID = (int?)outputIdParam.Value;
                     }
                 }
             }
@@ -178,7 +181,16 @@ namespace Hotel_DataAccess
 
                         command.Parameters.AddWithValue("@InvoiceID", (object)InvoiceID ?? DBNull.Value);
 
-                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
                     }
                 }
             }

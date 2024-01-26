@@ -79,12 +79,15 @@ namespace Hotel_DataAccess
                         command.Parameters.AddWithValue("@ItemPrice", ItemPrice);
                         command.Parameters.AddWithValue("@Description", (object)Description ?? DBNull.Value);
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        SqlParameter outputIdParam = new SqlParameter("@NewItemID", SqlDbType.Int)
                         {
-                            ItemID = InsertID;
-                        }
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputIdParam);
+
+                        command.ExecuteNonQuery();
+
+                        ItemID = (int?)outputIdParam.Value;
                     }
                 }
             }
@@ -184,7 +187,16 @@ namespace Hotel_DataAccess
 
                         command.Parameters.AddWithValue("@ItemID", (object)ItemID ?? DBNull.Value);
 
-                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
                     }
                 }
             }

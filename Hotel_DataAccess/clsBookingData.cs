@@ -82,12 +82,15 @@ namespace Hotel_DataAccess
                         command.Parameters.AddWithValue("@CheckOutDate", (object)CheckOutDate ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int InsertID))
+                        SqlParameter outputIdParam = new SqlParameter("@NewBookingID", SqlDbType.Int)
                         {
-                            BookingID = InsertID;
-                        }
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputIdParam);
+
+                        command.ExecuteNonQuery();
+
+                        BookingID = (int?)outputIdParam.Value;
                     }
                 }
             }
@@ -189,7 +192,16 @@ namespace Hotel_DataAccess
 
                         command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
 
-                        IsFound = (Convert.ToByte(command.ExecuteScalar()) == 1);
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
                     }
                 }
             }
@@ -296,7 +308,16 @@ namespace Hotel_DataAccess
 
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
 
-                        IsFound = (command.ExecuteScalar() != null);
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
                     }
                 }
             }
