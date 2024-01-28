@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Hotel.Bookings;
 using Hotel.Dashboard;
 using Hotel.GlobalClasses;
 using Hotel.Guests;
@@ -111,7 +112,7 @@ namespace Hotel.MainMenu
 
         private void btnBookings_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListBookings(), sender);
         }
 
         private void btnRooms_Click(object sender, EventArgs e)

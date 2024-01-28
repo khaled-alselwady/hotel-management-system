@@ -17,6 +17,10 @@ namespace Hotel_Business
         public enBookingStatus BookingStatus { get; set; }
         public override int? CreatedByUserID { get; set; }
 
+        public string BookingStatusName => _GetStatusBookingName();
+
+        public override clsUser CreatedByUserInfo { get; }
+
         public clsBooking()
         {
             this.BookingID = null;
@@ -49,6 +53,7 @@ namespace Hotel_Business
             this.CheckOutDate = CheckOutDate;
             this.BookingStatus = BookingStatus;
             this.CreatedByUserID = CreatedByUserIDForBooking;
+            this.CreatedByUserInfo = clsUser.FindBy(CreatedByUserIDForBooking, clsUser.enFindBy.UserID);
 
             Mode = enMode.Update;
         }
@@ -149,6 +154,26 @@ namespace Hotel_Business
         public bool CheckIn()
         {
             return _AddNewBooking();
+        }
+
+        public static string GetStatusBookingName(enBookingStatus BookingStatus)
+        {
+            switch (BookingStatus)
+            {
+                case enBookingStatus.Ongoing:
+                    return "Ongoing";
+
+                case enBookingStatus.Completed:
+                    return "Complete";
+
+                default:
+                    return "Unknown";
+            }
+        }
+
+        private string _GetStatusBookingName()
+        {
+            return GetStatusBookingName(this.BookingStatus);
         }
     }
 

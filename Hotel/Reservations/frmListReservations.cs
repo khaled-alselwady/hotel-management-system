@@ -95,9 +95,7 @@ namespace Hotel.Reservations
         private void txtSearch_TextChanged(object sender, System.EventArgs e)
         {
             if (_dtReservation.Rows.Count == 0)
-            {
                 return;
-            }
 
             string ColumnName = _GetRealColumnNameInDB();
 
@@ -134,9 +132,7 @@ namespace Hotel.Reservations
         private void cbReservationStatus_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (_dtReservation.Rows.Count == 0)
-            {
                 return;
-            }
 
             if (cbReservationStatus.Text == "All")
             {

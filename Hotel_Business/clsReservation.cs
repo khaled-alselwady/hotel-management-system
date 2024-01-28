@@ -31,7 +31,7 @@ namespace Hotel_Business
 
         public clsPerson PersonInfo { get; }
         public clsRoom RoomInfo { get; }
-        public clsUser CreatedByUserInfo { get; }
+        public virtual clsUser CreatedByUserInfo { get; }
 
         public clsReservation()
         {
