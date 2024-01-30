@@ -331,5 +331,50 @@ namespace Hotel_DataAccess
 
             return Count;
         }
+
+        public static bool IsPersonAGuest(int? PersonID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_IsPersonAGuest", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
     }
 }

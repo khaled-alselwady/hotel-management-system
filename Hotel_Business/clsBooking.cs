@@ -19,7 +19,7 @@ namespace Hotel_Business
 
         public string BookingStatusName => _GetStatusBookingName();
 
-        public override clsUser CreatedByUserInfo { get; }
+        public override clsUser CreatedByUserInfo { get; protected set; }
 
         public clsBooking()
         {
@@ -34,19 +34,22 @@ namespace Hotel_Business
 
         private clsBooking(int? BookingID, DateTime CheckInDate,
             DateTime? CheckOutDate, enBookingStatus BookingStatus, int? CreatedByUserIDForBooking,
-            int? ReservationID, int? PersonID, int? RoomID, DateTime ReservedForDate,
+            int? ReservationID, int? GuestID, int? RoomID, DateTime ReservedForDate,
              byte NumberOfPeople, enReservationStatus ReservationStatus, DateTime CreatedDate,
               int? CreatedByUserIDForReservation)
 
         {
             base.ReservationID = ReservationID;
-            base.PersonID = PersonID;
+            base.GuestID = GuestID;
             base.RoomID = RoomID;
             base.ReservedForDate = ReservedForDate;
             base.NumberOfPeople = NumberOfPeople;
             base.ReservationStatus = ReservationStatus;
             base.CreatedDate = CreatedDate;
             base.CreatedByUserID = CreatedByUserIDForReservation;
+            base.GuestInfo = clsGuest.FindByGuestID(GuestID);
+            base.RoomInfo = clsRoom.FindByRoomID(RoomID);
+            base.CreatedByUserInfo = clsUser.FindBy(CreatedByUserIDForReservation, clsUser.enFindBy.UserID);
 
             this.BookingID = BookingID;
             this.CheckInDate = CheckInDate;
@@ -117,7 +120,7 @@ namespace Hotel_Business
                     return null;
 
                 return new clsBooking(BookingID, CheckInDate, CheckOutDate, (enBookingStatus)Status,
-                    CreatedByUserID, CurrentReservation.ReservationID, CurrentReservation.PersonID,
+                    CreatedByUserID, CurrentReservation.ReservationID, CurrentReservation.GuestID,
                     CurrentReservation.RoomID, CurrentReservation.ReservedForDate,
                     CurrentReservation.NumberOfPeople, CurrentReservation.ReservationStatus,
                     CurrentReservation.CreatedDate, CurrentReservation.CreatedByUserID);
@@ -174,6 +177,11 @@ namespace Hotel_Business
         private string _GetStatusBookingName()
         {
             return GetStatusBookingName(this.BookingStatus);
+        }
+
+        public static int? GetBookingIDByReservationID(int? ReservationID)
+        {
+            return clsBookingData.GetBookingIDByReservationID(ReservationID);
         }
     }
 

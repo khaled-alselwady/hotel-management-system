@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace Hotel_DataAccess
 {
@@ -335,6 +336,46 @@ namespace Hotel_DataAccess
             }
 
             return IsFound;
+        }
+
+        public static int? GetBookingIDByReservationID(int? ReservationID)
+        {
+            int? BookingID = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetBookingIDByReservationID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("ReservationID", ReservationID);
+
+                        SqlParameter outputIdParam = new SqlParameter("@BookingID", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(outputIdParam);
+
+                        command.ExecuteNonQuery();
+
+                        BookingID = (int?)outputIdParam.Value;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return BookingID;
         }
     }
 }

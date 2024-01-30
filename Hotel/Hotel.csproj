@@ -93,6 +93,24 @@
     <Compile Include="GlobalClasses\clsLogError.cs" />
     <Compile Include="GlobalClasses\clsUtil.cs" />
     <Compile Include="GlobalClasses\clsValidation.cs" />
+    <Compile Include="GuestCompanions\frmAddEditGuestCompanions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuestCompanions\frmAddEditGuestCompanions.Designer.cs">
+      <DependentUpon>frmAddEditGuestCompanions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuestCompanions\frmShowAllGuestCompanionsForGuest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuestCompanions\frmShowAllGuestCompanionsForGuest.Designer.cs">
+      <DependentUpon>frmShowAllGuestCompanionsForGuest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuestCompanions\UserControls\ucShowAllGuestCompanionsForGuest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GuestCompanions\UserControls\ucShowAllGuestCompanionsForGuest.Designer.cs">
+      <DependentUpon>ucShowAllGuestCompanionsForGuest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Guests\frmListGuests.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +226,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuestCompanions\frmAddEditGuestCompanions.resx">
+      <DependentUpon>frmAddEditGuestCompanions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuestCompanions\frmShowAllGuestCompanionsForGuest.resx">
+      <DependentUpon>frmShowAllGuestCompanionsForGuest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuestCompanions\UserControls\ucShowAllGuestCompanionsForGuest.resx">
+      <DependentUpon>ucShowAllGuestCompanionsForGuest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Guests\frmListGuests.resx">
       <DependentUpon>frmListGuests.cs</DependentUpon>

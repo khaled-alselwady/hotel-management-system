@@ -14,37 +14,43 @@ namespace Hotel_Business
         public enMode Mode = enMode.AddNew;
 
         public int? GuestCompanionID { get; set; }
-        public int PersonID { get; set; }
-        public int BookingID { get; set; }
+        public int? PersonID { get; set; }
+        public int? GuestID { get; set; }
+
+        public clsPerson PersonInfo { get; }
+        public clsGuest GuestInfo { get; }
 
         public clsGuestCompanion()
         {
             this.GuestCompanionID = null;
-            this.PersonID = -1;
-            this.BookingID = -1;
+            this.PersonID = null;
+            this.GuestID = null;
 
             Mode = enMode.AddNew;
         }
 
-        private clsGuestCompanion(int? GuestCompanionID, int PersonID, int BookingID)
+        private clsGuestCompanion(int? GuestCompanionID, int? PersonID, int? GuestID)
         {
             this.GuestCompanionID = GuestCompanionID;
             this.PersonID = PersonID;
-            this.BookingID = BookingID;
+            this.GuestID = GuestID;
+
+            this.PersonInfo = clsPerson.Find(PersonID);
+            this.GuestInfo = clsGuest.FindByGuestID(GuestID);
 
             Mode = enMode.Update;
         }
 
         private bool _AddNewGuestCompanion()
         {
-            this.GuestCompanionID = clsGuestCompanionData.AddNewGuestCompanion(this.PersonID, this.BookingID);
+            this.GuestCompanionID = clsGuestCompanionData.AddNewGuestCompanion(this.PersonID, this.GuestID);
 
             return (this.GuestCompanionID.HasValue);
         }
 
         private bool _UpdateGuestCompanion()
         {
-            return clsGuestCompanionData.UpdateGuestCompanion(this.GuestCompanionID, this.PersonID, this.BookingID);
+            return clsGuestCompanionData.UpdateGuestCompanion(this.GuestCompanionID, this.PersonID, this.GuestID);
         }
 
         public bool Save()
@@ -71,12 +77,12 @@ namespace Hotel_Business
 
         public static clsGuestCompanion Find(int? GuestCompanionID)
         {
-            int PersonID = -1;
-            int BookingID = -1;
+            int? PersonID = null;
+            int? GuestID = null;
 
-            bool IsFound = clsGuestCompanionData.GetGuestCompanionInfoByID(GuestCompanionID, ref PersonID, ref BookingID);
+            bool IsFound = clsGuestCompanionData.GetGuestCompanionInfoByID(GuestCompanionID, ref PersonID, ref GuestID);
 
-            return (IsFound) ? (new clsGuestCompanion(GuestCompanionID, PersonID, BookingID)) : null;
+            return (IsFound) ? (new clsGuestCompanion(GuestCompanionID, PersonID, GuestID)) : null;
         }
 
         public static bool DeleteGuestCompanion(int? GuestCompanionID)
@@ -84,14 +90,29 @@ namespace Hotel_Business
             return clsGuestCompanionData.DeleteGuestCompanion(GuestCompanionID);
         }
 
-        public static bool DoesGuestCompanionExist(int? GuestCompanionID)
+        public static bool DoesGuestCompanionExistByGuestCompanionID(int? GuestCompanionID)
         {
-            return clsGuestCompanionData.DoesGuestCompanionExist(GuestCompanionID);
+            return clsGuestCompanionData.DoesGuestCompanionExistByGuestCompanionID(GuestCompanionID);
+        }
+
+        public static bool DoesGuestCompanionExistByPersonID(int? PersonID)
+        {
+            return clsGuestCompanionData.DoesGuestCompanionExistByPersonID(PersonID);
         }
 
         public static DataTable GetAllGuestCompanions()
         {
             return clsGuestCompanionData.GetAllGuestCompanions();
+        }
+
+        public static DataTable GetAllGuestCompanionsForGuest(int? GuestID)
+        {
+            return clsGuestCompanionData.GetAllGuestCompanionsForGuest(GuestID);
+        }
+
+        public static int GetAllGuestCompanionsForGuestCount(int? GuestID)
+        {
+            return clsGuestCompanionData.GetAllGuestCompanionsForGuestCount(GuestID);
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Hotel.GlobalClasses;
+using Hotel.GuestCompanions;
 using Hotel_Business;
 using System.Data;
 using System.Windows.Forms;
@@ -67,6 +68,21 @@ namespace Hotel.Reservations
         private int? _GetReservationIDFromDGV()
         {
             return (int?)dgvReservationList.CurrentRow.Cells["ReservationID"].Value;
+        }
+
+        private byte? _GetNumberOfPeopleFromDGV()
+        {
+            return (byte?)dgvReservationList.CurrentRow.Cells["NumberOfPeople"].Value;
+        }
+
+        private int? _GetGuestIDFromReservationID()
+        {
+            clsReservation Reservation = clsReservation.Find(_GetReservationIDFromDGV());
+
+            if (Reservation == null)
+                return null;
+
+            return Reservation.GuestID;
         }
 
         private void frmListReservations_Load(object sender, System.EventArgs e)
@@ -200,7 +216,8 @@ namespace Hotel.Reservations
 
             AddGuestCompanionToolStripMenuItem.Enabled =
             (Status == enReservationStatus.Confirmed.ToString()) &&
-            (clsReservation.IsReservationChecked((int)dgvReservationList.CurrentRow.Cells["ReservationID"].Value));
+            (clsReservation.IsReservationChecked((int)dgvReservationList.CurrentRow.Cells["ReservationID"].Value)) &&
+            (clsGuestCompanion.GetAllGuestCompanionsForGuestCount(_GetGuestIDFromReservationID()) < _GetNumberOfPeopleFromDGV());
         }
 
         private void ConfirmReservationToolStripMenuItem1_Click(object sender, System.EventArgs e)
@@ -284,7 +301,12 @@ namespace Hotel.Reservations
 
         private void AddGuestCompanionToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            int? BookingID = clsBooking.GetBookingIDByReservationID(_GetReservationIDFromDGV());
+
+            frmAddEditGuestCompanions AddGuestCompanions = new frmAddEditGuestCompanions(BookingID);
+            AddGuestCompanions.ShowDialog();
+
+            _RefreshReservationList();
         }
     }
 }

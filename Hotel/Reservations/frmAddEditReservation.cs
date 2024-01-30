@@ -21,6 +21,8 @@ namespace Hotel.Reservations
 
         private int? _SelectedPersonID = null;
 
+        private int? _GuestID = null;
+
         public frmAddEditReservation()
         {
             InitializeComponent();
@@ -157,7 +159,7 @@ namespace Hotel.Reservations
             dtpReservedForDate.Value = _Reservation.ReservedForDate;
             lblStatus.Text = _Reservation.ReservationStatusName;
             lblCreatedByUser.Text = _Reservation.CreatedByUserInfo.Username;
-            ucPersonCardWithFilter1.LoadPersonInfo(_Reservation.PersonID);
+            ucPersonCardWithFilter1.LoadPersonInfo(_Reservation.GuestInfo.PersonID);
 
             cbRoomTypes.SelectedIndex = cbRoomTypes.FindString(_Reservation.RoomInfo.RoomTypeID.ToString());
             cbAvailableRooms.SelectedIndex = cbAvailableRooms.FindString(_Reservation.RoomInfo.RoomNumber.ToString());
@@ -168,15 +170,35 @@ namespace Hotel.Reservations
 
         private void _FillReservationObjectWithFieldsData()
         {
-            _Reservation.PersonID = _SelectedPersonID;
+            _Reservation.GuestID = _GuestID;
             _Reservation.RoomID = clsRoom.FindByRoomNumber(int.Parse(cbAvailableRooms.Text)).RoomID;
             _Reservation.ReservedForDate = dtpReservedForDate.Value;
             _Reservation.NumberOfPeople = byte.Parse(cbNumberOfPeople.Text);
             _Reservation.CreatedByUserID = clsGlobal.CurrentUser.UserID;
         }
 
+        private bool _AddGuest()
+        {
+            clsGuest Guest = new clsGuest();
+            Guest.PersonID = _SelectedPersonID;
+
+            if (!Guest.Save())
+                return false;
+
+            _GuestID = Guest.GuestID;
+            return true;
+        }
+
         private void _SaveReservation()
         {
+            if (!_AddGuest())
+            {
+                MessageBox.Show("Data Saved Failed", "Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
             _FillReservationObjectWithFieldsData();
 
             if (_Reservation.Save())

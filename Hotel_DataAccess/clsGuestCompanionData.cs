@@ -10,8 +10,8 @@ namespace Hotel_DataAccess
 {
     public class clsGuestCompanionData
     {
-        public static bool GetGuestCompanionInfoByID(int? GuestCompanionID, ref int PersonID,
-            ref int BookingID)
+        public static bool GetGuestCompanionInfoByID(int? GuestCompanionID, ref int? PersonID,
+            ref int? GuestID)
         {
             bool IsFound = false;
 
@@ -34,8 +34,8 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                PersonID = (int)reader["PersonID"];
-                                BookingID = (int)reader["BookingID"];
+                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
+                                GuestID = (reader["GuestID"] != DBNull.Value) ? (int?)reader["GuestID"] : null;
                             }
                             else
                             {
@@ -62,7 +62,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewGuestCompanion(int PersonID, int BookingID)
+        public static int? AddNewGuestCompanion(int? PersonID, int? GuestID)
         {
             // This function will return the new person id if succeeded and null if not
             int? GuestCompanionID = null;
@@ -77,8 +77,8 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewGuestCompanionID", SqlDbType.Int)
                         {
@@ -104,7 +104,7 @@ namespace Hotel_DataAccess
             return GuestCompanionID;
         }
 
-        public static bool UpdateGuestCompanion(int? GuestCompanionID, int PersonID, int BookingID)
+        public static bool UpdateGuestCompanion(int? GuestCompanionID, int? PersonID, int? GuestID)
         {
             int RowAffected = 0;
 
@@ -119,8 +119,8 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@GuestCompanionID", (object)GuestCompanionID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -170,7 +170,7 @@ namespace Hotel_DataAccess
             return (RowAffected > 0);
         }
 
-        public static bool DoesGuestCompanionExist(int? GuestCompanionID)
+        public static bool DoesGuestCompanionExistByGuestCompanionID(int? GuestCompanionID)
         {
             bool IsFound = false;
 
@@ -180,11 +180,56 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_DoesGuestCompanionExist", connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesGuestCompanionExistByGuestCompanionID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@GuestCompanionID", (object)GuestCompanionID ?? DBNull.Value);
+
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool DoesGuestCompanionExistByPersonID(int? PersonID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_DoesGuestCompanionExistByPersonID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
 
                         // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
                         SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
@@ -249,6 +294,81 @@ namespace Hotel_DataAccess
             }
 
             return dt;
+        }
+
+        public static DataTable GetAllGuestCompanionsForGuest(int? GuestID)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetAllGuestCompanionsForGuest", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("GuestID", (object)GuestID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return dt;
+        }
+
+        public static int GetAllGuestCompanionsForGuestCount(int? GuestID)
+        {
+            int Count = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetAllGuestCompanionsForGuestCount", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("GuestID", (object)GuestID ?? DBNull.Value);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return Count;
         }
     }
 }

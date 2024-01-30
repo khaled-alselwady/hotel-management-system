@@ -36,13 +36,13 @@ namespace Hotel.Reservations.UserControls
             lblRoomType.Text = _Reservation.RoomInfo.RoomTypeName;
             lblRoomNumber.Text = _Reservation.RoomInfo.RoomNumber.ToString();
             lblReservationDate.Text = clsFormat.DateToShort(_Reservation.ReservedForDate);
-            lblReservedBy.Text = _Reservation.PersonInfo.FullName;
+            lblReservedBy.Text = _Reservation.GuestInfo.PersonInfo.FullName;
             lblNumberOfPeople.Text = _Reservation.NumberOfPeople.ToString();
             lblStatus.Text = _Reservation.ReservationStatusName;
             lblCreatedByUser.Text = _Reservation.CreatedByUserInfo.Username;
             lblCreatedDate.Text = clsFormat.DateToShort(_Reservation.CreatedDate);
 
-            pbGendor.Image = (_Reservation.PersonInfo.Gender == clsPerson.enGender.Male) ?
+            pbGendor.Image = (_Reservation.GuestInfo.PersonInfo.Gender == clsPerson.enGender.Male) ?
                               Resources.gender_male : Resources.gender_female;
 
         }
@@ -99,7 +99,7 @@ namespace Hotel.Reservations.UserControls
 
         private void llShowPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmShowPersonInfo ShowPersonInfo = new frmShowPersonInfo(_Reservation.PersonID);
+            frmShowPersonInfo ShowPersonInfo = new frmShowPersonInfo(_Reservation.GuestInfo.PersonID);
             ShowPersonInfo.ShowDialog();
 
             // Refresh

@@ -1,4 +1,5 @@
-﻿using Hotel_Business;
+﻿using Hotel.GuestCompanions;
+using Hotel_Business;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -175,7 +176,15 @@ namespace Hotel.Bookings
 
         private void ShowGuestCompanionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            clsBooking Booking = clsBooking.Find(_GetBookingIDFromDGV());
+
+            if (Booking == null)
+                return;
+
+            frmShowAllGuestCompanionsForGuest ShowAllGuestCompanionsForGuest = new frmShowAllGuestCompanionsForGuest(Booking.GuestID);
+            ShowAllGuestCompanionsForGuest.ShowDialog();
+
+            _RefreshBookingList();
         }
 
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)

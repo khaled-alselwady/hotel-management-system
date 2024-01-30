@@ -6,7 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsReservationData
     {
-        public static bool GetReservationInfoByID(int? ReservationID, ref int? PersonID,
+        public static bool GetReservationInfoByID(int? ReservationID, ref int? GuestID,
             ref int? RoomID, ref DateTime ReservedForDate, ref byte NumberOfPeople,
             ref byte Status, ref DateTime CreatedDate, ref int? CreatedByUserID)
         {
@@ -31,7 +31,7 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                PersonID = (reader["PersonID"] != DBNull.Value) ? (int?)reader["PersonID"] : null;
+                                GuestID = (reader["GuestID"] != DBNull.Value) ? (int?)reader["GuestID"] : null;
                                 RoomID = (reader["RoomID"] != DBNull.Value) ? (int?)reader["RoomID"] : null;
                                 ReservedForDate = (DateTime)reader["ReservedForDate"];
                                 NumberOfPeople = (byte)reader["NumberOfPeople"];
@@ -64,7 +64,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewReservation(int? PersonID, int? RoomID, DateTime ReservedForDate,
+        public static int? AddNewReservation(int? GuestID, int? RoomID, DateTime ReservedForDate,
             byte NumberOfPeople, int? CreatedByUserID)
         {
             // This function will return the new person id if succeeded and null if not
@@ -80,7 +80,7 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ReservedForDate", ReservedForDate);
                         command.Parameters.AddWithValue("@NumberOfPeople", NumberOfPeople);
@@ -110,7 +110,7 @@ namespace Hotel_DataAccess
             return ReservationID;
         }
 
-        public static bool UpdateReservation(int? ReservationID, int? PersonID, int? RoomID,
+        public static bool UpdateReservation(int? ReservationID, int? GuestID, int? RoomID,
             DateTime ReservedForDate, byte NumberOfPeople, int? CreatedByUserID)
 
         {
@@ -127,7 +127,7 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@PersonID", (object)PersonID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@ReservedForDate", ReservedForDate);
                         command.Parameters.AddWithValue("@NumberOfPeople", NumberOfPeople);

@@ -18,7 +18,7 @@ namespace Hotel_Business
         }
 
         public int? ReservationID { get; set; }
-        public int? PersonID { get; set; }
+        public int? GuestID { get; set; }
         public int? RoomID { get; set; }
         public DateTime ReservedForDate { get; set; }
         public byte NumberOfPeople { get; set; }
@@ -29,14 +29,14 @@ namespace Hotel_Business
         public string ReservationStatusName => _ReservationStatusName(this.ReservationStatus);
         public bool IsCheckIn => IsReservationChecked(this.ReservationID);
 
-        public clsPerson PersonInfo { get; }
-        public clsRoom RoomInfo { get; }
-        public virtual clsUser CreatedByUserInfo { get; }
+        public clsGuest GuestInfo { get; protected set; }
+        public clsRoom RoomInfo { get; protected set; }
+        public virtual clsUser CreatedByUserInfo { get; protected set; }
 
         public clsReservation()
         {
             this.ReservationID = null;
-            this.PersonID = null;
+            this.GuestID = null;
             this.RoomID = null;
             this.ReservedForDate = DateTime.Now;
             this.NumberOfPeople = 0;
@@ -47,12 +47,12 @@ namespace Hotel_Business
             this.Mode = enMode.AddNew;
         }
 
-        private clsReservation(int? ReservationID, int? PersonID, int? RoomID,
+        private clsReservation(int? ReservationID, int? GuestID, int? RoomID,
             DateTime ReservedForDate, byte NumberOfPeople, enReservationStatus Status,
             DateTime CreatedDate, int? CreatedByUserID)
         {
             this.ReservationID = ReservationID;
-            this.PersonID = PersonID;
+            this.GuestID = GuestID;
             this.RoomID = RoomID;
             this.ReservedForDate = ReservedForDate;
             this.NumberOfPeople = NumberOfPeople;
@@ -60,7 +60,7 @@ namespace Hotel_Business
             this.CreatedDate = CreatedDate;
             this.CreatedByUserID = CreatedByUserID;
 
-            this.PersonInfo = clsPerson.Find(PersonID);
+            this.GuestInfo = clsGuest.FindByGuestID(GuestID);
             this.RoomInfo = clsRoom.FindByRoomID(RoomID);
             this.CreatedByUserInfo = clsUser.FindBy(CreatedByUserID, clsUser.enFindBy.UserID);
 
@@ -69,7 +69,7 @@ namespace Hotel_Business
 
         private bool _AddNewReservation()
         {
-            this.ReservationID = clsReservationData.AddNewReservation(this.PersonID,
+            this.ReservationID = clsReservationData.AddNewReservation(this.GuestID,
                 this.RoomID, this.ReservedForDate, this.NumberOfPeople, this.CreatedByUserID);
 
 
@@ -79,7 +79,7 @@ namespace Hotel_Business
         private bool _UpdateReservation()
         {
             return clsReservationData.UpdateReservation(this.ReservationID,
-                this.PersonID, this.RoomID, this.ReservedForDate, this.NumberOfPeople,
+                this.GuestID, this.RoomID, this.ReservedForDate, this.NumberOfPeople,
                 this.CreatedByUserID);
         }
 
@@ -107,7 +107,7 @@ namespace Hotel_Business
 
         public static clsReservation Find(int? ReservationID)
         {
-            int? PersonID = null;
+            int? GuestID = null;
             int? RoomID = null;
             DateTime ReservedForDate = DateTime.Now;
             byte NumberOfPeople = 0;
@@ -116,11 +116,11 @@ namespace Hotel_Business
             int? CreatedByUserID = null;
 
             bool IsFound = clsReservationData.GetReservationInfoByID(ReservationID,
-                ref PersonID, ref RoomID, ref ReservedForDate, ref NumberOfPeople,
+                ref GuestID, ref RoomID, ref ReservedForDate, ref NumberOfPeople,
                 ref Status, ref CreatedDate, ref CreatedByUserID);
 
             return IsFound ?
-                 new clsReservation(ReservationID, PersonID, RoomID,
+                 new clsReservation(ReservationID, GuestID, RoomID,
                 ReservedForDate, NumberOfPeople, (enReservationStatus)Status,
                 CreatedDate, CreatedByUserID)
                  :
@@ -196,6 +196,11 @@ namespace Hotel_Business
             Booking.CreatedByUserID = CreatedByUserIDForBooking;
 
             return Booking.CheckIn();
+        }
+
+        public static int? GetBookingIDByReservationID(int? ReservationID)
+        {
+            return clsBooking.GetBookingIDByReservationID(ReservationID);
         }
     }
 
