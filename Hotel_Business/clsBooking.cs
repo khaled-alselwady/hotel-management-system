@@ -71,8 +71,7 @@ namespace Hotel_Business
 
         private bool _UpdateBooking()
         {
-            return clsBookingData.UpdateBooking(this.BookingID, this.ReservationID, this.CheckInDate,
-                this.CheckOutDate, (byte)this.BookingStatus, this.CreatedByUserID);
+            return clsBookingData.UpdateBooking(this.BookingID);
         }
 
         public bool Save()
@@ -157,6 +156,16 @@ namespace Hotel_Business
         public bool CheckIn()
         {
             return _AddNewBooking();
+        }
+
+        public bool CheckOut()
+        {
+            return _UpdateBooking();
+        }
+
+        public static bool CheckOut(int? BookingID)
+        {
+            return clsBookingData.UpdateBooking(BookingID);
         }
 
         public static string GetStatusBookingName(enBookingStatus BookingStatus)

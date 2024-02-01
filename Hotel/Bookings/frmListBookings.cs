@@ -1,4 +1,5 @@
-﻿using Hotel.GuestCompanions;
+﻿using Hotel.GlobalClasses;
+using Hotel.GuestCompanions;
 using Hotel_Business;
 using System;
 using System.Data;
@@ -189,7 +190,27 @@ namespace Hotel.Bookings
 
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            if (MessageBox.Show("Are you sure you want to check-out this reservation?", "Confirm",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (clsBooking.CheckOut(_GetBookingIDFromDGV()))
+                {
+                    MessageBox.Show("Check-out completed successfully!", "Check-out Successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _RefreshBookingList();
+                }
+                else
+                {
+                    MessageBox.Show("Check-out failed!", "Failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void cmsEditProfile_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CheckOutToolStripMenuItem.Enabled = dgvBookingList.CurrentRow.Cells["CheckOutDate"].Value == DBNull.Value;
         }
     }
 }

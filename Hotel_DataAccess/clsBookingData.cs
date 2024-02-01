@@ -107,8 +107,7 @@ namespace Hotel_DataAccess
             return BookingID;
         }
 
-        public static bool UpdateBooking(int? BookingID, int? ReservationID, DateTime CheckInDate,
-            DateTime? CheckOutDate, byte Status, int? CreatedByUserID)
+        public static bool UpdateBooking(int? BookingID)
         {
             int RowAffected = 0;
 
@@ -123,11 +122,6 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@CheckInDate", CheckInDate);
-                        command.Parameters.AddWithValue("@CheckOutDate", (object)CheckOutDate ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@Status", Status);
-                        command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }

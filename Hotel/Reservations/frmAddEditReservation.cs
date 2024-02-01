@@ -109,6 +109,7 @@ namespace Hotel.Reservations
         {
             ucPersonCardWithFilter1.Clear();
 
+            dtpReservedForDate.MinDate = DateTime.Now;
             dtpReservedForDate.Value = DateTime.Now;
             lblReservationID.Text = "[????]";
             lblStatus.Text = "Pending";
@@ -118,7 +119,6 @@ namespace Hotel.Reservations
         private void _ResetDefaultValues()
         {
             _FillComboBoxWithRoomTypeTitles();
-            _FillComboBoxWithAvailableRooms();
 
             if (_Mode == _enMode.AddNew)
             {
@@ -137,7 +137,7 @@ namespace Hotel.Reservations
 
             this.Text = lblTitle.Text;
 
-            dtpReservedForDate.MinDate = DateTime.Now;
+
         }
 
         private void _LoadData()
@@ -161,7 +161,7 @@ namespace Hotel.Reservations
             lblCreatedByUser.Text = _Reservation.CreatedByUserInfo.Username;
             ucPersonCardWithFilter1.LoadPersonInfo(_Reservation.GuestInfo.PersonID);
 
-            cbRoomTypes.SelectedIndex = cbRoomTypes.FindString(_Reservation.RoomInfo.RoomTypeID.ToString());
+            cbRoomTypes.SelectedIndex = cbRoomTypes.FindString(_Reservation.RoomInfo.RoomTypeName);
             cbAvailableRooms.SelectedIndex = cbAvailableRooms.FindString(_Reservation.RoomInfo.RoomNumber.ToString());
             cbNumberOfPeople.SelectedIndex = cbNumberOfPeople.FindString
                 (clsRoomType.KeyValueTypeTitleAndCapacity[_Reservation.RoomInfo.RoomTypeID].ToString());
@@ -261,6 +261,19 @@ namespace Hotel.Reservations
 
         private void dtpReservedForDate_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (_Mode == _enMode.Update &&
+                _Reservation.ReservedForDate != dtpReservedForDate.Value &&
+                dtpReservedForDate.Value < DateTime.Now)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(dtpReservedForDate, "You cannot reserve in the past date !");
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(dtpReservedForDate, null);
+            }
+
             if (clsReservation.IsRoomReserved(int.Parse(cbAvailableRooms.Text),
                 dtpReservedForDate.Value.Date))
             {
