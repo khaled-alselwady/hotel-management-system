@@ -126,6 +126,11 @@ namespace Hotel_Business
             return clsRoomTypeData.GetAllRoomTypesTitle();
         }
 
+        public static int CountByRoomTypeID(byte? RoomTypeID)
+        {
+            return clsRoom.CountByRoomTypeID((clsRoom.enRoomTypes)RoomTypeID);
+        }
+
     }
 
 }

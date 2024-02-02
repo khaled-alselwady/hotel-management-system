@@ -209,6 +209,30 @@
     <Compile Include="Rooms\UserControls\ucRoomCard.Designer.cs">
       <DependentUpon>ucRoomCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoomTypes\frmEditRoomType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomTypes\frmEditRoomType.Designer.cs">
+      <DependentUpon>frmEditRoomType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomTypes\frmListRoomTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomTypes\frmListRoomTypes.Designer.cs">
+      <DependentUpon>frmListRoomTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomTypes\frmShowRoomTypeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomTypes\frmShowRoomTypeInfo.Designer.cs">
+      <DependentUpon>frmShowRoomTypeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomTypes\UserControls\ucRoomTypeCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RoomTypes\UserControls\ucRoomTypeCard.Designer.cs">
+      <DependentUpon>ucRoomTypeCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmAddEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,6 +336,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rooms\UserControls\ucRoomCard.resx">
       <DependentUpon>ucRoomCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomTypes\frmEditRoomType.resx">
+      <DependentUpon>frmEditRoomType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomTypes\frmListRoomTypes.resx">
+      <DependentUpon>frmListRoomTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomTypes\frmShowRoomTypeInfo.resx">
+      <DependentUpon>frmShowRoomTypeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomTypes\UserControls\ucRoomTypeCard.resx">
+      <DependentUpon>ucRoomTypeCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
@@ -608,6 +644,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maintenance-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money 32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

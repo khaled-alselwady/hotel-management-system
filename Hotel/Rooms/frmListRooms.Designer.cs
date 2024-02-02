@@ -100,7 +100,7 @@
             this.EditRoomToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EditRoomToolStripMenuItem.Name = "EditRoomToolStripMenuItem";
             this.EditRoomToolStripMenuItem.Size = new System.Drawing.Size(282, 38);
-            this.EditRoomToolStripMenuItem.Text = "Edit Reservation";
+            this.EditRoomToolStripMenuItem.Text = "Edit Room";
             this.EditRoomToolStripMenuItem.Click += new System.EventHandler(this.EditRoomToolStripMenuItem_Click);
             // 
             // DeleteRoomToolStripMenuItem
@@ -110,7 +110,7 @@
             this.DeleteRoomToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.DeleteRoomToolStripMenuItem.Name = "DeleteRoomToolStripMenuItem";
             this.DeleteRoomToolStripMenuItem.Size = new System.Drawing.Size(282, 38);
-            this.DeleteRoomToolStripMenuItem.Text = "Delete Reservation";
+            this.DeleteRoomToolStripMenuItem.Text = "Delete Room";
             this.DeleteRoomToolStripMenuItem.Click += new System.EventHandler(this.DeleteRoomToolStripMenuItem_Click);
             // 
             // PutUnderMaintenanceToolStripMenuItem1

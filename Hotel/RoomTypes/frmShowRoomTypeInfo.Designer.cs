@@ -1,6 +1,6 @@
-﻿namespace Hotel.Rooms
+﻿namespace Hotel.RoomTypes
 {
-    partial class frmShowRoomInfo
+    partial class frmShowRoomTypeInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.btnClose = new Guna.UI2.WinForms.Guna2GradientButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.ucRoomCard1 = new Hotel.Rooms.UserControls.ucRoomCard();
             this.ucRoomTypeCard1 = new Hotel.RoomTypes.UserControls.ucRoomTypeCard();
             this.SuspendLayout();
             // 
@@ -50,11 +49,11 @@
             this.btnClose.Image = global::Hotel.Properties.Resources.close_48;
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnClose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnClose.Location = new System.Drawing.Point(712, 668);
+            this.btnClose.Location = new System.Drawing.Point(712, 380);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(155, 45);
-            this.btnClose.TabIndex = 202;
+            this.btnClose.TabIndex = 205;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -66,50 +65,40 @@
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(871, 61);
-            this.label1.TabIndex = 200;
-            this.label1.Text = "Show Room Info";
+            this.label1.TabIndex = 204;
+            this.label1.Text = "Show Room Type Info";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ucRoomCard1
-            // 
-            this.ucRoomCard1.BackColor = System.Drawing.Color.White;
-            this.ucRoomCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucRoomCard1.Location = new System.Drawing.Point(5, 107);
-            this.ucRoomCard1.Name = "ucRoomCard1";
-            this.ucRoomCard1.Size = new System.Drawing.Size(862, 255);
-            this.ucRoomCard1.TabIndex = 203;
             // 
             // ucRoomTypeCard1
             // 
             this.ucRoomTypeCard1.BackColor = System.Drawing.Color.White;
             this.ucRoomTypeCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucRoomTypeCard1.Location = new System.Drawing.Point(5, 387);
+            this.ucRoomTypeCard1.Location = new System.Drawing.Point(5, 107);
             this.ucRoomTypeCard1.Name = "ucRoomTypeCard1";
             this.ucRoomTypeCard1.Size = new System.Drawing.Size(862, 255);
-            this.ucRoomTypeCard1.TabIndex = 204;
+            this.ucRoomTypeCard1.TabIndex = 206;
             // 
-            // frmShowRoomInfo
+            // frmShowRoomTypeInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(872, 715);
+            this.ClientSize = new System.Drawing.Size(872, 427);
             this.Controls.Add(this.ucRoomTypeCard1);
-            this.Controls.Add(this.ucRoomCard1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
-            this.Name = "frmShowRoomInfo";
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "frmShowRoomTypeInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmShowRoomDetails";
+            this.Text = "Show Room Type Info";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private Guna.UI2.WinForms.Guna2GradientButton btnClose;
         private System.Windows.Forms.Label label1;
-        private UserControls.ucRoomCard ucRoomCard1;
-        private RoomTypes.UserControls.ucRoomTypeCard ucRoomTypeCard1;
+        private UserControls.ucRoomTypeCard ucRoomTypeCard1;
     }
 }

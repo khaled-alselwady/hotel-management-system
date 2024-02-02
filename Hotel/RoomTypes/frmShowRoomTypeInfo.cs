@@ -8,15 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Hotel.Rooms
+namespace Hotel.RoomTypes
 {
-    public partial class frmShowRoomInfo : Form
+    public partial class frmShowRoomTypeInfo : Form
     {
-        public frmShowRoomInfo(int? RoomID, byte? RoomTypeID)
+        public frmShowRoomTypeInfo(byte? RoomTypeID)
         {
             InitializeComponent();
 
-            ucRoomCard1.LoadRoomInfo(RoomID);
             ucRoomTypeCard1.LoadRoomTypeInfo(RoomTypeID);
         }
 

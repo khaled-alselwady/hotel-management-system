@@ -98,6 +98,11 @@ namespace Hotel.Rooms
             return (int?)dgvRoomList.CurrentRow.Cells["RoomID"].Value;
         }
 
+        private byte? _GetRoomTypeIDFromRoomID(int? RoomID)
+        {
+            return (byte?)clsRoom.FindByRoomID(RoomID)?.RoomTypeID;
+        }
+
         private void frmListRooms_Load(object sender, EventArgs e)
         {
             _RefreshRoomList();
@@ -203,7 +208,9 @@ namespace Hotel.Rooms
 
         private void ShowRoomDetailsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmShowRoomInfo ShowRoomInfo = new frmShowRoomInfo(_GetRoomIDFromDGV());
+            int? RoomID = _GetRoomIDFromDGV();
+
+            frmShowRoomInfo ShowRoomInfo = new frmShowRoomInfo(RoomID, _GetRoomTypeIDFromRoomID(RoomID));
             ShowRoomInfo.ShowDialog();
 
             _RefreshRoomList();
@@ -247,7 +254,9 @@ namespace Hotel.Rooms
 
         private void dgvRoomList_DoubleClick(object sender, EventArgs e)
         {
-            frmShowRoomInfo ShowRoomInfo = new frmShowRoomInfo(_GetRoomIDFromDGV());
+            int? RoomID = _GetRoomIDFromDGV();
+
+            frmShowRoomInfo ShowRoomInfo = new frmShowRoomInfo(RoomID, _GetRoomTypeIDFromRoomID(RoomID));
             ShowRoomInfo.ShowDialog();
 
             _RefreshRoomList();

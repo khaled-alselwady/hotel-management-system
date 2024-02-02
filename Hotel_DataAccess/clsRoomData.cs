@@ -401,6 +401,43 @@ namespace Hotel_DataAccess
             return Count;
         }
 
+        public static int GetRoomsCountByRoomTypeID(byte? RoomTypeID)
+        {
+            int Count = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomsCountByRoomTypeID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("RoomTypeID", (object)RoomTypeID ?? DBNull.Value);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int Value))
+                        {
+                            Count = Value;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return Count;
+        }
+
         public static int GetAvailableRoomsCount()
         {
             int Count = 0;
