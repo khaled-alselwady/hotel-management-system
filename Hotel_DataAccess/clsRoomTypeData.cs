@@ -6,7 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsRoomTypeData
     {
-        public static bool GetRoomTypeInfoByID(byte? RoomTypeID, ref string RoomTypeTitle, ref byte Capacity, ref decimal PricePerNight, ref string Description)
+        public static bool GetRoomTypeInfoByID(byte? RoomTypeID, ref string RoomTypeTitle,
+            ref byte Capacity, ref decimal PricePerNight, ref string Description)
         {
             bool IsFound = false;
 
@@ -30,6 +31,60 @@ namespace Hotel_DataAccess
                                 IsFound = true;
 
                                 RoomTypeTitle = (string)reader["RoomTypeTitle"];
+                                Capacity = (byte)reader["Capacity"];
+                                PricePerNight = (decimal)reader["PricePerNight"];
+                                Description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool GetRoomTypeInfoByTitle(string RoomTypeTitle, ref byte? RoomTypeID,
+            ref byte Capacity, ref decimal PricePerNight, ref string Description)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetRoomTypeInfoByTitle", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@RoomTypeTitle", RoomTypeTitle);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
                                 Capacity = (byte)reader["Capacity"];
                                 PricePerNight = (decimal)reader["PricePerNight"];
                                 Description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;

@@ -94,6 +94,18 @@ namespace Hotel_Business
             return (IsFound) ? (new clsRoomType(RoomTypeID, RoomTypeTitle, Capacity, PricePerNight, Description)) : null;
         }
 
+        public static clsRoomType Find(string RoomTypeTitle)
+        {
+            byte? RoomTypeID = null;
+            byte Capacity = 0;
+            decimal PricePerNight = -1M;
+            string Description = null;
+
+            bool IsFound = clsRoomTypeData.GetRoomTypeInfoByTitle(RoomTypeTitle, ref RoomTypeID, ref Capacity, ref PricePerNight, ref Description);
+
+            return (IsFound) ? (new clsRoomType(RoomTypeID, RoomTypeTitle, Capacity, PricePerNight, Description)) : null;
+        }
+
         public static bool DeleteRoomType(byte? RoomTypeID)
         {
             return clsRoomTypeData.DeleteRoomType(RoomTypeID);

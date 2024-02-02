@@ -29,12 +29,13 @@ namespace Hotel_Business
         public int RoomNumber { get; set; }
         public byte FloorNumber { get; set; }
         public decimal Size { get; set; }
-        public enRoomStatus Status { get; set; }
+        public enRoomStatus RoomStatus { get; set; }
         public bool IsSmokingAllowed { get; set; }
         public bool IsPetFriendly { get; set; }
         public string Notes { get; set; }
 
         public string RoomTypeName => _RoomTypeName(this.RoomTypeID);
+        public string RoomStatusName => _RoomStatusName(this.RoomStatus);
 
         public clsRoom()
         {
@@ -43,7 +44,7 @@ namespace Hotel_Business
             this.RoomNumber = -1;
             this.FloorNumber = 0;
             this.Size = -1M;
-            this.Status = enRoomStatus.Available;
+            this.RoomStatus = enRoomStatus.Available;
             this.IsSmokingAllowed = false;
             this.IsPetFriendly = false;
             this.Notes = null;
@@ -59,7 +60,7 @@ namespace Hotel_Business
             this.RoomNumber = RoomNumber;
             this.FloorNumber = FloorNumber;
             this.Size = Size;
-            this.Status = Status;
+            this.RoomStatus = Status;
             this.IsSmokingAllowed = IsSmokingAllowed;
             this.IsPetFriendly = IsPetFriendly;
             this.Notes = Notes;
@@ -69,7 +70,7 @@ namespace Hotel_Business
         private bool _AddNewRoom()
         {
             this.RoomID = clsRoomData.AddNewRoom((byte)this.RoomTypeID, this.RoomNumber,
-                this.FloorNumber, this.Size, (byte)this.Status, this.IsSmokingAllowed,
+                this.FloorNumber, this.Size, (byte)this.RoomStatus, this.IsSmokingAllowed,
                 this.IsPetFriendly, this.Notes);
 
             return (this.RoomID.HasValue);
@@ -78,7 +79,7 @@ namespace Hotel_Business
         private bool _UpdateRoom()
         {
             return clsRoomData.UpdateRoom(this.RoomID, (byte)this.RoomTypeID, this.RoomNumber,
-                this.FloorNumber, this.Size, (byte)this.Status, this.IsSmokingAllowed,
+                this.FloorNumber, this.Size, (byte)this.RoomStatus, this.IsSmokingAllowed,
                 this.IsPetFriendly, this.Notes);
         }
 
@@ -206,6 +207,34 @@ namespace Hotel_Business
                     return "Unknown";
             }
 
+        }
+
+        private string _RoomStatusName(enRoomStatus RoomStatus)
+        {
+            switch (RoomStatus)
+            {
+                case enRoomStatus.Available:
+                    return "Available";
+
+                case enRoomStatus.Booked:
+                    return "Booked";
+
+                case enRoomStatus.UnderMaintenance:
+                    return "Under Maintenance";
+
+                default:
+                    return "Unknown";
+            }
+        }
+
+        public static bool ChangeRoomStatus(int? RoomID, enRoomStatus NewStatus)
+        {
+            return clsRoomData.ChangeRoomStatus(RoomID, (byte)NewStatus);
+        }
+
+        public bool ChangeRoomStatus(enRoomStatus NewStatus)
+        {
+            return ChangeRoomStatus(this.RoomID, NewStatus);
         }
     }
 

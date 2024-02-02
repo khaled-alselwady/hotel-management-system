@@ -505,5 +505,38 @@ namespace Hotel_DataAccess
 
             return Count;
         }
+
+        public static bool ChangeRoomStatus(int? RoomID, byte NewStatus)
+        {
+            int RowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_ChangeRoomStatus", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@NewStatus", NewStatus);
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return (RowAffected > 0);
+        }
     }
 }

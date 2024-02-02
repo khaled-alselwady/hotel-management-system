@@ -147,7 +147,7 @@ namespace Hotel.Reservations
 
             if (_Reservation == null)
             {
-                MessageBox.Show("No Reservation with ID = " + _Reservation, "User Not Found",
+                MessageBox.Show("No Reservation with ID = " + _Reservation, "Reservation Not Found",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 this.Close();

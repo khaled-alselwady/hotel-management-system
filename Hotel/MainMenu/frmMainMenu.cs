@@ -4,6 +4,7 @@ using Hotel.Dashboard;
 using Hotel.GlobalClasses;
 using Hotel.Guests;
 using Hotel.Reservations;
+using Hotel.Rooms;
 using Hotel.Users;
 using Hotel_Business;
 using System;
@@ -117,7 +118,7 @@ namespace Hotel.MainMenu
 
         private void btnRooms_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListRooms(), sender);
         }
 
         private void btnRoomTypes_Click(object sender, EventArgs e)
