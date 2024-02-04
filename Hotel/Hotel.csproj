@@ -185,6 +185,18 @@
     <Compile Include="Reservations\UserControls\ucReservationsCard.Designer.cs">
       <DependentUpon>ucReservationsCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoomServices\frmAddEditRoomServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomServices\frmAddEditRoomServices.Designer.cs">
+      <DependentUpon>frmAddEditRoomServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomServices\frmListRoomServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomServices\frmListRoomServices.Designer.cs">
+      <DependentUpon>frmListRoomServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rooms\frmAddEditRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reservations\UserControls\ucReservationsCard.resx">
       <DependentUpon>ucReservationsCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomServices\frmAddEditRoomServices.resx">
+      <DependentUpon>frmAddEditRoomServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomServices\frmListRoomServices.resx">
+      <DependentUpon>frmListRoomServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rooms\frmAddEditRoom.resx">
       <DependentUpon>frmAddEditRoom.cs</DependentUpon>

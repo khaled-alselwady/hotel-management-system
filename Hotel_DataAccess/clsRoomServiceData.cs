@@ -6,7 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsRoomServiceData
     {
-        public static bool GetRoomServiceInfoByID(int? RoomServiceID, ref string RoomServiceTitle, ref decimal Fees, ref string Description)
+        public static bool GetRoomServiceInfoByID(int? RoomServiceID, ref string RoomServiceTitle,
+            ref decimal Fees, ref string Description)
         {
             bool IsFound = false;
 
@@ -178,11 +179,56 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_DoesRoomServiceExist", connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesRoomServiceExistByID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@RoomServiceID", (object)RoomServiceID ?? DBNull.Value);
+
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool DoesRoomServiceExist(string RoomServiceTitle)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_DoesRoomServiceExistByTitle", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@RoomServiceTitle", RoomServiceTitle);
 
                         // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
                         SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)

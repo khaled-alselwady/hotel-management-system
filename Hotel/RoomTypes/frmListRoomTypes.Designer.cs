@@ -162,7 +162,7 @@
             this.EditRoomTypeToolStripMenuItem});
             this.cmsEditProfile.Name = "contextMenuStrip1";
             this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.cmsEditProfile.Size = new System.Drawing.Size(268, 108);
+            this.cmsEditProfile.Size = new System.Drawing.Size(268, 86);
             this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
             // 
             // ShowRoomTypeDetailsToolStripMenuItem1
@@ -262,6 +262,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListRoomTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "Manage Room Types";
             this.Text = "frmListRoomTypes";
             this.Load += new System.EventHandler(this.frmListRoomTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();

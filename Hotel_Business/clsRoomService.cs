@@ -87,6 +87,11 @@ namespace Hotel_Business
             return clsRoomServiceData.DoesRoomServiceExist(RoomServiceID);
         }
 
+        public static bool DoesRoomServiceExist(string RoomServiceTitle)
+        {
+            return clsRoomServiceData.DoesRoomServiceExist(RoomServiceTitle);
+        }
+
         public static DataTable GetAllRoomServices()
         {
             return clsRoomServiceData.GetAllRoomServices();
