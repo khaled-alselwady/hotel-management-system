@@ -11,19 +11,19 @@ namespace Hotel_Business
 
         public int? RoomServiceID { get; set; }
         public string RoomServiceTitle { get; set; }
-        public decimal Fees { get; set; }
+        public float Fees { get; set; }
         public string Description { get; set; }
 
         public clsRoomService()
         {
             this.RoomServiceID = null;
             this.RoomServiceTitle = string.Empty;
-            this.Fees = -1M;
+            this.Fees = -1f;
             this.Description = string.Empty;
             Mode = enMode.AddNew;
         }
 
-        private clsRoomService(int? RoomServiceID, string RoomServiceTitle, decimal Fees, string Description)
+        private clsRoomService(int? RoomServiceID, string RoomServiceTitle, float Fees, string Description)
         {
             this.RoomServiceID = RoomServiceID;
             this.RoomServiceTitle = RoomServiceTitle;
@@ -69,7 +69,7 @@ namespace Hotel_Business
         public static clsRoomService Find(int? RoomServiceID)
         {
             string RoomServiceTitle = string.Empty;
-            decimal Fees = -1M;
+            float Fees = -1f;
             string Description = string.Empty;
 
             bool IsFound = clsRoomServiceData.GetRoomServiceInfoByID(RoomServiceID, ref RoomServiceTitle, ref Fees, ref Description);

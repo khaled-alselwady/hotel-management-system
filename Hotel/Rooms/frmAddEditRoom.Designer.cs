@@ -58,6 +58,7 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnSave = new Guna.UI2.WinForms.Guna2GradientButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -69,12 +70,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericRoomFloor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Hotel.Properties.Resources.id;
-            this.pictureBox1.Location = new System.Drawing.Point(136, 90);
+            this.pictureBox1.Location = new System.Drawing.Point(152, 90);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(31, 26);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -85,7 +87,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(54, 93);
+            this.label22.Location = new System.Drawing.Point(70, 93);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(78, 21);
@@ -97,12 +99,12 @@
             this.lblRoomID.AutoSize = true;
             this.lblRoomID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoomID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRoomID.Location = new System.Drawing.Point(180, 93);
+            this.lblRoomID.Location = new System.Drawing.Point(196, 93);
             this.lblRoomID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRoomID.Name = "lblRoomID";
-            this.lblRoomID.Size = new System.Drawing.Size(50, 21);
+            this.lblRoomID.Size = new System.Drawing.Size(41, 21);
             this.lblRoomID.TabIndex = 212;
-            this.lblRoomID.Text = "[????]";
+            this.lblRoomID.Text = "N\\A";
             // 
             // lblTitle
             // 
@@ -131,7 +133,7 @@
             this.txtRoomNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRoomNumber.ForeColor = System.Drawing.Color.Black;
             this.txtRoomNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.txtRoomNumber.Location = new System.Drawing.Point(180, 238);
+            this.txtRoomNumber.Location = new System.Drawing.Point(181, 160);
             this.txtRoomNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRoomNumber.Name = "txtRoomNumber";
             this.txtRoomNumber.PasswordChar = '\0';
@@ -146,7 +148,7 @@
             // 
             this.txtNotes.AutoRoundedCorners = true;
             this.txtNotes.BorderColor = System.Drawing.Color.Gray;
-            this.txtNotes.BorderRadius = 17;
+            this.txtNotes.BorderRadius = 45;
             this.txtNotes.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtNotes.DefaultText = "";
             this.txtNotes.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -157,7 +159,7 @@
             this.txtNotes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.txtNotes.ForeColor = System.Drawing.Color.Black;
             this.txtNotes.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.txtNotes.Location = new System.Drawing.Point(180, 409);
+            this.txtNotes.Location = new System.Drawing.Point(181, 331);
             this.txtNotes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.PasswordChar = '\0';
@@ -170,7 +172,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Hotel.Properties.Resources.question_mark;
-            this.pictureBox4.Location = new System.Drawing.Point(136, 138);
+            this.pictureBox4.Location = new System.Drawing.Point(137, 60);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(31, 26);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -180,7 +182,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Hotel.Properties.Resources.Notes_32;
-            this.pictureBox5.Location = new System.Drawing.Point(136, 409);
+            this.pictureBox5.Location = new System.Drawing.Point(137, 331);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(31, 26);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -190,7 +192,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Hotel.Properties.Resources.room_number;
-            this.pictureBox3.Location = new System.Drawing.Point(136, 241);
+            this.pictureBox3.Location = new System.Drawing.Point(137, 163);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(31, 26);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -201,7 +203,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(74, 413);
+            this.label2.Location = new System.Drawing.Point(75, 335);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 21);
@@ -212,7 +214,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 141);
+            this.label3.Location = new System.Drawing.Point(65, 63);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 21);
@@ -223,7 +225,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(9, 243);
+            this.label4.Location = new System.Drawing.Point(10, 165);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(123, 21);
@@ -234,7 +236,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(35, 190);
+            this.label5.Location = new System.Drawing.Point(36, 112);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 21);
@@ -245,7 +247,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(31, 355);
+            this.label6.Location = new System.Drawing.Point(32, 277);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 21);
@@ -255,7 +257,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::Hotel.Properties.Resources.room_type;
-            this.pictureBox10.Location = new System.Drawing.Point(136, 352);
+            this.pictureBox10.Location = new System.Drawing.Point(137, 274);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(31, 26);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -265,7 +267,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::Hotel.Properties.Resources.rooms_dashboard;
-            this.pictureBox7.Location = new System.Drawing.Point(136, 293);
+            this.pictureBox7.Location = new System.Drawing.Point(137, 215);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(31, 26);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -275,7 +277,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::Hotel.Properties.Resources.no_pet_40;
-            this.pictureBox6.Location = new System.Drawing.Point(681, 241);
+            this.pictureBox6.Location = new System.Drawing.Point(625, 163);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(31, 26);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -285,7 +287,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::Hotel.Properties.Resources.no_smoking_40;
-            this.pictureBox9.Location = new System.Drawing.Point(681, 187);
+            this.pictureBox9.Location = new System.Drawing.Point(625, 109);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(31, 26);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -296,7 +298,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(41, 296);
+            this.label12.Location = new System.Drawing.Point(42, 218);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(91, 21);
@@ -315,7 +317,7 @@
             this.cbRoomTypes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.cbRoomTypes.ForeColor = System.Drawing.Color.Black;
             this.cbRoomTypes.ItemHeight = 30;
-            this.cbRoomTypes.Location = new System.Drawing.Point(180, 184);
+            this.cbRoomTypes.Location = new System.Drawing.Point(181, 106);
             this.cbRoomTypes.Name = "cbRoomTypes";
             this.cbRoomTypes.Size = new System.Drawing.Size(216, 36);
             this.cbRoomTypes.TabIndex = 257;
@@ -323,7 +325,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::Hotel.Properties.Resources.room_type;
-            this.pictureBox8.Location = new System.Drawing.Point(136, 187);
+            this.pictureBox8.Location = new System.Drawing.Point(137, 109);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(31, 26);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -345,7 +347,7 @@
             this.txtRoomSize.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRoomSize.ForeColor = System.Drawing.Color.Black;
             this.txtRoomSize.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.txtRoomSize.Location = new System.Drawing.Point(180, 293);
+            this.txtRoomSize.Location = new System.Drawing.Point(181, 215);
             this.txtRoomSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRoomSize.Name = "txtRoomSize";
             this.txtRoomSize.PasswordChar = '\0';
@@ -363,7 +365,7 @@
             this.numericRoomFloor.BorderRadius = 17;
             this.numericRoomFloor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.numericRoomFloor.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericRoomFloor.Location = new System.Drawing.Point(180, 349);
+            this.numericRoomFloor.Location = new System.Drawing.Point(181, 271);
             this.numericRoomFloor.Minimum = new decimal(new int[] {
             1,
             0,
@@ -386,7 +388,7 @@
             this.chkIsSmokingAllowed.CheckedState.BorderThickness = 0;
             this.chkIsSmokingAllowed.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.chkIsSmokingAllowed.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIsSmokingAllowed.Location = new System.Drawing.Point(513, 190);
+            this.chkIsSmokingAllowed.Location = new System.Drawing.Point(457, 112);
             this.chkIsSmokingAllowed.Name = "chkIsSmokingAllowed";
             this.chkIsSmokingAllowed.Size = new System.Drawing.Size(173, 25);
             this.chkIsSmokingAllowed.TabIndex = 261;
@@ -404,7 +406,7 @@
             this.chkIsPetFriendly.CheckedState.BorderThickness = 0;
             this.chkIsPetFriendly.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.chkIsPetFriendly.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkIsPetFriendly.Location = new System.Drawing.Point(513, 243);
+            this.chkIsPetFriendly.Location = new System.Drawing.Point(457, 165);
             this.chkIsPetFriendly.Name = "chkIsPetFriendly";
             this.chkIsPetFriendly.Size = new System.Drawing.Size(130, 25);
             this.chkIsPetFriendly.TabIndex = 262;
@@ -418,7 +420,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(180, 141);
+            this.lblStatus.Location = new System.Drawing.Point(181, 63);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(50, 21);
@@ -441,7 +443,7 @@
             this.btnClose.Image = global::Hotel.Properties.Resources.close_48;
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnClose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnClose.Location = new System.Drawing.Point(474, 521);
+            this.btnClose.Location = new System.Drawing.Point(474, 573);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(155, 45);
@@ -465,7 +467,7 @@
             this.btnSave.Image = global::Hotel.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSave.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSave.Location = new System.Drawing.Point(640, 521);
+            this.btnSave.Location = new System.Drawing.Point(640, 573);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.btnSave.Size = new System.Drawing.Size(155, 45);
@@ -477,37 +479,47 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // guna2GroupBox1
+            // 
+            this.guna2GroupBox1.Controls.Add(this.pictureBox4);
+            this.guna2GroupBox1.Controls.Add(this.txtRoomNumber);
+            this.guna2GroupBox1.Controls.Add(this.txtNotes);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox9);
+            this.guna2GroupBox1.Controls.Add(this.lblStatus);
+            this.guna2GroupBox1.Controls.Add(this.chkIsPetFriendly);
+            this.guna2GroupBox1.Controls.Add(this.label5);
+            this.guna2GroupBox1.Controls.Add(this.chkIsSmokingAllowed);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox6);
+            this.guna2GroupBox1.Controls.Add(this.label4);
+            this.guna2GroupBox1.Controls.Add(this.label3);
+            this.guna2GroupBox1.Controls.Add(this.label2);
+            this.guna2GroupBox1.Controls.Add(this.numericRoomFloor);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox3);
+            this.guna2GroupBox1.Controls.Add(this.txtRoomSize);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox5);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox8);
+            this.guna2GroupBox1.Controls.Add(this.label12);
+            this.guna2GroupBox1.Controls.Add(this.cbRoomTypes);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox7);
+            this.guna2GroupBox1.Controls.Add(this.label6);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox10);
+            this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2GroupBox1.ForeColor = System.Drawing.Color.Black;
+            this.guna2GroupBox1.Location = new System.Drawing.Point(15, 122);
+            this.guna2GroupBox1.Name = "guna2GroupBox1";
+            this.guna2GroupBox1.Size = new System.Drawing.Size(773, 437);
+            this.guna2GroupBox1.TabIndex = 266;
+            // 
             // frmAddEditRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 568);
+            this.ClientSize = new System.Drawing.Size(800, 620);
+            this.Controls.Add(this.guna2GroupBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.chkIsPetFriendly);
-            this.Controls.Add(this.chkIsSmokingAllowed);
-            this.Controls.Add(this.numericRoomFloor);
-            this.Controls.Add(this.txtRoomSize);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.cbRoomTypes);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.pictureBox10);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtNotes);
-            this.Controls.Add(this.txtRoomNumber);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label22);
@@ -529,6 +541,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericRoomFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.guna2GroupBox1.ResumeLayout(false);
+            this.guna2GroupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -564,5 +578,6 @@
         private Guna.UI2.WinForms.Guna2GradientButton btnClose;
         private Guna.UI2.WinForms.Guna2GradientButton btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
     }
 }

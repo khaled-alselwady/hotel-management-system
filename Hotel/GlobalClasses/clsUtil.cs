@@ -6,6 +6,8 @@ namespace CarRental.GlobalClasses
 {
     public class clsUtil
     {
+        public enum enSourceImage { Person, Item };
+
         public static string GenerateGUID()
         {
 
@@ -50,13 +52,14 @@ namespace CarRental.GlobalClasses
 
         }
 
-        public static bool CopyImageToProjectImagesFolder(ref string sourceFile)
+        public static bool CopyImageToProjectImagesFolder(ref string sourceFile, enSourceImage SourceImage = enSourceImage.Person)
         {
             // this function will copy the image to the
             // project images folder after renaming it
             // with GUID with the same extension, then it will update the sourceFileName with the new name.
 
-            string DestinationFolder = @"D:\hotel-people-images\";
+            string DestinationFolder = (SourceImage == enSourceImage.Person) ? @"D:\hotel-people-images\" : @"D:\hotel-Items-images\";
+
             if (!CreateFolderIfDoesNotExist(DestinationFolder))
             {
                 return false;
@@ -73,7 +76,7 @@ namespace CarRental.GlobalClasses
                 clsLogError.LogError("IO Exception", iox);
                 return false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 clsLogError.LogError("General Exception", ex);
                 return false;

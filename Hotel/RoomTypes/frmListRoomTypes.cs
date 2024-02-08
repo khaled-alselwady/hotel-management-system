@@ -55,7 +55,7 @@ namespace Hotel.RoomTypes
                 dgvRoomList.Columns[2].Width = 130;
 
                 dgvRoomList.Columns[3].HeaderText = "Price Per Night";
-                dgvRoomList.Columns[3].Width = 130;
+                dgvRoomList.Columns[3].Width = 180;
             }
         }
 

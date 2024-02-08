@@ -49,25 +49,25 @@ namespace Hotel.Bookings
             if (dgvBookingList.Rows.Count > 0)
             {
                 dgvBookingList.Columns[0].HeaderText = "Booking ID";
-                dgvBookingList.Columns[0].Width = 110;
+                dgvBookingList.Columns[0].Width = 130;
 
                 dgvBookingList.Columns[1].HeaderText = "Reservation ID";
-                dgvBookingList.Columns[1].Width = 120;
+                dgvBookingList.Columns[1].Width = 160;
 
                 dgvBookingList.Columns[2].HeaderText = "Guest";
-                dgvBookingList.Columns[2].Width = 180;
+                dgvBookingList.Columns[2].Width = 280;
 
                 dgvBookingList.Columns[3].HeaderText = "Room Number";
-                dgvBookingList.Columns[3].Width = 130;
+                dgvBookingList.Columns[3].Width = 150;
 
                 dgvBookingList.Columns[4].HeaderText = "Check In Date";
-                dgvBookingList.Columns[4].Width = 130;
+                dgvBookingList.Columns[4].Width = 190;
 
                 dgvBookingList.Columns[5].HeaderText = "Check Out Date";
-                dgvBookingList.Columns[5].Width = 130;
+                dgvBookingList.Columns[5].Width = 190;
 
                 dgvBookingList.Columns[6].HeaderText = "Number Of People";
-                dgvBookingList.Columns[6].Width = 130;
+                dgvBookingList.Columns[6].Width = 180;
 
                 dgvBookingList.Columns[7].HeaderText = "Status";
                 dgvBookingList.Columns[7].Width = 130;

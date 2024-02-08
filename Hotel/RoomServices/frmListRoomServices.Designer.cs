@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.dgvRoomServiceList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EditRoomServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteRoomServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAddNewRoomService = new Guna.UI2.WinForms.Guna2Button();
-            this.DeleteRoomServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoomServiceList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
@@ -68,36 +68,36 @@
             this.dgvRoomServiceList.AllowUserToDeleteRows = false;
             this.dgvRoomServiceList.AllowUserToOrderColumns = true;
             this.dgvRoomServiceList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvRoomServiceList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvRoomServiceList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRoomServiceList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRoomServiceList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.None;
             this.dgvRoomServiceList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgvRoomServiceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.dgvRoomServiceList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRoomServiceList.ColumnHeadersHeight = 35;
             this.dgvRoomServiceList.ContextMenuStrip = this.cmsEditProfile;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoomServiceList.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoomServiceList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRoomServiceList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvRoomServiceList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
-            this.dgvRoomServiceList.Location = new System.Drawing.Point(9, 254);
+            this.dgvRoomServiceList.Location = new System.Drawing.Point(13, 254);
             this.dgvRoomServiceList.Name = "dgvRoomServiceList";
             this.dgvRoomServiceList.ReadOnly = true;
             this.dgvRoomServiceList.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvRoomServiceList.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRoomServiceList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRoomServiceList.RowTemplate.Height = 33;
             this.dgvRoomServiceList.ShowCellToolTips = false;
             this.dgvRoomServiceList.Size = new System.Drawing.Size(1318, 469);
@@ -112,7 +112,7 @@
             this.dgvRoomServiceList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
             this.dgvRoomServiceList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.dgvRoomServiceList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvRoomServiceList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRoomServiceList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRoomServiceList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvRoomServiceList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvRoomServiceList.ThemeStyle.HeaderStyle.Height = 35;
@@ -142,9 +142,19 @@
             this.EditRoomServiceToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
             this.EditRoomServiceToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EditRoomServiceToolStripMenuItem.Name = "EditRoomServiceToolStripMenuItem";
-            this.EditRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.EditRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(139, 38);
             this.EditRoomServiceToolStripMenuItem.Text = "Edit";
             this.EditRoomServiceToolStripMenuItem.Click += new System.EventHandler(this.EditRoomServiceToolStripMenuItem_Click);
+            // 
+            // DeleteRoomServiceToolStripMenuItem
+            // 
+            this.DeleteRoomServiceToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.DeleteRoomServiceToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
+            this.DeleteRoomServiceToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DeleteRoomServiceToolStripMenuItem.Name = "DeleteRoomServiceToolStripMenuItem";
+            this.DeleteRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(139, 38);
+            this.DeleteRoomServiceToolStripMenuItem.Text = "Delete";
+            this.DeleteRoomServiceToolStripMenuItem.Click += new System.EventHandler(this.DeleteRoomServiceToolStripMenuItem_Click);
             // 
             // cbFilter
             // 
@@ -247,16 +257,6 @@
             this.btnAddNewRoomService.Size = new System.Drawing.Size(78, 57);
             this.btnAddNewRoomService.TabIndex = 243;
             this.btnAddNewRoomService.Click += new System.EventHandler(this.btnAddNewRoomService_Click);
-            // 
-            // DeleteRoomServiceToolStripMenuItem
-            // 
-            this.DeleteRoomServiceToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.DeleteRoomServiceToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
-            this.DeleteRoomServiceToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteRoomServiceToolStripMenuItem.Name = "DeleteRoomServiceToolStripMenuItem";
-            this.DeleteRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
-            this.DeleteRoomServiceToolStripMenuItem.Text = "Delete";
-            this.DeleteRoomServiceToolStripMenuItem.Click += new System.EventHandler(this.DeleteRoomServiceToolStripMenuItem_Click);
             // 
             // frmListRoomServices
             // 

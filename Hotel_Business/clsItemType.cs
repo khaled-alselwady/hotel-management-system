@@ -9,7 +9,7 @@ namespace Hotel_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int? ItemTypeID { get; set; }
+        public byte? ItemTypeID { get; set; }
         public string ItemTypeName { get; set; }
 
         public clsItemType()
@@ -19,7 +19,7 @@ namespace Hotel_Business
             Mode = enMode.AddNew;
         }
 
-        private clsItemType(int? ItemTypeID, string ItemTypeName)
+        private clsItemType(byte? ItemTypeID, string ItemTypeName)
         {
             this.ItemTypeID = ItemTypeID;
             this.ItemTypeName = ItemTypeName;
@@ -60,7 +60,7 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsItemType Find(int? ItemTypeID)
+        public static clsItemType Find(byte? ItemTypeID)
         {
             string ItemTypeName = string.Empty;
 
@@ -69,19 +69,38 @@ namespace Hotel_Business
             return IsFound ? new clsItemType(ItemTypeID, ItemTypeName) : null;
         }
 
-        public static bool DeleteItemType(int? ItemTypeID)
+        public static clsItemType Find(string ItemTypeName)
+        {
+            byte? ItemTypeID = null;
+
+            bool IsFound = clsItemTypeData.GetItemTypeInfoByName(ItemTypeName, ref ItemTypeID);
+
+            return IsFound ? new clsItemType(ItemTypeID, ItemTypeName) : null;
+        }
+
+        public static bool DeleteItemType(byte? ItemTypeID)
         {
             return clsItemTypeData.DeleteItemType(ItemTypeID);
         }
 
-        public static bool DoesItemTypeExist(int? ItemTypeID)
+        public static bool DoesItemTypeExist(byte? ItemTypeID)
         {
             return clsItemTypeData.DoesItemTypeExist(ItemTypeID);
+        }
+
+        public static bool DoesItemTypeExist(string ItemTypeName)
+        {
+            return clsItemTypeData.DoesItemTypeExist(ItemTypeName);
         }
 
         public static DataTable GetAllItemTypes()
         {
             return clsItemTypeData.GetAllItemTypes();
+        }
+
+        public static DataTable GetAllItemTypesName()
+        {
+            return clsItemTypeData.GetAllItemTypesName();
         }
 
     }

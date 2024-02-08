@@ -30,7 +30,7 @@ namespace Hotel.RoomServices
 
         private void _ResetFields()
         {
-            lblRoomServiceID.Text = "[????]";
+            lblRoomServiceID.Text = "N\\A";
             txtTitle.Clear();
             txtFees.Clear();
             txtDescription.Clear();
@@ -81,9 +81,9 @@ namespace Hotel.RoomServices
             _RoomService.Description = txtDescription.Text.Trim();
 
             if (txtFees.Text.Contains("$")) // to remove the $ from the beginning of price
-                _RoomService.Fees = decimal.Parse(txtFees.Text.Trim().Substring(1));
+                _RoomService.Fees = float.Parse(txtFees.Text.Trim().Substring(1));
             else
-                _RoomService.Fees = decimal.Parse(txtFees.Text.Trim());
+                _RoomService.Fees = float.Parse(txtFees.Text.Trim());
         }
 
         private void _SaveRoomService()

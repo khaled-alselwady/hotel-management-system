@@ -3,6 +3,7 @@ using Hotel.Bookings;
 using Hotel.Dashboard;
 using Hotel.GlobalClasses;
 using Hotel.Guests;
+using Hotel.Items;
 using Hotel.Reservations;
 using Hotel.Rooms;
 using Hotel.RoomServices;
@@ -135,7 +136,7 @@ namespace Hotel.MainMenu
 
         private void btnDiningMenu_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListItems(), sender);
         }
 
         private void btnGuestOrders_Click(object sender, EventArgs e)

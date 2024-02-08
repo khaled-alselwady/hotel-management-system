@@ -47,7 +47,7 @@ namespace Hotel.Rooms
 
         private void _ResetFields()
         {
-            lblRoomID.Text = "[????]";
+            lblRoomID.Text = "N\\A";
             txtRoomSize.Clear();
             txtRoomNumber.Clear();
             txtNotes.Clear();

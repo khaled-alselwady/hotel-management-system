@@ -13,7 +13,7 @@ namespace Hotel_Business
         public byte? RoomTypeID { get; set; }
         public string RoomTypeTitle { get; set; }
         public byte Capacity { get; set; }
-        public decimal PricePerNight { get; set; }
+        public float PricePerNight { get; set; }
         public string Description { get; set; }
 
         public static Dictionary<clsRoom.enRoomTypes, byte> KeyValueTypeTitleAndCapacity =
@@ -30,13 +30,13 @@ namespace Hotel_Business
             this.RoomTypeID = null;
             this.RoomTypeTitle = string.Empty;
             this.Capacity = 0;
-            this.PricePerNight = -1M;
+            this.PricePerNight = -1f;
             this.Description = null;
             Mode = enMode.AddNew;
         }
 
         private clsRoomType(byte? RoomTypeID, string RoomTypeTitle,
-            byte Capacity, decimal PricePerNight, string Description)
+            byte Capacity, float PricePerNight, string Description)
         {
             this.RoomTypeID = RoomTypeID;
             this.RoomTypeTitle = RoomTypeTitle;
@@ -86,7 +86,7 @@ namespace Hotel_Business
         {
             string RoomTypeTitle = string.Empty;
             byte Capacity = 0;
-            decimal PricePerNight = -1M;
+            float PricePerNight = -1f;
             string Description = null;
 
             bool IsFound = clsRoomTypeData.GetRoomTypeInfoByID(RoomTypeID, ref RoomTypeTitle, ref Capacity, ref PricePerNight, ref Description);
@@ -98,7 +98,7 @@ namespace Hotel_Business
         {
             byte? RoomTypeID = null;
             byte Capacity = 0;
-            decimal PricePerNight = -1M;
+            float PricePerNight = -1f;
             string Description = null;
 
             bool IsFound = clsRoomTypeData.GetRoomTypeInfoByTitle(RoomTypeTitle, ref RoomTypeID, ref Capacity, ref PricePerNight, ref Description);

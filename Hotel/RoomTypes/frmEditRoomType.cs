@@ -50,9 +50,9 @@ namespace Hotel.RoomTypes
         private void _UpdateRoomType()
         {
             if (txtPricePerNight.Text.Contains("$")) // to remove the $ from the beginning of price
-                _RoomType.PricePerNight = decimal.Parse(txtPricePerNight.Text.Trim().Substring(1));
+                _RoomType.PricePerNight = float.Parse(txtPricePerNight.Text.Trim().Substring(1));
             else
-                _RoomType.PricePerNight = decimal.Parse(txtPricePerNight.Text.Trim());
+                _RoomType.PricePerNight = float.Parse(txtPricePerNight.Text.Trim());
 
             _RoomType.Description = txtDescription.Text.Trim();
 

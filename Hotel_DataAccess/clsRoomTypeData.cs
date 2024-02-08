@@ -7,7 +7,7 @@ namespace Hotel_DataAccess
     public class clsRoomTypeData
     {
         public static bool GetRoomTypeInfoByID(byte? RoomTypeID, ref string RoomTypeTitle,
-            ref byte Capacity, ref decimal PricePerNight, ref string Description)
+            ref byte Capacity, ref float PricePerNight, ref string Description)
         {
             bool IsFound = false;
 
@@ -32,7 +32,7 @@ namespace Hotel_DataAccess
 
                                 RoomTypeTitle = (string)reader["RoomTypeTitle"];
                                 Capacity = (byte)reader["Capacity"];
-                                PricePerNight = (decimal)reader["PricePerNight"];
+                                PricePerNight = Convert.ToSingle(reader["PricePerNight"]);
                                 Description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
                             }
                             else
@@ -61,7 +61,7 @@ namespace Hotel_DataAccess
         }
 
         public static bool GetRoomTypeInfoByTitle(string RoomTypeTitle, ref byte? RoomTypeID,
-            ref byte Capacity, ref decimal PricePerNight, ref string Description)
+            ref byte Capacity, ref float PricePerNight, ref string Description)
         {
             bool IsFound = false;
 
@@ -86,7 +86,7 @@ namespace Hotel_DataAccess
 
                                 RoomTypeID = (reader["RoomTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["RoomTypeID"]) : null;
                                 Capacity = (byte)reader["Capacity"];
-                                PricePerNight = (decimal)reader["PricePerNight"];
+                                PricePerNight = Convert.ToSingle(reader["PricePerNight"]);
                                 Description = (reader["Description"] != DBNull.Value) ? (string)reader["Description"] : null;
                             }
                             else
@@ -114,7 +114,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static byte? AddNewRoomType(string RoomTypeTitle, byte Capacity, decimal PricePerNight, string Description)
+        public static byte? AddNewRoomType(string RoomTypeTitle, byte Capacity, float PricePerNight, string Description)
         {
             // This function will return the new person id if succeeded and null if not
             byte? RoomTypeID = null;
@@ -158,7 +158,7 @@ namespace Hotel_DataAccess
             return RoomTypeID;
         }
 
-        public static bool UpdateRoomType(byte? RoomTypeID, string RoomTypeTitle, byte Capacity, decimal PricePerNight, string Description)
+        public static bool UpdateRoomType(byte? RoomTypeID, string RoomTypeTitle, byte Capacity, float PricePerNight, string Description)
         {
             int RowAffected = 0;
 

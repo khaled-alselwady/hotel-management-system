@@ -117,6 +117,48 @@
     <Compile Include="Guests\frmListGuests.Designer.cs">
       <DependentUpon>frmListGuests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Items\frmAddEditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Items\frmAddEditItem.Designer.cs">
+      <DependentUpon>frmAddEditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\frmAddEditItemType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Items\frmAddEditItemType.Designer.cs">
+      <DependentUpon>frmAddEditItemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\frmListItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Items\frmListItems.Designer.cs">
+      <DependentUpon>frmListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\frmShowItemImageWithZoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Items\frmShowItemImageWithZoom.Designer.cs">
+      <DependentUpon>frmShowItemImageWithZoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\frmShowItemInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Items\frmShowItemInfo.Designer.cs">
+      <DependentUpon>frmShowItemInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\UserControls\ucItemLongCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Items\UserControls\ucItemLongCard.Designer.cs">
+      <DependentUpon>ucItemLongCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\UserControls\ucItemShortCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Items\UserControls\ucItemShortCard.Designer.cs">
+      <DependentUpon>ucItemShortCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmLoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,6 +340,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Guests\frmListGuests.resx">
       <DependentUpon>frmListGuests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\frmAddEditItem.resx">
+      <DependentUpon>frmAddEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\frmAddEditItemType.resx">
+      <DependentUpon>frmAddEditItemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\frmListItems.resx">
+      <DependentUpon>frmListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\frmShowItemImageWithZoom.resx">
+      <DependentUpon>frmShowItemImageWithZoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\frmShowItemInfo.resx">
+      <DependentUpon>frmShowItemInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\UserControls\ucItemLongCard.resx">
+      <DependentUpon>ucItemLongCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Items\UserControls\ucItemShortCard.resx">
+      <DependentUpon>ucItemShortCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLoginScreen.resx">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
@@ -665,6 +728,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-item-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Items.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-item.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

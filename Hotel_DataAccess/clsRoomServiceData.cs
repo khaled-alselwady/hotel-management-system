@@ -7,7 +7,7 @@ namespace Hotel_DataAccess
     public class clsRoomServiceData
     {
         public static bool GetRoomServiceInfoByID(int? RoomServiceID, ref string RoomServiceTitle,
-            ref decimal Fees, ref string Description)
+            ref float Fees, ref string Description)
         {
             bool IsFound = false;
 
@@ -31,7 +31,7 @@ namespace Hotel_DataAccess
                                 IsFound = true;
 
                                 RoomServiceTitle = (string)reader["RoomServiceTitle"];
-                                Fees = (decimal)reader["Fees"];
+                                Fees = Convert.ToSingle(reader["Fees"]);
                                 Description = (string)reader["Description"];
                             }
                             else
@@ -59,7 +59,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewRoomService(string RoomServiceTitle, decimal Fees, string Description)
+        public static int? AddNewRoomService(string RoomServiceTitle, float Fees, string Description)
         {
             // This function will return the new person id if succeeded and null if not
             int? RoomServiceID = null;
@@ -102,7 +102,7 @@ namespace Hotel_DataAccess
             return RoomServiceID;
         }
 
-        public static bool UpdateRoomService(int? RoomServiceID, string RoomServiceTitle, decimal Fees, string Description)
+        public static bool UpdateRoomService(int? RoomServiceID, string RoomServiceTitle, float Fees, string Description)
         {
             int RowAffected = 0;
 

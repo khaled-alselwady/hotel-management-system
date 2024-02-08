@@ -55,10 +55,10 @@ namespace Hotel.Users
                 dgvUsersList.Columns[1].Width = 190;
 
                 dgvUsersList.Columns[2].HeaderText = "Name";
-                dgvUsersList.Columns[2].Width = 190;
+                dgvUsersList.Columns[2].Width = 240;
 
                 dgvUsersList.Columns[3].HeaderText = "Username";
-                dgvUsersList.Columns[3].Width = 190;
+                dgvUsersList.Columns[3].Width = 160;
 
                 dgvUsersList.Columns[4].HeaderText = "Is Active";
                 dgvUsersList.Columns[4].Width = 100;

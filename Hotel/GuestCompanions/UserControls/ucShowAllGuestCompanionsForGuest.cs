@@ -23,7 +23,7 @@ namespace Hotel.GuestCompanions.UserControls
             if (dgvGuestCompanionsList.Rows.Count > 0)
             {
                 dgvGuestCompanionsList.Columns[0].HeaderText = "Guest Companion ID";
-                dgvGuestCompanionsList.Columns[0].Width = 125;
+                dgvGuestCompanionsList.Columns[0].Width = 180;
 
                 dgvGuestCompanionsList.Columns[1].HeaderText = "Person ID";
                 dgvGuestCompanionsList.Columns[1].Width = 120;
@@ -32,13 +32,13 @@ namespace Hotel.GuestCompanions.UserControls
                 dgvGuestCompanionsList.Columns[2].Width = 150;
 
                 dgvGuestCompanionsList.Columns[3].HeaderText = "Name";
-                dgvGuestCompanionsList.Columns[3].Width = 220;
+                dgvGuestCompanionsList.Columns[3].Width = 280;
 
                 dgvGuestCompanionsList.Columns[4].HeaderText = "Gender";
                 dgvGuestCompanionsList.Columns[4].Width = 100;
 
                 dgvGuestCompanionsList.Columns[5].HeaderText = "Date Of Birth";
-                dgvGuestCompanionsList.Columns[5].Width = 130;
+                dgvGuestCompanionsList.Columns[5].Width = 160;
 
                 dgvGuestCompanionsList.Columns[6].HeaderText = "Nationality";
                 dgvGuestCompanionsList.Columns[6].Width = 100;

@@ -34,20 +34,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUsersList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ShowUserDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbIsActive = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddNewUser = new Guna.UI2.WinForms.Guna2Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.ShowUserDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChangePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
@@ -65,7 +65,7 @@
             this.dgvUsersList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -82,7 +82,7 @@
             this.dgvUsersList.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsersList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvUsersList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
-            this.dgvUsersList.Location = new System.Drawing.Point(15, 255);
+            this.dgvUsersList.Location = new System.Drawing.Point(13, 254);
             this.dgvUsersList.Name = "dgvUsersList";
             this.dgvUsersList.ReadOnly = true;
             this.dgvUsersList.RowHeadersVisible = false;
@@ -102,7 +102,7 @@
             this.dgvUsersList.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(199)))), ((int)(((byte)(206)))));
             this.dgvUsersList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.dgvUsersList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvUsersList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvUsersList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvUsersList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvUsersList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvUsersList.ThemeStyle.HeaderStyle.Height = 35;
@@ -115,6 +115,67 @@
             this.dgvUsersList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
             this.dgvUsersList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvUsersList.DoubleClick += new System.EventHandler(this.dgvUsersList_DoubleClick);
+            // 
+            // cmsEditProfile
+            // 
+            this.cmsEditProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowUserDetailsToolStripMenuItem1,
+            this.toolStripSeparator6,
+            this.EditUserToolStripMenuItem,
+            this.DeleteToolStripMenuItem,
+            this.ChangePasswordToolStripMenuItem});
+            this.cmsEditProfile.Name = "contextMenuStrip1";
+            this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.cmsEditProfile.Size = new System.Drawing.Size(221, 162);
+            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
+            // 
+            // ShowUserDetailsToolStripMenuItem1
+            // 
+            this.ShowUserDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.ShowUserDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.show_reservation_32;
+            this.ShowUserDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowUserDetailsToolStripMenuItem1.Name = "ShowUserDetailsToolStripMenuItem1";
+            this.ShowUserDetailsToolStripMenuItem1.Size = new System.Drawing.Size(220, 38);
+            this.ShowUserDetailsToolStripMenuItem1.Text = "Show User Details";
+            this.ShowUserDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowUserDetailsToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(217, 6);
+            // 
+            // EditUserToolStripMenuItem
+            // 
+            this.EditUserToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.EditUserToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
+            this.EditUserToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
+            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
+            this.EditUserToolStripMenuItem.Text = "Edit";
+            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.DeleteToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
+            this.DeleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
+            this.DeleteToolStripMenuItem.Text = "Delete";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
+            // 
+            // ChangePasswordToolStripMenuItem
+            // 
+            this.ChangePasswordToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ChangePasswordToolStripMenuItem.Image = global::Hotel.Properties.Resources.change_password_321;
+            this.ChangePasswordToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ChangePasswordToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
+            this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
+            this.ChangePasswordToolStripMenuItem.Text = "Change Password";
+            this.ChangePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // txtSearch
             // 
@@ -222,26 +283,6 @@
             this.label1.TabIndex = 187;
             this.label1.Text = "Filter By:";
             // 
-            // cmsEditProfile
-            // 
-            this.cmsEditProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ShowUserDetailsToolStripMenuItem1,
-            this.toolStripSeparator6,
-            this.EditUserToolStripMenuItem,
-            this.DeleteToolStripMenuItem,
-            this.ChangePasswordToolStripMenuItem});
-            this.cmsEditProfile.Name = "contextMenuStrip1";
-            this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.cmsEditProfile.Size = new System.Drawing.Size(221, 162);
-            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(217, 6);
-            // 
             // btnAddNewUser
             // 
             this.btnAddNewUser.Checked = true;
@@ -276,47 +317,6 @@
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImage.TabIndex = 190;
             this.pbImage.TabStop = false;
-            // 
-            // ShowUserDetailsToolStripMenuItem1
-            // 
-            this.ShowUserDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.ShowUserDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.show_reservation_32;
-            this.ShowUserDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowUserDetailsToolStripMenuItem1.Name = "ShowUserDetailsToolStripMenuItem1";
-            this.ShowUserDetailsToolStripMenuItem1.Size = new System.Drawing.Size(220, 38);
-            this.ShowUserDetailsToolStripMenuItem1.Text = "Show User Details";
-            this.ShowUserDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowUserDetailsToolStripMenuItem1_Click);
-            // 
-            // EditUserToolStripMenuItem
-            // 
-            this.EditUserToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.EditUserToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
-            this.EditUserToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
-            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
-            this.EditUserToolStripMenuItem.Text = "Edit";
-            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
-            // 
-            // DeleteToolStripMenuItem
-            // 
-            this.DeleteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.DeleteToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
-            this.DeleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
-            this.DeleteToolStripMenuItem.Text = "Delete";
-            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // ChangePasswordToolStripMenuItem
-            // 
-            this.ChangePasswordToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ChangePasswordToolStripMenuItem.Image = global::Hotel.Properties.Resources.change_password_321;
-            this.ChangePasswordToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ChangePasswordToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
-            this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(220, 38);
-            this.ChangePasswordToolStripMenuItem.Text = "Change Password";
-            this.ChangePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // frmListUsers
             // 

@@ -50,7 +50,7 @@ namespace Hotel.RoomServices
             if (dgvRoomServiceList.Rows.Count > 0)
             {
                 dgvRoomServiceList.Columns[0].HeaderText = "Room Service ID";
-                dgvRoomServiceList.Columns[0].Width = 130;
+                dgvRoomServiceList.Columns[0].Width = 160;
 
                 dgvRoomServiceList.Columns[1].HeaderText = "Room Service Title";
                 dgvRoomServiceList.Columns[1].Width = 200;
@@ -59,7 +59,7 @@ namespace Hotel.RoomServices
                 dgvRoomServiceList.Columns[2].Width = 130;
 
                 dgvRoomServiceList.Columns[3].HeaderText = "Description";
-                dgvRoomServiceList.Columns[3].Width = 300;
+                dgvRoomServiceList.Columns[3].Width = 826;
             }
         }
 

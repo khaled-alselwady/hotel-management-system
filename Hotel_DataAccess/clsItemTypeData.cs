@@ -6,7 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsItemTypeData
     {
-        public static bool GetItemTypeInfoByID(int? ItemTypeID, ref string ItemTypeName)
+        public static bool GetItemTypeInfoByID(byte? ItemTypeID, ref string ItemTypeName)
         {
             bool IsFound = false;
 
@@ -56,10 +56,60 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewItemType(string ItemTypeName)
+        public static bool GetItemTypeInfoByName(string ItemTypeName, ref byte? ItemTypeID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetItemTypeInfoByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ItemTypeName", ItemTypeName);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                ItemTypeID = (reader["ItemTypeID"] != DBNull.Value) ? (byte?)Convert.ToByte(reader["ItemTypeID"]) : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static byte? AddNewItemType(string ItemTypeName)
         {
             // This function will return the new person id if succeeded and null if not
-            int? ItemTypeID = null;
+            byte? ItemTypeID = null;
 
             try
             {
@@ -81,7 +131,7 @@ namespace Hotel_DataAccess
 
                         command.ExecuteNonQuery();
 
-                        ItemTypeID = (int?)outputIdParam.Value;
+                        ItemTypeID = (byte?)(int)outputIdParam.Value;
                     }
                 }
             }
@@ -97,7 +147,7 @@ namespace Hotel_DataAccess
             return ItemTypeID;
         }
 
-        public static bool UpdateItemType(int? ItemTypeID, string ItemTypeName)
+        public static bool UpdateItemType(byte? ItemTypeID, string ItemTypeName)
         {
             int RowAffected = 0;
 
@@ -130,7 +180,7 @@ namespace Hotel_DataAccess
             return (RowAffected > 0);
         }
 
-        public static bool DeleteItemType(int? ItemTypeID)
+        public static bool DeleteItemType(byte? ItemTypeID)
         {
             int RowAffected = 0;
 
@@ -162,7 +212,7 @@ namespace Hotel_DataAccess
             return (RowAffected > 0);
         }
 
-        public static bool DoesItemTypeExist(int? ItemTypeID)
+        public static bool DoesItemTypeExist(byte? ItemTypeID)
         {
             bool IsFound = false;
 
@@ -172,11 +222,56 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_DoesItemTypeExist", connection))
+                    using (SqlCommand command = new SqlCommand("SP_DoesItemTypeExistByID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@ItemTypeID", (object)ItemTypeID ?? DBNull.Value);
+
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+        public static bool DoesItemTypeExist(string ItemTypeName)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_DoesItemTypeExistByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@ItemTypeName", ItemTypeName);
 
                         // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
                         SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
@@ -218,6 +313,42 @@ namespace Hotel_DataAccess
                     connection.Open();
 
                     using (SqlCommand command = new SqlCommand("SP_GetAllItemTypes", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllItemTypesName()
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetAllItemTypesName", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
