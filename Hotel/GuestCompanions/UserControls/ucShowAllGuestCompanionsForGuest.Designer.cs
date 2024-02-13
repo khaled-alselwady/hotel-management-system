@@ -1,4 +1,4 @@
-﻿namespace Hotel.GuestCompanions.UserControls
+﻿namespace Hotel.OrderItems.UserControls
 {
     partial class ucShowAllGuestCompanionsForGuest
     {
@@ -93,7 +93,7 @@
             this.dgvGuestCompanionsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -142,7 +142,7 @@
             this.dgvGuestCompanionsList.ThemeStyle.RowsStyle.Height = 33;
             this.dgvGuestCompanionsList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
             this.dgvGuestCompanionsList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvGuestCompanionsList.DoubleClick += new System.EventHandler(this.dgvGuestCompanionsList_DoubleClick);
+            this.dgvGuestCompanionsList.DoubleClick += new System.EventHandler(this.dgvGuestCompanionList_DoubleClick);
             // 
             // cmsEditProfile
             // 
@@ -182,14 +182,14 @@
             this.EditGuestCompanionToolStripMenuItem.Text = "Edit";
             this.EditGuestCompanionToolStripMenuItem.Click += new System.EventHandler(this.EditGuestCompanionToolStripMenuItem_Click);
             // 
-            // ucShowAllGuestCompanionsForGuest
+            // ucShowAllOrderItemsForGuest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.guna2GroupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "ucShowAllGuestCompanionsForGuest";
+            this.Name = "ucShowAllOrderItemsForGuest";
             this.Size = new System.Drawing.Size(862, 285);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();

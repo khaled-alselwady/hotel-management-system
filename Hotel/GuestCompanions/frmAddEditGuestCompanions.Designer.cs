@@ -1,6 +1,6 @@
-﻿namespace Hotel.GuestCompanions
+﻿namespace Hotel.OrderItems
 {
-    partial class frmAddEditGuestCompanions
+    partial class frmAddEditOrderItems
     {
         /// <summary>
         /// Required designer variable.
@@ -251,7 +251,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // frmAddEditGuestCompanions
+            // frmAddEditOrderItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,10 +264,10 @@
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmAddEditGuestCompanions";
+            this.Name = "frmAddEditOrderItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Guest Companions";
-            this.Load += new System.EventHandler(this.frmAddEditGuestCompanions_Load);
+            this.Load += new System.EventHandler(this.frmAddEditOrderItems_Load);
             this.tcAddEditUser.ResumeLayout(false);
             this.tpBookingInfo.ResumeLayout(false);
             this.tpGuestInfo.ResumeLayout(false);

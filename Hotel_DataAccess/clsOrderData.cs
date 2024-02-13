@@ -6,7 +6,9 @@ namespace Hotel_DataAccess
 {
     public class clsOrderData
     {
-        public static bool GetOrderInfoByID(int? OrderID, ref int BookingID, ref int PersonID, ref int RoomID, ref byte OrderType, ref decimal Fees, ref DateTime OrderDate, ref int CreatedByUserID)
+        public static bool GetOrderInfoByID(int? OrderID, ref int? BookingID, ref int? GuestID,
+            ref int? RoomID, ref short? RoomServiceID, ref byte OrderType, ref decimal Fees,
+            ref DateTime OrderDate, ref int? CreatedByUserID)
         {
             bool IsFound = false;
 
@@ -29,13 +31,14 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                BookingID = (int)reader["BookingID"];
-                                PersonID = (int)reader["PersonID"];
-                                RoomID = (int)reader["RoomID"];
+                                BookingID = (reader["BookingID"] != DBNull.Value) ? (int?)reader["BookingID"] : null;
+                                GuestID = (reader["GuestID"] != DBNull.Value) ? (int?)reader["GuestID"] : null;
+                                RoomID = (reader["RoomID"] != DBNull.Value) ? (int?)reader["RoomID"] : null;
+                                RoomServiceID = (reader["RoomServiceID"] != DBNull.Value) ? (short?)(int)reader["RoomServiceID"] : null;
                                 OrderType = (byte)reader["OrderType"];
                                 Fees = (decimal)reader["Fees"];
                                 OrderDate = (DateTime)reader["OrderDate"];
-                                CreatedByUserID = (int)reader["CreatedByUserID"];
+                                CreatedByUserID = (reader["CreatedByUserID"] != DBNull.Value) ? (int?)reader["CreatedByUserID"] : null;
                             }
                             else
                             {
@@ -62,7 +65,8 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewOrder(int BookingID, int PersonID, int RoomID, byte OrderType, decimal Fees, DateTime OrderDate, int CreatedByUserID)
+        public static int? AddNewOrder(int? BookingID, int? GuestID, int? RoomID, short? RoomServiceID,
+            byte OrderType, decimal Fees, int? CreatedByUserID)
         {
             // This function will return the new person id if succeeded and null if not
             int? OrderID = null;
@@ -77,13 +81,13 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@RoomID", RoomID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@RoomServiceID", (object)RoomServiceID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@OrderType", OrderType);
                         command.Parameters.AddWithValue("@Fees", Fees);
-                        command.Parameters.AddWithValue("@OrderDate", OrderDate);
-                        command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                        command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewOrderID", SqlDbType.Int)
                         {
@@ -109,7 +113,9 @@ namespace Hotel_DataAccess
             return OrderID;
         }
 
-        public static bool UpdateOrder(int? OrderID, int BookingID, int PersonID, int RoomID, byte OrderType, decimal Fees, DateTime OrderDate, int CreatedByUserID)
+        public static bool UpdateOrder(int? OrderID, int? BookingID, int? GuestID, int? RoomID,
+            short? RoomServiceID, byte OrderType, decimal Fees,
+             int? CreatedByUserID)
         {
             int RowAffected = 0;
 
@@ -124,13 +130,13 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@OrderID", (object)OrderID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@RoomID", RoomID);
+                        command.Parameters.AddWithValue("@BookingID", (object)BookingID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@GuestID", (object)GuestID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@RoomID", (object)RoomID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@RoomServiceID", (object)RoomServiceID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@OrderType", OrderType);
                         command.Parameters.AddWithValue("@Fees", Fees);
-                        command.Parameters.AddWithValue("@OrderDate", OrderDate);
-                        command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                        command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }

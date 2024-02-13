@@ -9,7 +9,7 @@ namespace Hotel_Business
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int? RoomServiceID { get; set; }
+        public short? RoomServiceID { get; set; }
         public string RoomServiceTitle { get; set; }
         public float Fees { get; set; }
         public string Description { get; set; }
@@ -23,7 +23,8 @@ namespace Hotel_Business
             Mode = enMode.AddNew;
         }
 
-        private clsRoomService(int? RoomServiceID, string RoomServiceTitle, float Fees, string Description)
+        private clsRoomService(short? RoomServiceID, string RoomServiceTitle, 
+            float Fees, string Description)
         {
             this.RoomServiceID = RoomServiceID;
             this.RoomServiceTitle = RoomServiceTitle;
@@ -66,7 +67,7 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsRoomService Find(int? RoomServiceID)
+        public static clsRoomService Find(short? RoomServiceID)
         {
             string RoomServiceTitle = string.Empty;
             float Fees = -1f;
@@ -77,12 +78,12 @@ namespace Hotel_Business
             return (IsFound) ? (new clsRoomService(RoomServiceID, RoomServiceTitle, Fees, Description)) : null;
         }
 
-        public static bool DeleteRoomService(int? RoomServiceID)
+        public static bool DeleteRoomService(short? RoomServiceID)
         {
             return clsRoomServiceData.DeleteRoomService(RoomServiceID);
         }
 
-        public static bool DoesRoomServiceExist(int? RoomServiceID)
+        public static bool DoesRoomServiceExist(short? RoomServiceID)
         {
             return clsRoomServiceData.DoesRoomServiceExist(RoomServiceID);
         }

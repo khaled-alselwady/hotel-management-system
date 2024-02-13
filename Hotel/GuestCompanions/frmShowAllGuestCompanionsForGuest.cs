@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Hotel.GuestCompanions
+namespace Hotel.OrderItems
 {
     public partial class frmShowAllGuestCompanionsForGuest : Form
     {

@@ -1,6 +1,7 @@
 ﻿using Hotel.GlobalClasses;
 using Hotel.People;
 using Hotel.Properties;
+using Hotel.Rooms;
 using Hotel_Business;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,14 @@ namespace Hotel.Reservations.UserControls
             lblCreatedByUser.Text = _Reservation.CreatedByUserInfo.Username;
             lblCreatedDate.Text = clsFormat.DateToShort(_Reservation.CreatedDate);
 
-            pbGendor.Image = (_Reservation.GuestInfo.PersonInfo.Gender == clsPerson.enGender.Male) ?
+            pbGender.Image = (_Reservation.GuestInfo.PersonInfo.Gender == clsPerson.enGender.Male) ?
                               Resources.gender_male : Resources.gender_female;
 
+        }
+
+        private byte? _GetRoomTypeIDFromRoomID(int? RoomID)
+        {
+            return (byte?)clsRoom.FindByRoomID(RoomID)?.RoomTypeID;
         }
 
         public void Reset()
@@ -65,7 +71,7 @@ namespace Hotel.Reservations.UserControls
             lblCreatedByUser.Text = "[????]";
             lblCreatedDate.Text = "[????]";
 
-            pbGendor.Image = Resources.gender_male;
+            pbGender.Image = Resources.gender_male;
         }
 
         public void LoadReservationInfo(int? ReservationID)
@@ -108,7 +114,8 @@ namespace Hotel.Reservations.UserControls
 
         private void llShowRoomInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("This feature is not implemented yet!");
+            frmShowRoomInfo ShowRoomInfo = new frmShowRoomInfo(_Reservation.RoomID, _GetRoomTypeIDFromRoomID(_Reservation.RoomID));
+            ShowRoomInfo.ShowDialog();
         }
     }
 }

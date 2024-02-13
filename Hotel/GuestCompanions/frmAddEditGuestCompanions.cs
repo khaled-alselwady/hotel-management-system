@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using static Hotel.People.UserControls.ucPersonCardWithFilter;
 
-namespace Hotel.GuestCompanions
+namespace Hotel.OrderItems
 {
-    public partial class frmAddEditGuestCompanions : Form
+    public partial class frmAddEditOrderItems : Form
     {
         private enum _enMode { AddNew, Update };
         private _enMode _Mode = _enMode.AddNew;
@@ -17,7 +17,7 @@ namespace Hotel.GuestCompanions
 
         private int? _SelectedPersonID = null;
 
-        public frmAddEditGuestCompanions(int? BookingID)
+        public frmAddEditOrderItems(int? BookingID)
         {
             InitializeComponent();
 
@@ -25,7 +25,7 @@ namespace Hotel.GuestCompanions
             _Mode = _enMode.AddNew;
         }
 
-        public frmAddEditGuestCompanions(int? BookingID, int? GuestCompanionID)
+        public frmAddEditOrderItems(int? BookingID, int? GuestCompanionID)
         {
             InitializeComponent();
 
@@ -136,7 +136,7 @@ namespace Hotel.GuestCompanions
             btnSave.Enabled = true;
         }
 
-        private void frmAddEditGuestCompanions_Load(object sender, System.EventArgs e)
+        private void frmAddEditOrderItems_Load(object sender, System.EventArgs e)
         {
             _ResetDefaultValues();
 

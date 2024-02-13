@@ -33,20 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvItemsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ShowItemDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNewItemToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.AddNewItemToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddNewItemTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.EditItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EditItemTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbItemTypes = new Guna.UI2.WinForms.Guna2ComboBox();
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
@@ -55,6 +47,13 @@
             this.cbTypeOfViewItems = new Guna.UI2.WinForms.Guna2ComboBox();
             this.flpItems = new System.Windows.Forms.FlowLayoutPanel();
             this.pbImage = new System.Windows.Forms.PictureBox();
+            this.ShowItemDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNewItemToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNewItemToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddNewItemTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditItemTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddNewItem = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItemsList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
@@ -109,7 +108,7 @@
             this.dgvItemsList.ContextMenuStrip = this.cmsEditProfile;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -120,17 +119,9 @@
             this.dgvItemsList.Location = new System.Drawing.Point(13, 254);
             this.dgvItemsList.Name = "dgvItemsList";
             this.dgvItemsList.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItemsList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvItemsList.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvItemsList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvItemsList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvItemsList.RowTemplate.Height = 33;
             this.dgvItemsList.ShowCellToolTips = false;
             this.dgvItemsList.Size = new System.Drawing.Size(1318, 469);
@@ -152,7 +143,7 @@
             this.dgvItemsList.ThemeStyle.ReadOnly = true;
             this.dgvItemsList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
             this.dgvItemsList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgvItemsList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvItemsList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvItemsList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.dgvItemsList.ThemeStyle.RowsStyle.Height = 33;
             this.dgvItemsList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
@@ -179,91 +170,20 @@
             this.cmsEditProfile.Size = new System.Drawing.Size(234, 288);
             this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
             // 
-            // ShowItemDetailsToolStripMenuItem1
-            // 
-            this.ShowItemDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.ShowItemDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.show_reservation_32;
-            this.ShowItemDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowItemDetailsToolStripMenuItem1.Name = "ShowItemDetailsToolStripMenuItem1";
-            this.ShowItemDetailsToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
-            this.ShowItemDetailsToolStripMenuItem1.Text = "Show Item Details";
-            this.ShowItemDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowItemDetailsToolStripMenuItem1_Click);
-            // 
-            // AddNewItemToolStripMenuItem1
-            // 
-            this.AddNewItemToolStripMenuItem1.BackColor = System.Drawing.SystemColors.Control;
-            this.AddNewItemToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.AddNewItemToolStripMenuItem1.Image = global::Hotel.Properties.Resources.add_item_32;
-            this.AddNewItemToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.AddNewItemToolStripMenuItem1.Name = "AddNewItemToolStripMenuItem1";
-            this.AddNewItemToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
-            this.AddNewItemToolStripMenuItem1.Text = "Add New Item";
-            this.AddNewItemToolStripMenuItem1.Visible = false;
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(230, 6);
-            // 
-            // AddNewItemToolStripMenuItem2
-            // 
-            this.AddNewItemToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
-            this.AddNewItemToolStripMenuItem2.Image = global::Hotel.Properties.Resources.add_item_32;
-            this.AddNewItemToolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.AddNewItemToolStripMenuItem2.Name = "AddNewItemToolStripMenuItem2";
-            this.AddNewItemToolStripMenuItem2.Size = new System.Drawing.Size(233, 38);
-            this.AddNewItemToolStripMenuItem2.Text = "Add New Item";
-            this.AddNewItemToolStripMenuItem2.Click += new System.EventHandler(this.AddNewItemToolStripMenuItem2_Click);
-            // 
-            // AddNewItemTypeToolStripMenuItem1
-            // 
-            this.AddNewItemTypeToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.AddNewItemTypeToolStripMenuItem1.Image = global::Hotel.Properties.Resources.add_item_32;
-            this.AddNewItemTypeToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.AddNewItemTypeToolStripMenuItem1.Name = "AddNewItemTypeToolStripMenuItem1";
-            this.AddNewItemTypeToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
-            this.AddNewItemTypeToolStripMenuItem1.Text = "Add New Item Type";
-            this.AddNewItemTypeToolStripMenuItem1.Click += new System.EventHandler(this.AddNewItemTypeToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(230, 6);
             // 
-            // EditItemToolStripMenuItem
-            // 
-            this.EditItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.EditItemToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
-            this.EditItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditItemToolStripMenuItem.Name = "EditItemToolStripMenuItem";
-            this.EditItemToolStripMenuItem.Size = new System.Drawing.Size(233, 38);
-            this.EditItemToolStripMenuItem.Text = "Edit Item";
-            this.EditItemToolStripMenuItem.Click += new System.EventHandler(this.EditItemToolStripMenuItem_Click);
-            // 
-            // EditItemTypeToolStripMenuItem1
-            // 
-            this.EditItemTypeToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
-            this.EditItemTypeToolStripMenuItem1.Image = global::Hotel.Properties.Resources.edit_reservation32;
-            this.EditItemTypeToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.EditItemTypeToolStripMenuItem1.Name = "EditItemTypeToolStripMenuItem1";
-            this.EditItemTypeToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
-            this.EditItemTypeToolStripMenuItem1.Text = "Edit Item Type";
-            this.EditItemTypeToolStripMenuItem1.Click += new System.EventHandler(this.EditItemTypeToolStripMenuItem1_Click);
-            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(230, 6);
-            // 
-            // DeleteItemToolStripMenuItem
-            // 
-            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.DeleteItemToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
-            this.DeleteItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
-            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(233, 38);
-            this.DeleteItemToolStripMenuItem.Text = "Delete Item";
-            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
             // 
             // cbFilter
             // 
@@ -374,13 +294,84 @@
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbImage.Image = global::Hotel.Properties.Resources.Items;
             this.pbImage.InitialImage = null;
-            this.pbImage.Location = new System.Drawing.Point(489, 12);
+            this.pbImage.Location = new System.Drawing.Point(503, 12);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(325, 169);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImage.TabIndex = 230;
             this.pbImage.TabStop = false;
+            // 
+            // ShowItemDetailsToolStripMenuItem1
+            // 
+            this.ShowItemDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.ShowItemDetailsToolStripMenuItem1.Image = global::Hotel.Properties.Resources.show_reservation_32;
+            this.ShowItemDetailsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowItemDetailsToolStripMenuItem1.Name = "ShowItemDetailsToolStripMenuItem1";
+            this.ShowItemDetailsToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
+            this.ShowItemDetailsToolStripMenuItem1.Text = "Show Item Details";
+            this.ShowItemDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowItemDetailsToolStripMenuItem1_Click);
+            // 
+            // AddNewItemToolStripMenuItem1
+            // 
+            this.AddNewItemToolStripMenuItem1.BackColor = System.Drawing.SystemColors.Control;
+            this.AddNewItemToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.AddNewItemToolStripMenuItem1.Image = global::Hotel.Properties.Resources.add_item_32;
+            this.AddNewItemToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.AddNewItemToolStripMenuItem1.Name = "AddNewItemToolStripMenuItem1";
+            this.AddNewItemToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
+            this.AddNewItemToolStripMenuItem1.Text = "Add New Item";
+            this.AddNewItemToolStripMenuItem1.Visible = false;
+            // 
+            // AddNewItemToolStripMenuItem2
+            // 
+            this.AddNewItemToolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.AddNewItemToolStripMenuItem2.Image = global::Hotel.Properties.Resources.add_item_32;
+            this.AddNewItemToolStripMenuItem2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.AddNewItemToolStripMenuItem2.Name = "AddNewItemToolStripMenuItem2";
+            this.AddNewItemToolStripMenuItem2.Size = new System.Drawing.Size(233, 38);
+            this.AddNewItemToolStripMenuItem2.Text = "Add New Item";
+            this.AddNewItemToolStripMenuItem2.Click += new System.EventHandler(this.AddNewItemToolStripMenuItem2_Click);
+            // 
+            // AddNewItemTypeToolStripMenuItem1
+            // 
+            this.AddNewItemTypeToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.AddNewItemTypeToolStripMenuItem1.Image = global::Hotel.Properties.Resources.add_item_32;
+            this.AddNewItemTypeToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.AddNewItemTypeToolStripMenuItem1.Name = "AddNewItemTypeToolStripMenuItem1";
+            this.AddNewItemTypeToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
+            this.AddNewItemTypeToolStripMenuItem1.Text = "Add New Item Type";
+            this.AddNewItemTypeToolStripMenuItem1.Click += new System.EventHandler(this.AddNewItemTypeToolStripMenuItem1_Click);
+            // 
+            // EditItemToolStripMenuItem
+            // 
+            this.EditItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.EditItemToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
+            this.EditItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditItemToolStripMenuItem.Name = "EditItemToolStripMenuItem";
+            this.EditItemToolStripMenuItem.Size = new System.Drawing.Size(233, 38);
+            this.EditItemToolStripMenuItem.Text = "Edit Item";
+            this.EditItemToolStripMenuItem.Click += new System.EventHandler(this.EditItemToolStripMenuItem_Click);
+            // 
+            // EditItemTypeToolStripMenuItem1
+            // 
+            this.EditItemTypeToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.EditItemTypeToolStripMenuItem1.Image = global::Hotel.Properties.Resources.edit_reservation32;
+            this.EditItemTypeToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.EditItemTypeToolStripMenuItem1.Name = "EditItemTypeToolStripMenuItem1";
+            this.EditItemTypeToolStripMenuItem1.Size = new System.Drawing.Size(233, 38);
+            this.EditItemTypeToolStripMenuItem1.Text = "Edit Item Type";
+            this.EditItemTypeToolStripMenuItem1.Click += new System.EventHandler(this.EditItemTypeToolStripMenuItem1_Click);
+            // 
+            // DeleteItemToolStripMenuItem
+            // 
+            this.DeleteItemToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.DeleteItemToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
+            this.DeleteItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DeleteItemToolStripMenuItem.Name = "DeleteItemToolStripMenuItem";
+            this.DeleteItemToolStripMenuItem.Size = new System.Drawing.Size(233, 38);
+            this.DeleteItemToolStripMenuItem.Text = "Delete Item";
+            this.DeleteItemToolStripMenuItem.Click += new System.EventHandler(this.DeleteItemToolStripMenuItem_Click);
             // 
             // btnAddNewItem
             // 

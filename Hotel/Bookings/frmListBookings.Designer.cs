@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.ShowGuestCompanionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowOrderItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ShowBookingDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,15 +64,15 @@
             this.pbImage.TabIndex = 203;
             this.pbImage.TabStop = false;
             // 
-            // ShowGuestCompanionsToolStripMenuItem
+            // ShowOrderItemsToolStripMenuItem
             // 
-            this.ShowGuestCompanionsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.ShowGuestCompanionsToolStripMenuItem.Image = global::Hotel.Properties.Resources.add__guest_companion_32;
-            this.ShowGuestCompanionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowGuestCompanionsToolStripMenuItem.Name = "ShowGuestCompanionsToolStripMenuItem";
-            this.ShowGuestCompanionsToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
-            this.ShowGuestCompanionsToolStripMenuItem.Text = "Show Guest Companions";
-            this.ShowGuestCompanionsToolStripMenuItem.Click += new System.EventHandler(this.ShowGuestCompanionsToolStripMenuItem_Click);
+            this.ShowOrderItemsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ShowOrderItemsToolStripMenuItem.Image = global::Hotel.Properties.Resources.add__guest_companion_32;
+            this.ShowOrderItemsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowOrderItemsToolStripMenuItem.Name = "ShowOrderItemsToolStripMenuItem";
+            this.ShowOrderItemsToolStripMenuItem.Size = new System.Drawing.Size(268, 38);
+            this.ShowOrderItemsToolStripMenuItem.Text = "Show Guest Companions";
+            this.ShowOrderItemsToolStripMenuItem.Click += new System.EventHandler(this.ShowOrderItemsToolStripMenuItem_Click);
             // 
             // CheckOutToolStripMenuItem
             // 
@@ -90,7 +90,7 @@
             this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ShowBookingDetailsToolStripMenuItem1,
-            this.ShowGuestCompanionsToolStripMenuItem,
+            this.ShowOrderItemsToolStripMenuItem,
             this.CheckOutToolStripMenuItem});
             this.cmsEditProfile.Name = "contextMenuStrip1";
             this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -318,7 +318,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbImage;
-        private System.Windows.Forms.ToolStripMenuItem ShowGuestCompanionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowOrderItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CheckOutToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip cmsEditProfile;
         private Guna.UI2.WinForms.Guna2DataGridView dgvBookingList;

@@ -10,7 +10,7 @@ namespace Hotel.RoomServices
         private enum _enMode { AddNew, Update };
         private _enMode _Mode = _enMode.AddNew;
 
-        private int? _RoomServiceID = null;
+        private short? _RoomServiceID = null;
         private clsRoomService _RoomService = null;
 
         public frmAddEditRoomServices()
@@ -20,7 +20,7 @@ namespace Hotel.RoomServices
             _Mode = _enMode.AddNew;
         }
 
-        public frmAddEditRoomServices(int? RoomServiceID)
+        public frmAddEditRoomServices(short? RoomServiceID)
         {
             InitializeComponent();
 

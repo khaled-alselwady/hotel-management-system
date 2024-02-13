@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Hotel.GuestCompanions.UserControls
+namespace Hotel.OrderItems.UserControls
 {
     public partial class ucShowAllGuestCompanionsForGuest : UserControl
     {
@@ -58,6 +58,7 @@ namespace Hotel.GuestCompanions.UserControls
             _RefreshGuestCompanionsList();
         }
 
+
         private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
         {
             cmsEditProfile.Enabled = (dgvGuestCompanionsList.Rows.Count > 0);
@@ -79,7 +80,7 @@ namespace Hotel.GuestCompanions.UserControls
             _RefreshGuestCompanionsList();
         }
 
-        private void dgvGuestCompanionsList_DoubleClick(object sender, EventArgs e)
+        private void dgvGuestCompanionList_DoubleClick(object sender, EventArgs e)
         {
             frmShowPersonInfo ShowPersonInfo = new frmShowPersonInfo(_GetPersonIDFromDGV());
             ShowPersonInfo.ShowDialog();

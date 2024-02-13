@@ -1,6 +1,7 @@
 ﻿using Hotel.Items;
 using Hotel.Login;
 using Hotel.MainMenu;
+using Hotel.Orders;
 using Hotel.People;
 using System;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace Hotel
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLoginScreen());
-            //Application.Run(new frmShowItemInfo(11));
+            //Application.Run(new frmAddNewOrder());
         }
     }
 }

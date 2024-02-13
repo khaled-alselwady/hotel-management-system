@@ -1,5 +1,5 @@
 ﻿using Hotel.GlobalClasses;
-using Hotel.GuestCompanions;
+using Hotel.OrderItems;
 using Hotel_Business;
 using System.Data;
 using System.Windows.Forms;
@@ -303,8 +303,8 @@ namespace Hotel.Reservations
         {
             int? BookingID = clsBooking.GetBookingIDByReservationID(_GetReservationIDFromDGV());
 
-            frmAddEditGuestCompanions AddGuestCompanions = new frmAddEditGuestCompanions(BookingID);
-            AddGuestCompanions.ShowDialog();
+            frmAddEditOrderItems AddOrderItems = new frmAddEditOrderItems(BookingID);
+            AddOrderItems.ShowDialog();
 
             _RefreshReservationList();
         }

@@ -6,7 +6,7 @@ namespace Hotel_DataAccess
 {
     public class clsRoomServiceData
     {
-        public static bool GetRoomServiceInfoByID(int? RoomServiceID, ref string RoomServiceTitle,
+        public static bool GetRoomServiceInfoByID(short? RoomServiceID, ref string RoomServiceTitle,
             ref float Fees, ref string Description)
         {
             bool IsFound = false;
@@ -59,10 +59,10 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewRoomService(string RoomServiceTitle, float Fees, string Description)
+        public static short? AddNewRoomService(string RoomServiceTitle, float Fees, string Description)
         {
             // This function will return the new person id if succeeded and null if not
-            int? RoomServiceID = null;
+            short? RoomServiceID = null;
 
             try
             {
@@ -86,7 +86,7 @@ namespace Hotel_DataAccess
 
                         command.ExecuteNonQuery();
 
-                        RoomServiceID = (int?)outputIdParam.Value;
+                        RoomServiceID = (short?)(int?)outputIdParam.Value;
                     }
                 }
             }
@@ -102,7 +102,7 @@ namespace Hotel_DataAccess
             return RoomServiceID;
         }
 
-        public static bool UpdateRoomService(int? RoomServiceID, string RoomServiceTitle, float Fees, string Description)
+        public static bool UpdateRoomService(short? RoomServiceID, string RoomServiceTitle, float Fees, string Description)
         {
             int RowAffected = 0;
 
@@ -137,7 +137,7 @@ namespace Hotel_DataAccess
             return (RowAffected > 0);
         }
 
-        public static bool DeleteRoomService(int? RoomServiceID)
+        public static bool DeleteRoomService(short? RoomServiceID)
         {
             int RowAffected = 0;
 
@@ -169,7 +169,7 @@ namespace Hotel_DataAccess
             return (RowAffected > 0);
         }
 
-        public static bool DoesRoomServiceExist(int? RoomServiceID)
+        public static bool DoesRoomServiceExist(short? RoomServiceID)
         {
             bool IsFound = false;
 

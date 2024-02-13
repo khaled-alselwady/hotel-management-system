@@ -1,6 +1,7 @@
 using Hotel_DataAccess;
 using System;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Hotel_Business
 {
@@ -240,6 +241,21 @@ namespace Hotel_Business
         public bool ChangeRoomStatus(enRoomStatus NewStatus)
         {
             return ChangeRoomStatus(this.RoomID, NewStatus);
+        }
+
+        public static bool IsRoomBookedByRoomNumber(int RoomNumber)
+        {
+            return clsRoomData.IsRoomBookedByRoomNumber(RoomNumber);
+        }
+
+        public bool IsRoomBooked()
+        {
+            return this.RoomStatus == enRoomStatus.Booked;
+        }
+
+        public static int? GetBookingIDByRoomID(int? RoomID)
+        {
+            return clsBooking.GetBookingIDByRoomID(RoomID);
         }
     }
 

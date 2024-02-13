@@ -135,30 +135,30 @@ namespace Hotel_Business
             return (IsFound) ? (new clsUser(UserID, PersonID, Username, Password, IsActive)) : null;
         }
 
-        public static clsUser FindBy(object Data, enFindBy ItemToFindBy)
+        public static clsUser FindBy<T>(T Data, enFindBy ItemToFindBy)
         {
             switch (ItemToFindBy)
             {
                 case enFindBy.UserID:
-                    return _FindByUserID((int?)Data ?? null);
+                    return _FindByUserID(Data as int?);
 
                 case enFindBy.PersonID:
-                    return _FindByPersonID((int?)Data ?? null);
+                    return _FindByPersonID(Data as int?);
 
                 case enFindBy.Username:
-                    return _FindByUsername((string)Data ?? null);
+                    return _FindByUsername(Data as string);
 
                 default:
                     return null;
             }
         }
 
-        public static clsUser FindBy(object Data1, object Data2, enFindBy ItemToFindBy = enFindBy.UsernameAndPassword)
+        public static clsUser FindBy<T>(T Data1, T Data2, enFindBy ItemToFindBy = enFindBy.UsernameAndPassword)
         {
             switch (ItemToFindBy)
             {
                 case enFindBy.UsernameAndPassword:
-                    return _FindByUsernameAndPassword((string)Data1 ?? null, (string)Data2 ?? null);
+                    return _FindByUsernameAndPassword(Data1 as string, Data2 as string);
 
                 default:
                     return null;

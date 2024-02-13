@@ -1,5 +1,5 @@
 ﻿using Hotel.GlobalClasses;
-using Hotel.GuestCompanions;
+using Hotel.OrderItems;
 using Hotel_Business;
 using System;
 using System.Data;
@@ -175,7 +175,7 @@ namespace Hotel.Bookings
             ShowBookingInfo.ShowDialog();
         }
 
-        private void ShowGuestCompanionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowOrderItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsBooking Booking = clsBooking.Find(_GetBookingIDFromDGV());
 

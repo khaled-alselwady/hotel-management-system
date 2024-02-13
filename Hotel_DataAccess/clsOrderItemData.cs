@@ -6,7 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsOrderItemData
     {
-        public static bool GetOrderItemInfoByID(int? OrderItemID, ref int OrderID, ref int ItemID, ref int Quantity, ref decimal PricePerItem, ref decimal TotalItemsPrice)
+        public static bool GetOrderItemInfoByID(int? OrderItemID, ref int? OrderID, ref int? ItemID,
+            ref int Quantity, ref decimal PricePerItem, ref decimal TotalItemsPrice)
         {
             bool IsFound = false;
 
@@ -29,8 +30,8 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                OrderID = (int)reader["OrderID"];
-                                ItemID = (int)reader["ItemID"];
+                                OrderID = (reader["OrderID"] != DBNull.Value) ? (int?)reader["OrderID"] : null;
+                                ItemID = (reader["ItemID"] != DBNull.Value) ? (int?)reader["ItemID"] : null;
                                 Quantity = (int)reader["Quantity"];
                                 PricePerItem = (decimal)reader["PricePerItem"];
                                 TotalItemsPrice = (decimal)reader["TotalItemsPrice"];
@@ -60,7 +61,8 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewOrderItem(int OrderID, int ItemID, int Quantity, decimal PricePerItem, decimal TotalItemsPrice)
+        public static int? AddNewOrderItem(int? OrderID, int? ItemID, int Quantity,
+            decimal PricePerItem)
         {
             // This function will return the new person id if succeeded and null if not
             int? OrderItemID = null;
@@ -75,11 +77,10 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@OrderID", OrderID);
-                        command.Parameters.AddWithValue("@ItemID", ItemID);
+                        command.Parameters.AddWithValue("@OrderID", (object)OrderID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ItemID", (object)ItemID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Quantity", Quantity);
                         command.Parameters.AddWithValue("@PricePerItem", PricePerItem);
-                        command.Parameters.AddWithValue("@TotalItemsPrice", TotalItemsPrice);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewOrderItemID", SqlDbType.Int)
                         {
@@ -105,7 +106,8 @@ namespace Hotel_DataAccess
             return OrderItemID;
         }
 
-        public static bool UpdateOrderItem(int? OrderItemID, int OrderID, int ItemID, int Quantity, decimal PricePerItem, decimal TotalItemsPrice)
+        public static bool UpdateOrderItem(int? OrderItemID, int? OrderID, int? ItemID,
+            int Quantity, decimal PricePerItem)
         {
             int RowAffected = 0;
 
@@ -120,11 +122,10 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@OrderItemID", (object)OrderItemID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@OrderID", OrderID);
-                        command.Parameters.AddWithValue("@ItemID", ItemID);
+                        command.Parameters.AddWithValue("@OrderID", (object)OrderID ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@ItemID", (object)ItemID ?? DBNull.Value);
                         command.Parameters.AddWithValue("@Quantity", Quantity);
                         command.Parameters.AddWithValue("@PricePerItem", PricePerItem);
-                        command.Parameters.AddWithValue("@TotalItemsPrice", TotalItemsPrice);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -232,6 +233,44 @@ namespace Hotel_DataAccess
                     using (SqlCommand command = new SqlCommand("SP_GetAllOrderItems", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetAllOrderItemsByOrderID(int? OrderID)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetAllOrderItemsByOrderID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@OrderID", (object)OrderID ?? DBNull.Value);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

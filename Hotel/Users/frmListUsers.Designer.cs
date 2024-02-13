@@ -310,7 +310,7 @@
             this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbImage.Image = global::Hotel.Properties.Resources.users_list;
             this.pbImage.InitialImage = null;
-            this.pbImage.Location = new System.Drawing.Point(493, 12);
+            this.pbImage.Location = new System.Drawing.Point(506, 12);
             this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(325, 169);

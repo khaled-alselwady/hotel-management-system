@@ -59,7 +59,7 @@ namespace Hotel.People
             }
 
             rbMale.Checked = true;
-            pbGendor.Image = Resources.gender_male;
+            pbGender.Image = Resources.gender_male;
             pbPersonImage.Image = Resources.default_male;
         }
 
@@ -330,7 +330,7 @@ namespace Hotel.People
 
         private void rbFemale_CheckedChanged(object sender, EventArgs e)
         {
-            pbGendor.Image = Resources.gender_female;
+            pbGender.Image = Resources.gender_female;
 
             // change the default image to female in case there is no image set.
             if (pbPersonImage.ImageLocation == null)
@@ -341,7 +341,7 @@ namespace Hotel.People
         {
             rbFemale.Checked = true;
 
-            pbGendor.Image = Resources.gender_female;
+            pbGender.Image = Resources.gender_female;
 
             // change the default image to female in case there is no image set.
             if (pbPersonImage.ImageLocation == null)
@@ -350,7 +350,7 @@ namespace Hotel.People
 
         private void rbMale_CheckedChanged(object sender, EventArgs e)
         {
-            pbGendor.Image = Resources.gender_male;
+            pbGender.Image = Resources.gender_male;
 
             // change the default image to male in case there is no image set.
             if (pbPersonImage.ImageLocation == null)
@@ -361,7 +361,7 @@ namespace Hotel.People
         {
             rbMale.Checked = true;
 
-            pbGendor.Image = Resources.gender_male;
+            pbGender.Image = Resources.gender_male;
 
             // change the default image to male in case there is no image set.
             if (pbPersonImage.ImageLocation == null)

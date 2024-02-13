@@ -192,6 +192,16 @@ namespace Hotel_Business
         {
             return clsBookingData.GetBookingIDByReservationID(ReservationID);
         }
+
+        public static int? GetBookingIDByRoomID(int? RoomID)
+        {
+            return clsBookingData.GetBookingIDByRoomID(RoomID);
+        }
+
+        public static bool IsBookingCompleted(int? BookingID)
+        {
+            return clsBookingData.IsBookingCompleted(BookingID);
+        }
     }
 
 }

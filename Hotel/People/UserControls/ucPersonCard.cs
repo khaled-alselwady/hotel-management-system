@@ -48,14 +48,14 @@ namespace Hotel.People.UserControls
             lblPersonID.Text = _Person.PersonID.ToString();
             lblNationalNo.Text = _Person.NationalNo;
             lblFullName.Text = _Person.FullName;
-            lblGendor.Text = _Person.GenderText;
+            lblGender.Text = _Person.GenderText;
             lblEmail.Text = _Person.Email ?? "None";
             lblPhone.Text = _Person.Phone;
             lblDateOfBirth.Text = clsFormat.DateToShort(_Person.DateOfBirth);
             lblCountry.Text = _Person.CountryInfo.CountryName;
             lblAddress.Text = _Person.Address;
 
-            pbGendor.Image = (_Person.Gender == clsPerson.enGender.Male) ?
+            pbGender.Image = (_Person.Gender == clsPerson.enGender.Male) ?
                               Resources.gender_male :
                               Resources.gender_female;
 
@@ -72,8 +72,8 @@ namespace Hotel.People.UserControls
             lblPersonID.Text = "[????]";
             lblNationalNo.Text = "[????]";
             lblFullName.Text = "[????]";
-            pbGendor.Image = Resources.gender_male;
-            lblGendor.Text = "[????]";
+            pbGender.Image = Resources.gender_male;
+            lblGender.Text = "[????]";
             lblEmail.Text = "[????]";
             lblPhone.Text = "[????]";
             lblDateOfBirth.Text = "[????]";

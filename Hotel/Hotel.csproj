@@ -76,6 +76,12 @@
     <Compile Include="Bookings\frmShowBookingInfo.Designer.cs">
       <DependentUpon>frmShowBookingInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bookings\UserControls\ucBookingAndReservationCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bookings\UserControls\ucBookingAndReservationCardWithFilter.Designer.cs">
+      <DependentUpon>ucBookingAndReservationCardWithFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bookings\UserControls\ucBookingCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="Dashboard\frmDashboard.Designer.cs">
       <DependentUpon>frmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalClasses\clsFormat.cs" />
     <Compile Include="GlobalClasses\clsGlobal.cs" />
@@ -159,6 +171,12 @@
     <Compile Include="Items\UserControls\ucItemShortCard.Designer.cs">
       <DependentUpon>ucItemShortCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Items\UserControls\ucItemShortCardWithQuantity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Items\UserControls\ucItemShortCardWithQuantity.Designer.cs">
+      <DependentUpon>ucItemShortCardWithQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmLoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +188,42 @@
     </Compile>
     <Compile Include="MainMenu\frmMainMenu.Designer.cs">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItems\frmShowOrderItemsInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderItems\frmShowOrderItemsInfo.Designer.cs">
+      <DependentUpon>frmShowOrderItemsInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItems\UserControls\ucOrderItemsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderItems\UserControls\ucOrderItemsList.Designer.cs">
+      <DependentUpon>ucOrderItemsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\frmAddNewOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders\frmAddNewOrder.Designer.cs">
+      <DependentUpon>frmAddNewOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\frmListOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders\frmListOrders.Designer.cs">
+      <DependentUpon>frmListOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\frmShowOrderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders\frmShowOrderInfo.Designer.cs">
+      <DependentUpon>frmShowOrderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders\UserControls\ucOrderCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Orders\UserControls\ucOrderCard.Designer.cs">
+      <DependentUpon>ucOrderCard.cs</DependentUpon>
     </Compile>
     <Compile Include="People\frmAddEditPerson.cs">
       <SubType>Form</SubType>
@@ -238,6 +292,18 @@
     </Compile>
     <Compile Include="RoomServices\frmListRoomServices.Designer.cs">
       <DependentUpon>frmListRoomServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomServices\frmShowRoomServiceInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomServices\frmShowRoomServiceInfo.Designer.cs">
+      <DependentUpon>frmShowRoomServiceInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoomServices\UserControls\ucRoomServiceCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RoomServices\UserControls\ucRoomServiceCard.Designer.cs">
+      <DependentUpon>ucRoomServiceCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Rooms\frmAddEditRoom.cs">
       <SubType>Form</SubType>
@@ -323,11 +389,17 @@
     <EmbeddedResource Include="Bookings\frmShowBookingInfo.resx">
       <DependentUpon>frmShowBookingInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bookings\UserControls\ucBookingAndReservationCardWithFilter.resx">
+      <DependentUpon>ucBookingAndReservationCardWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bookings\UserControls\ucBookingCard.resx">
       <DependentUpon>ucBookingCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuestCompanions\frmAddEditGuestCompanions.resx">
       <DependentUpon>frmAddEditGuestCompanions.cs</DependentUpon>
@@ -362,11 +434,32 @@
     <EmbeddedResource Include="Items\UserControls\ucItemShortCard.resx">
       <DependentUpon>ucItemShortCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Items\UserControls\ucItemShortCardWithQuantity.resx">
+      <DependentUpon>ucItemShortCardWithQuantity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLoginScreen.resx">
       <DependentUpon>frmLoginScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu\frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderItems\frmShowOrderItemsInfo.resx">
+      <DependentUpon>frmShowOrderItemsInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderItems\UserControls\ucOrderItemsList.resx">
+      <DependentUpon>ucOrderItemsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders\frmAddNewOrder.resx">
+      <DependentUpon>frmAddNewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders\frmListOrders.resx">
+      <DependentUpon>frmListOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders\frmShowOrderInfo.resx">
+      <DependentUpon>frmShowOrderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders\UserControls\ucOrderCard.resx">
+      <DependentUpon>ucOrderCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\frmAddEditPerson.resx">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
@@ -405,6 +498,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RoomServices\frmListRoomServices.resx">
       <DependentUpon>frmListRoomServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomServices\frmShowRoomServiceInfo.resx">
+      <DependentUpon>frmShowRoomServiceInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoomServices\UserControls\ucRoomServiceCard.resx">
+      <DependentUpon>ucRoomServiceCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rooms\frmAddEditRoom.resx">
       <DependentUpon>frmAddEditRoom.cs</DependentUpon>
@@ -737,6 +836,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add-item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orders-list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-order.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

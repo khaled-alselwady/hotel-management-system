@@ -13,6 +13,13 @@ namespace Hotel.Items.UserControls
         public int? ItemID => _ItemID;
         public clsItem ItemInfo => _Item;
 
+        private bool _EnableUpdateInfo = true;
+        public bool EnableUpdateInfo
+        {
+            get => _EnableUpdateInfo;
+            set => _EnableUpdateInfo = llEditItemInfo.Visible = value;
+        }
+
         public ucItemLongCard()
         {
             InitializeComponent();
@@ -94,6 +101,11 @@ namespace Hotel.Items.UserControls
             }
 
             _FillItemData();
+        }
+
+        public void DisableUpdateInfo()
+        {
+            llEditItemInfo.Enabled = false;
         }
 
         private void llEditItemInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

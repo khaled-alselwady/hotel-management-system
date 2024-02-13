@@ -114,6 +114,11 @@ namespace Hotel_Business
             return clsItemData.GetAllItems();
         }
 
+        public static DataTable GetAllItemsWithImagePath()
+        {
+            return clsItemData.GetAllItemsWithImagePath();
+        }
+
     }
 
 

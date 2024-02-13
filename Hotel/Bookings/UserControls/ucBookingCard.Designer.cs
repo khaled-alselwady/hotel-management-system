@@ -38,7 +38,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblBookingID = new System.Windows.Forms.Label();
-            this.pbGendor = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGendor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +64,7 @@
             this.guna2GroupBox1.Controls.Add(this.label22);
             this.guna2GroupBox1.Controls.Add(this.label5);
             this.guna2GroupBox1.Controls.Add(this.lblBookingID);
-            this.guna2GroupBox1.Controls.Add(this.pbGendor);
+            this.guna2GroupBox1.Controls.Add(this.pictureBox7);
             this.guna2GroupBox1.Controls.Add(this.pictureBox6);
             this.guna2GroupBox1.Controls.Add(this.pictureBox2);
             this.guna2GroupBox1.Controls.Add(this.label8);
@@ -177,15 +177,15 @@
             this.lblBookingID.TabIndex = 155;
             this.lblBookingID.Text = "[????]";
             // 
-            // pbGendor
+            // pictureBox7
             // 
-            this.pbGendor.Image = global::Hotel.Properties.Resources.calendar;
-            this.pbGendor.Location = new System.Drawing.Point(647, 96);
-            this.pbGendor.Name = "pbGendor";
-            this.pbGendor.Size = new System.Drawing.Size(31, 26);
-            this.pbGendor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbGendor.TabIndex = 158;
-            this.pbGendor.TabStop = false;
+            this.pictureBox7.Image = global::Hotel.Properties.Resources.calendar;
+            this.pictureBox7.Location = new System.Drawing.Point(647, 96);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 158;
+            this.pictureBox7.TabStop = false;
             // 
             // pictureBox6
             // 
@@ -253,7 +253,7 @@
             this.guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGendor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -272,7 +272,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblBookingID;
-        private System.Windows.Forms.PictureBox pbGendor;
+        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label8;

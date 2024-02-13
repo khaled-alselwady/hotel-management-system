@@ -54,7 +54,7 @@
             this.txtSecondName = new Guna.UI2.WinForms.Guna2TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pbGendor = new System.Windows.Forms.PictureBox();
+            this.pbGender = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -78,7 +78,7 @@
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGendor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -126,7 +126,7 @@
             this.guna2GroupBox1.Controls.Add(this.txtSecondName);
             this.guna2GroupBox1.Controls.Add(this.pictureBox4);
             this.guna2GroupBox1.Controls.Add(this.label5);
-            this.guna2GroupBox1.Controls.Add(this.pbGendor);
+            this.guna2GroupBox1.Controls.Add(this.pbGender);
             this.guna2GroupBox1.Controls.Add(this.pictureBox8);
             this.guna2GroupBox1.Controls.Add(this.pictureBox7);
             this.guna2GroupBox1.Controls.Add(this.pictureBox6);
@@ -538,19 +538,19 @@
             this.label5.Location = new System.Drawing.Point(35, 142);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 21);
+            this.label5.Size = new System.Drawing.Size(69, 21);
             this.label5.TabIndex = 185;
-            this.label5.Text = "Gendor:";
+            this.label5.Text = "Gender:";
             // 
-            // pbGendor
+            // pbGender
             // 
-            this.pbGendor.Image = global::Hotel.Properties.Resources.gender_male;
-            this.pbGendor.Location = new System.Drawing.Point(105, 140);
-            this.pbGendor.Name = "pbGendor";
-            this.pbGendor.Size = new System.Drawing.Size(31, 26);
-            this.pbGendor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbGendor.TabIndex = 186;
-            this.pbGendor.TabStop = false;
+            this.pbGender.Image = global::Hotel.Properties.Resources.gender_male;
+            this.pbGender.Location = new System.Drawing.Point(105, 140);
+            this.pbGender.Name = "pbGender";
+            this.pbGender.Size = new System.Drawing.Size(31, 26);
+            this.pbGender.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbGender.TabIndex = 186;
+            this.pbGender.TabStop = false;
             // 
             // pictureBox8
             // 
@@ -802,7 +802,7 @@
             this.guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGendor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -822,7 +822,7 @@
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pbGendor;
+        private System.Windows.Forms.PictureBox pbGender;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
