@@ -70,7 +70,7 @@
             this.lblItemPrice.TabIndex = 162;
             this.lblItemPrice.Text = "Item Price";
             this.lblItemPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblItemPrice.Click += new System.EventHandler(this.lblItemPrice_Click);
+            this.lblItemPrice.DoubleClick += new System.EventHandler(this.lblItemPrice_DoubleClick);
             // 
             // cmsEditProfile
             // 

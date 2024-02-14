@@ -16,25 +16,65 @@ namespace Hotel.Items.UserControls
 {
     public partial class ucItemShortCard : UserControl
     {
+        #region Declare Event
+        public class UpdateItemEventArgs : EventArgs
+        {
+            public int? ItemID { get; }
+      
+            public UpdateItemEventArgs(int? ItemID)
+            {
+                this.ItemID = ItemID;
+            }
+        }
+
+        public event EventHandler<UpdateItemEventArgs> OnItemUpdated;
+
+        public void RaiseOnItemUpdated(int? ItemID)
+        {
+            RaiseOnItemUpdated(new UpdateItemEventArgs(ItemID));
+        }
+
+        protected void RaiseOnItemUpdated(UpdateItemEventArgs e)
+        {
+            OnItemUpdated?.Invoke(this, e);
+        }
+        #endregion
+
+        private bool _ShowMassageNotFoundImage = true;
         private string _ItemImagePath = null;
         public string ItemImagePath
         {
             get => _ItemImagePath;
-            //set => _ItemImagePath = value;
+            set
+            {
+                _ItemImagePath = value;
+                _ShowMassageNotFoundImage = false;
+                _LoadItemImage();
+            }
         }
 
         public string _ItemName = "Item Name";
         public string ItemName
         {
             get => _ItemName;
-            //set => _ItemName = value;
+            set => _ItemName = lblItemName.Text = value;
         }
 
         public float _ItemPrice = 0.00f;
         public float ItemPrice
         {
             get => _ItemPrice;
-            //set => _ItemPrice = value;
+            set
+            {
+                _ItemPrice = value;
+                lblItemPrice.Text = _ItemPrice.ToString("C");
+            }
+        }
+
+        public int? ItemID
+        {
+            get => _ItemID;
+            set => _ItemID = value;
         }
 
         private int? _ItemID = null;
@@ -45,27 +85,60 @@ namespace Hotel.Items.UserControls
             InitializeComponent();
         }
 
+        private bool _DoesItemExist()
+        {
+            if (!_ItemID.HasValue)
+            {
+                MessageBox.Show("There is no Item!", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Reset();
+
+                return false;
+            }
+
+            _Item = clsItem.Find(_ItemID);
+
+            if (_Item == null)
+            {
+                MessageBox.Show($"There is no Item with ID = {_ItemID} !",
+                    "Missing Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                Reset();
+
+                return false;
+            }
+
+            return true;
+        }
+
         private void _ShowItemDetails()
         {
             frmShowItemInfo ShowItemInfo = new frmShowItemInfo(_ItemID);
             ShowItemInfo.ShowDialog();
 
             // Refresh
+            _ShowMassageNotFoundImage = false;
             LoadItemInfo(_ItemID);
+
+            if (OnItemUpdated != null)
+                RaiseOnItemUpdated(_ItemID);
         }
 
         private void _LoadItemImage()
         {
-            if (_Item.ItemImagePath != null)
-                if (File.Exists(_Item.ItemImagePath))
+            if (_ItemImagePath != null)
+                if (File.Exists(_ItemImagePath))
                 {
-                    pbItemImage.ImageLocation = _Item.ItemImagePath;
+                    pbItemImage.ImageLocation = _ItemImagePath;
                     pbItemImage.Cursor = Cursors.Hand;
                 }
                 else
                 {
-                    MessageBox.Show("Could not find this image: = " +
-                        _Item.ItemImagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (_ShowMassageNotFoundImage)
+                        MessageBox.Show("Could not find this image: = " +
+                            _ItemImagePath, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     pbItemImage.Cursor = Cursors.Default;
                 }
 
@@ -94,33 +167,16 @@ namespace Hotel.Items.UserControls
             pbItemImage.Image = Resources.question_mark;
             lblItemName.Text = "[????]";
             lblItemPrice.Text = "[????]";
+
+            _ShowMassageNotFoundImage = true;
         }
 
         public void LoadItemInfo(int? ItemID)
         {
             _ItemID = ItemID;
 
-            if (!_ItemID.HasValue)
-            {
-                MessageBox.Show("There is no Item!", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                Reset();
-
+            if (!_DoesItemExist())
                 return;
-            }
-
-            _Item = clsItem.Find(_ItemID);
-
-            if (_Item == null)
-            {
-                MessageBox.Show($"There is no Item with ID = {_ItemID} !",
-                    "Missing Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                Reset();
-
-                return;
-            }
 
             _FillItemData();
         }
@@ -137,10 +193,10 @@ namespace Hotel.Items.UserControls
 
         private void pbItemImage_Click(object sender, EventArgs e)
         {
-            if (_Item.ItemImagePath == null)
+            if (_ItemImagePath == null)
                 return;
 
-            frmShowItemImageWithZoom ShowItemImageWithZoom = new frmShowItemImageWithZoom(_Item.ItemImagePath, _ItemName);
+            frmShowItemImageWithZoom ShowItemImageWithZoom = new frmShowItemImageWithZoom(_ItemImagePath, _ItemName);
             ShowItemImageWithZoom.ShowDialog();
         }
 
@@ -160,7 +216,16 @@ namespace Hotel.Items.UserControls
             EditItem.ShowDialog();
 
             // Refresh
+            _ShowMassageNotFoundImage = false;
             LoadItemInfo(_ItemID);
+
+            if (OnItemUpdated != null)
+                RaiseOnItemUpdated(_ItemID);
+        }
+
+        private void lblItemPrice_DoubleClick(object sender, EventArgs e)
+        {
+            _ShowItemDetails();
         }
     }
 }

@@ -67,6 +67,12 @@ namespace Hotel.Items
 
                 dgvItemsList.Columns[3].HeaderText = "Item Price";
                 dgvItemsList.Columns[3].Width = 130;
+
+                dgvItemsList.Columns[4].HeaderText = "Item Image Path";
+                dgvItemsList.Columns[4].Width = 130;
+
+                // Hide the last column (Item Image Path) because I don't want to show it, but I need its value
+                dgvItemsList.Columns[dgvItemsList.Columns.Count - 1].Visible = false;
             }
         }
 
@@ -79,23 +85,34 @@ namespace Hotel.Items
         {
             flpItems.Controls.Clear();
 
-            ucItemShortCard ItemCard = new ucItemShortCard();
-
             foreach (DataGridViewRow Row in dgvItemsList.Rows)
             {
                 if (!Row.IsNewRow) // Check if the row is not the new row
                 {
-                    ItemCard = new ucItemShortCard();
-                    ItemCard.LoadItemInfo((int?)Row.Cells["ItemID"].Value);
+                    ucItemShortCard ItemCard = new ucItemShortCard();
+                    ItemCard.ItemID = (int?)Row.Cells["ItemID"].Value;
+                    ItemCard.ItemName = (string)Row.Cells["ItemName"].Value;
+                    ItemCard.ItemPrice = Convert.ToSingle(Row.Cells["ItemPrice"].Value);
+                    ItemCard.ItemImagePath = (Row.Cells["ItemImagePath"].Value != DBNull.Value) ? (string)Row.Cells["ItemImagePath"].Value : null;
+
+                    ItemCard.OnItemUpdated += ItemCard_OnItemUpdated;
+
                     flpItems.Controls.Add(ItemCard);
                 }
             }
 
         }
 
+        private void ItemCard_OnItemUpdated(object sender, ucItemShortCard.UpdateItemEventArgs e)
+        {
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+        }
+
         private void frmListItems_Load(object sender, EventArgs e)
         {
             _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
             _FillComboBoxWithItemTypeName();
 
             // refresh the flpItems control
@@ -221,7 +238,9 @@ namespace Hotel.Items
             frmAddEditItem AddNewItem = new frmAddEditItem();
             AddNewItem.ShowDialog();
 
-            frmListItems_Load(null, null);
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
 
         private void AddNewItemTypeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -229,7 +248,9 @@ namespace Hotel.Items
             frmAddEditItemType AddNewItemType = new frmAddEditItemType();
             AddNewItemType.ShowDialog();
 
-            frmListItems_Load(null, null);
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
 
         private void EditItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -237,7 +258,9 @@ namespace Hotel.Items
             frmAddEditItem EditItem = new frmAddEditItem(_GetItemIDFromDGV());
             EditItem.ShowDialog();
 
-            frmListItems_Load(null, null);
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
 
         private void EditItemTypeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -245,7 +268,9 @@ namespace Hotel.Items
             frmAddEditItemType EditItemType = new frmAddEditItemType((string)dgvItemsList.CurrentRow.Cells["ItemTypeName"].Value);
             EditItemType.ShowDialog();
 
-            frmListItems_Load(null, null);
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
 
         private void DeleteItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,7 +299,9 @@ namespace Hotel.Items
             frmAddEditItem AddNewItem = new frmAddEditItem();
             AddNewItem.ShowDialog();
 
-            frmListItems_Load(null, null);
+            _RefreshItemList();
+            _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
     }
 }

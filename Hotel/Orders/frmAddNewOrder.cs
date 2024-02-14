@@ -30,7 +30,7 @@ namespace Hotel.Orders
         {
             _AllItemCards.Clear();
 
-            DataTable dtItems = clsItem.GetAllItemsWithImagePath();
+            DataTable dtItems = clsItem.GetAllItems();
 
             foreach (DataRow Item in dtItems.Rows)
             {
@@ -38,7 +38,7 @@ namespace Hotel.Orders
                 ItemShortCard.ItemID = (int?)Item["ItemID"];
                 ItemShortCard.ItemName = (string)Item["ItemName"];
                 ItemShortCard.ItemPrice = Convert.ToSingle(Item["ItemPrice"]);
-                ItemShortCard.ItemImagePath = (string)Item["ItemImagePath"];
+                ItemShortCard.ItemImagePath = (Item["ItemImagePath"] != DBNull.Value) ? (string)Item["ItemImagePath"] : null;
 
                 _AllItemCards.Add(ItemShortCard);
             }
