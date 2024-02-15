@@ -20,7 +20,7 @@ namespace Hotel.Items.UserControls
         public class UpdateItemEventArgs : EventArgs
         {
             public int? ItemID { get; }
-      
+
             public UpdateItemEventArgs(int? ItemID)
             {
                 this.ItemID = ItemID;
@@ -154,6 +154,7 @@ namespace Hotel.Items.UserControls
             _ItemName = lblItemName.Text = _Item.ItemName;
             lblItemPrice.Text = _Item.ItemPrice.ToString("C");
             _ItemPrice = _Item.ItemPrice;
+            _ItemImagePath = _Item.ItemImagePath;
 
             _LoadItemImage();
         }
@@ -178,7 +179,7 @@ namespace Hotel.Items.UserControls
             if (!_DoesItemExist())
                 return;
 
-            _FillItemData();
+            _FillItemData();            
         }
 
         private void ShowItemDetailsToolStripMenuItem1_Click(object sender, EventArgs e)

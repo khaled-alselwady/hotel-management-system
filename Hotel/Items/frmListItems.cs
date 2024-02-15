@@ -1,6 +1,7 @@
 ﻿using Hotel.Items.UserControls;
 using Hotel_Business;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
@@ -11,9 +12,28 @@ namespace Hotel.Items
     {
         private DataTable _dtItem;
 
+        private Dictionary<int?, ucItemShortCard> _AllItemCards =
+            new Dictionary<int?, ucItemShortCard>();
+
         public frmListItems()
         {
             InitializeComponent();
+        }
+
+        private void _StoreAllItemsInDictionary()
+        {
+            _AllItemCards.Clear();
+
+            foreach (DataRow Item in _dtItem.Rows)
+            {
+                ucItemShortCard ItemShortCard = new ucItemShortCard();
+                ItemShortCard.ItemID = (int?)Item["ItemID"];
+                ItemShortCard.ItemName = (string)Item["ItemName"];
+                ItemShortCard.ItemPrice = Convert.ToSingle(Item["ItemPrice"]);
+                ItemShortCard.ItemImagePath = (Item["ItemImagePath"] != DBNull.Value) ? (string)Item["ItemImagePath"] : null;
+
+                _AllItemCards.Add(ItemShortCard.ItemID, ItemShortCard);
+            }
         }
 
         private void _FillComboBoxWithItemTypeName()
@@ -49,7 +69,7 @@ namespace Hotel.Items
         }
 
         private void _RefreshItemList()
-        {
+        {           
             _dtItem = clsItem.GetAllItems();
             dgvItemsList.DataSource = _dtItem;
             lblNumberOfRecords.Text = dgvItemsList.Rows.Count.ToString();
@@ -83,35 +103,36 @@ namespace Hotel.Items
 
         private void _FillFlowLayoutPanelWithItems()
         {
-            flpItems.Controls.Clear();
+            flpItems.Controls.Clear();           
 
-            foreach (DataGridViewRow Row in dgvItemsList.Rows)
+            foreach (DataRowView rowView in _dtItem.DefaultView)
             {
-                if (!Row.IsNewRow) // Check if the row is not the new row
+                if (_AllItemCards.TryGetValue((int?)rowView[0],
+                     out ucItemShortCard ItemCard))
                 {
-                    ucItemShortCard ItemCard = new ucItemShortCard();
-                    ItemCard.ItemID = (int?)Row.Cells["ItemID"].Value;
-                    ItemCard.ItemName = (string)Row.Cells["ItemName"].Value;
-                    ItemCard.ItemPrice = Convert.ToSingle(Row.Cells["ItemPrice"].Value);
-                    ItemCard.ItemImagePath = (Row.Cells["ItemImagePath"].Value != DBNull.Value) ? (string)Row.Cells["ItemImagePath"].Value : null;
-
                     ItemCard.OnItemUpdated += ItemCard_OnItemUpdated;
-
                     flpItems.Controls.Add(ItemCard);
                 }
             }
-
         }
 
         private void ItemCard_OnItemUpdated(object sender, ucItemShortCard.UpdateItemEventArgs e)
         {
             _RefreshItemList();
+        }
+
+        private void _RefreshItems()
+        {
+            _RefreshItemList();
+            _StoreAllItemsInDictionary();
             _FillFlowLayoutPanelWithItems();
+            _FillComboBoxWithItemTypeName();
         }
 
         private void frmListItems_Load(object sender, EventArgs e)
         {
             _RefreshItemList();
+            _StoreAllItemsInDictionary();
             _FillFlowLayoutPanelWithItems();
             _FillComboBoxWithItemTypeName();
 
@@ -238,9 +259,7 @@ namespace Hotel.Items
             frmAddEditItem AddNewItem = new frmAddEditItem();
             AddNewItem.ShowDialog();
 
-            _RefreshItemList();
-            _FillFlowLayoutPanelWithItems();
-            _FillComboBoxWithItemTypeName();
+            _RefreshItems();
         }
 
         private void AddNewItemTypeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -248,9 +267,7 @@ namespace Hotel.Items
             frmAddEditItemType AddNewItemType = new frmAddEditItemType();
             AddNewItemType.ShowDialog();
 
-            _RefreshItemList();
-            _FillFlowLayoutPanelWithItems();
-            _FillComboBoxWithItemTypeName();
+            _RefreshItems();
         }
 
         private void EditItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,9 +275,7 @@ namespace Hotel.Items
             frmAddEditItem EditItem = new frmAddEditItem(_GetItemIDFromDGV());
             EditItem.ShowDialog();
 
-            _RefreshItemList();
-            _FillFlowLayoutPanelWithItems();
-            _FillComboBoxWithItemTypeName();
+            _RefreshItems();
         }
 
         private void EditItemTypeToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -268,9 +283,7 @@ namespace Hotel.Items
             frmAddEditItemType EditItemType = new frmAddEditItemType((string)dgvItemsList.CurrentRow.Cells["ItemTypeName"].Value);
             EditItemType.ShowDialog();
 
-            _RefreshItemList();
-            _FillFlowLayoutPanelWithItems();
-            _FillComboBoxWithItemTypeName();
+            _RefreshItems();
         }
 
         private void DeleteItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,6 +299,8 @@ namespace Hotel.Items
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 _RefreshItemList();
+                _StoreAllItemsInDictionary();
+                _FillFlowLayoutPanelWithItems();
             }
             else
             {
@@ -299,9 +314,7 @@ namespace Hotel.Items
             frmAddEditItem AddNewItem = new frmAddEditItem();
             AddNewItem.ShowDialog();
 
-            _RefreshItemList();
-            _FillFlowLayoutPanelWithItems();
-            _FillComboBoxWithItemTypeName();
+            _RefreshItems();
         }
     }
 }
