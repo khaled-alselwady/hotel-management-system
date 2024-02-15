@@ -16,8 +16,11 @@ namespace Hotel.Orders
 
         private int? _ItemID = null;
 
-        private List<ucItemShortCardWithQuantity> _SelectedItemCards = new List<ucItemShortCardWithQuantity>();
-        private List<ucItemShortCardWithQuantity> _AllItemCards = new List<ucItemShortCardWithQuantity>();
+        private List<ucItemShortCardWithQuantity> _SelectedItemCards =
+            new List<ucItemShortCardWithQuantity>();
+
+        private Dictionary<int?, ucItemShortCardWithQuantity> _AllItemCards =
+            new Dictionary<int?, ucItemShortCardWithQuantity>();
 
         public frmAddNewOrder()
         {
@@ -26,7 +29,7 @@ namespace Hotel.Orders
             rbDining.Checked = true;
         }
 
-        private void _StoreAllItemsInList()
+        private void _StoreAllItemsInDictionary()
         {
             _AllItemCards.Clear();
 
@@ -40,7 +43,7 @@ namespace Hotel.Orders
                 ItemShortCard.ItemPrice = Convert.ToSingle(Item["ItemPrice"]);
                 ItemShortCard.ItemImagePath = (Item["ItemImagePath"] != DBNull.Value) ? (string)Item["ItemImagePath"] : null;
 
-                _AllItemCards.Add(ItemShortCard);
+                _AllItemCards.Add(ItemShortCard.ItemID, ItemShortCard);
             }
         }
 
@@ -100,7 +103,7 @@ namespace Hotel.Orders
 
         private void _ShowDiningList()
         {
-            _StoreAllItemsInList();
+            _StoreAllItemsInDictionary();
 
             _RefreshItemList();
 
@@ -253,16 +256,14 @@ namespace Hotel.Orders
             if (_ItemID == null)
                 return;
 
-            ucItemShortCardWithQuantity ItemShortCardWithQuantity = _AllItemCards.Find(Item => Item.ItemID == _ItemID);
+            if (_AllItemCards.TryGetValue(_ItemID, out ucItemShortCardWithQuantity ItemShortCardWithQuantity))
+            {
+                if (_IsItemAlreadySelected())
+                    return;
 
-            if (ItemShortCardWithQuantity == null)
-                return;
-
-            if (_IsItemAlreadySelected())
-                return;
-
-            flowLayoutPanel1.Controls.Add(ItemShortCardWithQuantity);
-            _SelectedItemCards.Add(ItemShortCardWithQuantity);
+                flowLayoutPanel1.Controls.Add(ItemShortCardWithQuantity);
+                _SelectedItemCards.Add(ItemShortCardWithQuantity);
+            }
         }
 
         private void frmAddNewOrder_Activated(object sender, System.EventArgs e)
