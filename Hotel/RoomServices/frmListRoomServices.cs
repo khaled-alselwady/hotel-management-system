@@ -156,5 +156,11 @@ namespace Hotel.RoomServices
                 }
             }
         }
+
+        private void ShowRoomServiceInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShowRoomServiceInfo ShowRoomServiceInfo = new frmShowRoomServiceInfo(_GetRoomServicesIDFromDGV());
+            ShowRoomServiceInfo.ShowDialog();
+        }
     }
 }

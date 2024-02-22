@@ -6,7 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsPaymentData
     {
-        public static bool GetPaymentInfoByID(int? PaymentID, ref int BookingID, ref int PersonID, ref DateTime PaymentDate, ref decimal PaymentAmount)
+        public static bool GetPaymentInfoByID(int? PaymentID,
+            ref DateTime PaymentDate, ref decimal PaymentAmount)
         {
             bool IsFound = false;
 
@@ -29,8 +30,6 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                BookingID = (int)reader["BookingID"];
-                                PersonID = (int)reader["PersonID"];
                                 PaymentDate = (DateTime)reader["PaymentDate"];
                                 PaymentAmount = (decimal)reader["PaymentAmount"];
                             }
@@ -59,7 +58,7 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewPayment(int BookingID, int PersonID, DateTime PaymentDate, decimal PaymentAmount)
+        public static int? AddNewPayment(decimal PaymentAmount)
         {
             // This function will return the new person id if succeeded and null if not
             int? PaymentID = null;
@@ -74,9 +73,6 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
                         command.Parameters.AddWithValue("@PaymentAmount", PaymentAmount);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewPaymentID", SqlDbType.Int)
@@ -103,7 +99,7 @@ namespace Hotel_DataAccess
             return PaymentID;
         }
 
-        public static bool UpdatePayment(int? PaymentID, int BookingID, int PersonID, DateTime PaymentDate, decimal PaymentAmount)
+        public static bool UpdatePayment(int? PaymentID, decimal PaymentAmount)
         {
             int RowAffected = 0;
 
@@ -118,9 +114,6 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@BookingID", BookingID);
-                        command.Parameters.AddWithValue("@PersonID", PersonID);
-                        command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
                         command.Parameters.AddWithValue("@PaymentAmount", PaymentAmount);
 
                         RowAffected = command.ExecuteNonQuery();
@@ -285,6 +278,58 @@ namespace Hotel_DataAccess
             }
 
             return Count;
+        }
+
+        public static bool GetGuestIDAndBookingIDByPaymentID(int? PaymentID,
+            ref int? GuestID, ref int? BookingID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetGuestIDAndBookingIDFromPayments", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                GuestID = (reader["GuestID"] != DBNull.Value) ? (int?)reader["GuestID"] : null;
+                                BookingID = (reader["BookingID"] != DBNull.Value) ? (int?)reader["BookingID"] : null;
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
         }
     }
 }

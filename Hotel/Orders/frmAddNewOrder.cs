@@ -5,6 +5,7 @@ using Hotel_Business;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using static Hotel.Bookings.UserControls.ucBookingAndReservationCardWithFilter;
 
@@ -155,11 +156,7 @@ namespace Hotel.Orders
 
         private float _CalculateTotalItemPrice()
         {
-            float Total = 0;
-
-            _SelectedItemCards.ForEach(Item => Total += Item.TotalItemPrice);
-
-            return Total;
+            return _SelectedItemCards.Sum(Item => Item.TotalItemPrice); ;
         }
 
         private void _SaveOrderForDining()

@@ -9,7 +9,7 @@ namespace Hotel_DataAccess
     {
         public static bool GetBookingInfoByID(int? BookingID, ref int? ReservationID,
             ref DateTime CheckInDate, ref DateTime? CheckOutDate, ref byte Status,
-            ref int? CreatedByUserID)
+            ref int? PaymentID, ref int? CreatedByUserID)
         {
             bool IsFound = false;
 
@@ -36,7 +36,8 @@ namespace Hotel_DataAccess
                                 CheckInDate = (DateTime)reader["CheckInDate"];
                                 CheckOutDate = (reader["CheckOutDate"] != DBNull.Value) ? (DateTime?)reader["CheckOutDate"] : null;
                                 Status = (byte)reader["Status"];
-                                CreatedByUserID = (int)reader["CreatedByUserID"];
+                                CreatedByUserID = (reader["CreatedByUserID"] != DBNull.Value) ? (int?)reader["CreatedByUserID"] : null;
+                                PaymentID = (reader["PaymentID"] != DBNull.Value) ? (int?)reader["PaymentID"] : null;
                             }
                             else
                             {
@@ -64,7 +65,7 @@ namespace Hotel_DataAccess
         }
 
         public static int? AddNewBooking(int? ReservationID,
-            DateTime? CheckOutDate, int? CreatedByUserID)
+            int? CreatedByUserID)
         {
             // This function will return the new person id if succeeded and null if not
             int? BookingID = null;
@@ -80,7 +81,6 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@ReservationID", (object)ReservationID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@CheckOutDate", (object)CheckOutDate ?? DBNull.Value);
                         command.Parameters.AddWithValue("@CreatedByUserID", (object)CreatedByUserID ?? DBNull.Value);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewBookingID", SqlDbType.Int)

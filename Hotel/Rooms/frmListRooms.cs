@@ -71,7 +71,7 @@ namespace Hotel.Rooms
                 dgvRoomList.Columns[0].Width = 110;
 
                 dgvRoomList.Columns[1].HeaderText = "Room Type";
-                dgvRoomList.Columns[1].Width = 190;
+                dgvRoomList.Columns[1].Width = 160;
 
                 dgvRoomList.Columns[2].HeaderText = "Room Number";
                 dgvRoomList.Columns[2].Width = 130;
@@ -86,10 +86,10 @@ namespace Hotel.Rooms
                 dgvRoomList.Columns[5].Width = 130;
 
                 dgvRoomList.Columns[6].HeaderText = "Is Smoking Allowed";
-                dgvRoomList.Columns[6].Width = 130;
+                dgvRoomList.Columns[6].Width = 150;
 
                 dgvRoomList.Columns[7].HeaderText = "Is Pet Friendly";
-                dgvRoomList.Columns[7].Width = 130;
+                dgvRoomList.Columns[7].Width = 150;
             }
         }
 

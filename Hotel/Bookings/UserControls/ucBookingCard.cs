@@ -32,19 +32,21 @@ namespace Hotel.Bookings.UserControls
             lblStatus.Text = _Booking.BookingStatusName;
             lblCreatedByUser.Text = _Booking.CreatedByUserInfo.Username;
             lblCheckInDate.Text = clsFormat.DateToShort(_Booking.CheckInDate);
-            lblCheckOutDate.Text = (_Booking.CheckOutDate.HasValue) ? clsFormat.DateToShort(_Booking.CheckOutDate) : "[????]";
+            lblCheckOutDate.Text = (_Booking.CheckOutDate.HasValue) ? clsFormat.DateToShort(_Booking.CheckOutDate) : "N/A";
+            lblPaymentID.Text = (_Booking.PaymentID.HasValue) ? _Booking.PaymentID.ToString() : "N/A";
         }
 
         public void Reset()
         {
             _BookingID = null;
             _Booking = null;
-          
-            lblBookingID.Text = "[????]";           
+
+            lblBookingID.Text = "[????]";
             lblStatus.Text = "[????]";
             lblCreatedByUser.Text = "[????]";
             lblCheckInDate.Text = "[????]";
             lblCheckOutDate.Text = "[????]";
+            lblPaymentID.Text = "[????]";
         }
 
         public void LoadBookingInfo(int? BookingID)

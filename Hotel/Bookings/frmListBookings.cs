@@ -35,6 +35,9 @@ namespace Hotel.Bookings
                 case "Status":
                     return "Status";
 
+                case "Payment ID":
+                    return "PaymentID";
+
                 default:
                     return "None";
             }
@@ -71,12 +74,15 @@ namespace Hotel.Bookings
 
                 dgvBookingList.Columns[7].HeaderText = "Status";
                 dgvBookingList.Columns[7].Width = 130;
+
+                dgvBookingList.Columns[8].HeaderText = "Payment ID";
+                dgvBookingList.Columns[8].Width = 130;
             }
         }
 
         private int? _GetBookingIDFromDGV()
         {
-            return (int?)dgvBookingList.CurrentRow.Cells["BookingID"].Value;
+            return (int?)dgvBookingList.CurrentRow?.Cells["BookingID"].Value;
         }
 
         private void frmListBookings_Load(object sender, EventArgs e)
@@ -118,9 +124,7 @@ namespace Hotel.Bookings
                 return;
             }
 
-            if (cbFilter.Text == "Reservation ID" ||
-                cbFilter.Text == "Booking ID" ||
-                cbFilter.Text == "Room Number")
+            if (cbFilter.Text != "Guest" && cbFilter.Text != "Status")
             {
                 // search with numbers
                 _dtBooking.DefaultView.RowFilter = string.Format("[{0}] = {1}", ColumnName, txtSearch.Text.Trim());
@@ -136,9 +140,7 @@ namespace Hotel.Bookings
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (cbFilter.Text == "Reservation ID" ||
-                cbFilter.Text == "Booking ID" ||
-                cbFilter.Text == "Room Number")
+            if (cbFilter.Text != "Guest" && cbFilter.Text != "Status")
             {
                 // make sure that the user can only enter the numbers
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -190,7 +192,7 @@ namespace Hotel.Bookings
 
         private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to check-out this reservation?", "Confirm",
+            if (MessageBox.Show("Are you sure you want to check-out this booking?", "Confirm",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (clsBooking.CheckOut(_GetBookingIDFromDGV()))

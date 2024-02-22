@@ -32,7 +32,7 @@ namespace Hotel.RoomTypes.UserControls
             lblRoomTypeID.Text = _RoomType.RoomTypeID.ToString();
             lblRoomTypeTitle.Text = _RoomType.RoomTypeTitle;
             lblCapacity.Text = _RoomType.Capacity.ToString();
-            lblDescription.Text = _RoomType.Description ?? "No Description"; 
+            lblDescription.Text = _RoomType.Description ?? "N/A"; 
             lblPricePerNight.Text = _RoomType.PricePerNight.ToString("C");
             lblRoomCount.Text = TotalRoomsWithSpecificRoomType.ToString() + "/" + TotalAllRooms.ToString();
         }

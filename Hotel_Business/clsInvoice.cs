@@ -10,35 +10,40 @@ namespace Hotel_Business
         public enMode Mode = enMode.AddNew;
 
         public int? InvoiceID { get; set; }
-        public int PaymentID { get; set; }
+        public int? PaymentID { get; set; }
         public DateTime InvoiceDate { get; set; }
+
+        public clsPayment PaymentInfo { get; }
 
         public clsInvoice()
         {
             this.InvoiceID = null;
-            this.PaymentID = -1;
+            this.PaymentID = null;
             this.InvoiceDate = DateTime.Now;
             Mode = enMode.AddNew;
         }
 
-        private clsInvoice(int? InvoiceID, int PaymentID, DateTime InvoiceDate)
+        private clsInvoice(int? InvoiceID, int? PaymentID, DateTime InvoiceDate)
         {
             this.InvoiceID = InvoiceID;
             this.PaymentID = PaymentID;
             this.InvoiceDate = InvoiceDate;
-            Mode = enMode.Update;
+
+            this.PaymentInfo = clsPayment.Find(PaymentID);
+
+            this.Mode = enMode.Update;
         }
 
         private bool _AddNewInvoice()
         {
-            this.InvoiceID = clsInvoiceData.AddNewInvoice(this.PaymentID, this.InvoiceDate);
+            this.InvoiceID = clsInvoiceData.AddNewInvoice(this.PaymentID);
 
             return (this.InvoiceID.HasValue);
         }
 
         private bool _UpdateInvoice()
         {
-            return clsInvoiceData.UpdateInvoice(this.InvoiceID, this.PaymentID, this.InvoiceDate);
+            return clsInvoiceData.UpdateInvoice(this.InvoiceID, this.PaymentID);
         }
 
         public bool Save()
@@ -63,12 +68,22 @@ namespace Hotel_Business
             return false;
         }
 
-        public static clsInvoice Find(int? InvoiceID)
+        public static clsInvoice FindByInvoiceID(int? InvoiceID)
         {
-            int PaymentID = -1;
+            int? PaymentID = null;
             DateTime InvoiceDate = DateTime.Now;
 
-            bool IsFound = clsInvoiceData.GetInvoiceInfoByID(InvoiceID, ref PaymentID, ref InvoiceDate);
+            bool IsFound = clsInvoiceData.GetInvoiceInfoByInvoiceID(InvoiceID, ref PaymentID, ref InvoiceDate);
+
+            return IsFound ? new clsInvoice(InvoiceID, PaymentID, InvoiceDate) : null;
+        }
+
+        public static clsInvoice FindByPaymentID(int? PaymentID)
+        {
+            int? InvoiceID = null;
+            DateTime InvoiceDate = DateTime.Now;
+
+            bool IsFound = clsInvoiceData.GetInvoiceInfoByPaymentID(PaymentID, ref InvoiceID, ref InvoiceDate);
 
             return IsFound ? new clsInvoice(InvoiceID, PaymentID, InvoiceDate) : null;
         }
@@ -88,6 +103,10 @@ namespace Hotel_Business
             return clsInvoiceData.GetAllInvoices();
         }
 
+        public static bool DoesPaymentHaveAnInvoice(int? PaymentID)
+        {
+            return clsInvoiceData.DoesPaymentHaveAnInvoice(PaymentID);
+        }
     }
 
 }

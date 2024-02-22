@@ -40,15 +40,15 @@
             this.cbGender = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbNationality = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cbFilter = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.pbImage = new System.Windows.Forms.PictureBox();
             this.dgvGuestsList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ShowGuestDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.ShowGuestDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.EditGuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuestsList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNumberOfRecords
@@ -180,19 +180,6 @@
             this.cbFilter.TabIndex = 186;
             this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
-            // pbImage
-            // 
-            this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbImage.Image = global::Hotel.Properties.Resources.guests_dashboard;
-            this.pbImage.InitialImage = null;
-            this.pbImage.Location = new System.Drawing.Point(489, 13);
-            this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pbImage.Name = "pbImage";
-            this.pbImage.Size = new System.Drawing.Size(325, 169);
-            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImage.TabIndex = 179;
-            this.pbImage.TabStop = false;
-            // 
             // dgvGuestsList
             // 
             this.dgvGuestsList.AllowUserToAddRows = false;
@@ -269,6 +256,11 @@
             this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.cmsEditProfile.Size = new System.Drawing.Size(230, 86);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(226, 6);
+            // 
             // ShowGuestDetailsToolStripMenuItem1
             // 
             this.ShowGuestDetailsToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
@@ -279,11 +271,6 @@
             this.ShowGuestDetailsToolStripMenuItem1.Text = "Show Guest Details";
             this.ShowGuestDetailsToolStripMenuItem1.Click += new System.EventHandler(this.ShowGuestDetailsToolStripMenuItem1_Click);
             // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(226, 6);
-            // 
             // EditGuestToolStripMenuItem
             // 
             this.EditGuestToolStripMenuItem.ForeColor = System.Drawing.Color.White;
@@ -293,6 +280,19 @@
             this.EditGuestToolStripMenuItem.Size = new System.Drawing.Size(229, 38);
             this.EditGuestToolStripMenuItem.Text = "Edit";
             this.EditGuestToolStripMenuItem.Click += new System.EventHandler(this.EditGuestToolStripMenuItem_Click);
+            // 
+            // pbImage
+            // 
+            this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbImage.Image = global::Hotel.Properties.Resources.guests_list;
+            this.pbImage.InitialImage = null;
+            this.pbImage.Location = new System.Drawing.Point(489, 13);
+            this.pbImage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(325, 169);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImage.TabIndex = 179;
+            this.pbImage.TabStop = false;
             // 
             // frmListGuests
             // 
@@ -317,9 +317,9 @@
             this.Tag = "Manage Guests";
             this.Text = "frmListGuests";
             this.Load += new System.EventHandler(this.frmListGuests_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGuestsList)).EndInit();
             this.cmsEditProfile.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -19,6 +19,7 @@ namespace Hotel_Business
         public enOrderType OrderType { get; set; }
         public decimal Fees { get; set; }
         public DateTime OrderDate { get; set; }
+        public int? PaymentID { get; set; }
         public int? CreatedByUserID { get; set; }
 
         public clsBooking BookingInfo { get; }
@@ -37,13 +38,14 @@ namespace Hotel_Business
             this.OrderType = 0;
             this.Fees = -1M;
             this.OrderDate = DateTime.Now;
+            this.PaymentID = null;
             this.CreatedByUserID = null;
 
             Mode = enMode.AddNew;
         }
 
         private clsOrder(int? OrderID, int? BookingID, int? GuestID, int? RoomID, short? RoomServiceID,
-            enOrderType OrderType, decimal Fees, DateTime OrderDate, int? CreatedByUserID)
+            enOrderType OrderType, decimal Fees, DateTime OrderDate, int? PaymentID, int? CreatedByUserID)
         {
             this.OrderID = OrderID;
             this.BookingID = BookingID;
@@ -53,6 +55,7 @@ namespace Hotel_Business
             this.OrderType = OrderType;
             this.Fees = Fees;
             this.OrderDate = OrderDate;
+            this.PaymentID = PaymentID;
             this.CreatedByUserID = CreatedByUserID;
 
             this.BookingInfo = clsBooking.Find(BookingID);
@@ -110,13 +113,15 @@ namespace Hotel_Business
             byte OrderType = 0;
             decimal Fees = -1M;
             DateTime OrderDate = DateTime.Now;
+            int? PaymentID = null;
             int? CreatedByUserID = null;
 
-            bool IsFound = clsOrderData.GetOrderInfoByID(OrderID, ref BookingID, ref GuestID,
-                ref RoomID, ref RoomServiceID, ref OrderType, ref Fees, ref OrderDate, ref CreatedByUserID);
+            bool IsFound = clsOrderData.GetOrderInfoByID(OrderID, ref BookingID, ref GuestID, ref RoomID,
+                           ref RoomServiceID, ref OrderType, ref Fees, ref OrderDate,
+                           ref PaymentID, ref CreatedByUserID);
 
             return (IsFound) ? (new clsOrder(OrderID, BookingID, GuestID, RoomID, RoomServiceID,
-                               (enOrderType)OrderType, Fees, OrderDate, CreatedByUserID))
+                               (enOrderType)OrderType, Fees, OrderDate, PaymentID, CreatedByUserID))
                                : null;
         }
 

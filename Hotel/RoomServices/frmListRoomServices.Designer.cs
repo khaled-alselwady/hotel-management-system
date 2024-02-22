@@ -44,6 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnAddNewRoomService = new Guna.UI2.WinForms.Guna2Button();
+            this.ShowRoomServiceInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoomServiceList)).BeginInit();
             this.cmsEditProfile.SuspendLayout();
@@ -130,11 +132,13 @@
             this.cmsEditProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowRoomServiceInfoToolStripMenuItem,
+            this.toolStripSeparator1,
             this.EditRoomServiceToolStripMenuItem,
             this.DeleteRoomServiceToolStripMenuItem});
             this.cmsEditProfile.Name = "contextMenuStrip1";
             this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.cmsEditProfile.Size = new System.Drawing.Size(140, 80);
+            this.cmsEditProfile.Size = new System.Drawing.Size(266, 124);
             // 
             // EditRoomServiceToolStripMenuItem
             // 
@@ -142,7 +146,7 @@
             this.EditRoomServiceToolStripMenuItem.Image = global::Hotel.Properties.Resources.edit_reservation32;
             this.EditRoomServiceToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EditRoomServiceToolStripMenuItem.Name = "EditRoomServiceToolStripMenuItem";
-            this.EditRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(139, 38);
+            this.EditRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(265, 38);
             this.EditRoomServiceToolStripMenuItem.Text = "Edit";
             this.EditRoomServiceToolStripMenuItem.Click += new System.EventHandler(this.EditRoomServiceToolStripMenuItem_Click);
             // 
@@ -152,7 +156,7 @@
             this.DeleteRoomServiceToolStripMenuItem.Image = global::Hotel.Properties.Resources.delete_reservation_40;
             this.DeleteRoomServiceToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.DeleteRoomServiceToolStripMenuItem.Name = "DeleteRoomServiceToolStripMenuItem";
-            this.DeleteRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(139, 38);
+            this.DeleteRoomServiceToolStripMenuItem.Size = new System.Drawing.Size(265, 38);
             this.DeleteRoomServiceToolStripMenuItem.Text = "Delete";
             this.DeleteRoomServiceToolStripMenuItem.Click += new System.EventHandler(this.DeleteRoomServiceToolStripMenuItem_Click);
             // 
@@ -258,6 +262,21 @@
             this.btnAddNewRoomService.TabIndex = 243;
             this.btnAddNewRoomService.Click += new System.EventHandler(this.btnAddNewRoomService_Click);
             // 
+            // ShowRoomServiceInfoToolStripMenuItem
+            // 
+            this.ShowRoomServiceInfoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ShowRoomServiceInfoToolStripMenuItem.Image = global::Hotel.Properties.Resources.show_reservation_32;
+            this.ShowRoomServiceInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowRoomServiceInfoToolStripMenuItem.Name = "ShowRoomServiceInfoToolStripMenuItem";
+            this.ShowRoomServiceInfoToolStripMenuItem.Size = new System.Drawing.Size(265, 38);
+            this.ShowRoomServiceInfoToolStripMenuItem.Text = "Show Room Service Info";
+            this.ShowRoomServiceInfoToolStripMenuItem.Click += new System.EventHandler(this.ShowRoomServiceInfoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(262, 6);
+            // 
             // frmListRoomServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,5 +318,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2Button btnAddNewRoomService;
         private System.Windows.Forms.ToolStripMenuItem DeleteRoomServiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowRoomServiceInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

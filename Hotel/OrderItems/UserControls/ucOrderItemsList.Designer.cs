@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,8 +37,11 @@
             this.lblNumberOfRecords = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvOrderItemsList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.cmsEditProfile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ShowItemInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guna2GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItemsList)).BeginInit();
+            this.cmsEditProfile.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2GroupBox1
@@ -93,6 +97,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgvOrderItemsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOrderItemsList.ColumnHeadersHeight = 35;
+            this.dgvOrderItemsList.ContextMenuStrip = this.cmsEditProfile;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -135,6 +140,28 @@
             this.dgvOrderItemsList.ThemeStyle.RowsStyle.Height = 33;
             this.dgvOrderItemsList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(133)))), ((int)(((byte)(147)))));
             this.dgvOrderItemsList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvOrderItemsList.DoubleClick += new System.EventHandler(this.dgvOrderItemsList_DoubleClick);
+            // 
+            // cmsEditProfile
+            // 
+            this.cmsEditProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmsEditProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsEditProfile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowItemInfoToolStripMenuItem});
+            this.cmsEditProfile.Name = "contextMenuStrip1";
+            this.cmsEditProfile.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.cmsEditProfile.Size = new System.Drawing.Size(203, 42);
+            this.cmsEditProfile.Opening += new System.ComponentModel.CancelEventHandler(this.cmsEditProfile_Opening);
+            // 
+            // ShowItemInfoToolStripMenuItem
+            // 
+            this.ShowItemInfoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ShowItemInfoToolStripMenuItem.Image = global::Hotel.Properties.Resources.show_reservation_32;
+            this.ShowItemInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowItemInfoToolStripMenuItem.Name = "ShowItemInfoToolStripMenuItem";
+            this.ShowItemInfoToolStripMenuItem.Size = new System.Drawing.Size(202, 38);
+            this.ShowItemInfoToolStripMenuItem.Text = "Show Item Info";
+            this.ShowItemInfoToolStripMenuItem.Click += new System.EventHandler(this.ShowItemInfoToolStripMenuItem_Click);
             // 
             // ucOrderItemsList
             // 
@@ -148,6 +175,7 @@
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItemsList)).EndInit();
+            this.cmsEditProfile.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -158,5 +186,7 @@
         private System.Windows.Forms.Label lblNumberOfRecords;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvOrderItemsList;
+        private System.Windows.Forms.ContextMenuStrip cmsEditProfile;
+        private System.Windows.Forms.ToolStripMenuItem ShowItemInfoToolStripMenuItem;
     }
 }

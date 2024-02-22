@@ -32,7 +32,7 @@ namespace Hotel.Rooms.UserControls
             lblRoomTypeID.Text = _Room.RoomTypeID.ToString();
             lblRoomNumber.Text = _Room.RoomNumber.ToString();
             lblStatus.Text = _Room.RoomStatusName;
-            lblNotes.Text = string.IsNullOrWhiteSpace(_Room.Notes) ? "No Notes" : _Room.Notes;
+            lblNotes.Text = _Room.Notes ?? "N/A";
             lblRoomSize.Text = _Room.Size.ToString();
             lblRoomFloor.Text = _Room.FloorNumber.ToString();
             lblIsSomkingAllowed.Text = _Room.IsSmokingAllowed ? "Yes" : "No";

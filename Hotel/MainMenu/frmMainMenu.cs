@@ -5,6 +5,7 @@ using Hotel.GlobalClasses;
 using Hotel.Guests;
 using Hotel.Items;
 using Hotel.Orders;
+using Hotel.Payments;
 using Hotel.Reservations;
 using Hotel.Rooms;
 using Hotel.RoomServices;
@@ -157,7 +158,7 @@ namespace Hotel.MainMenu
 
         private void btnPayments_Click(object sender, EventArgs e)
         {
-            _OpenChildFormAsync(new Form(), sender);
+            _OpenChildFormAsync(new frmListPayments(), sender);
         }
 
         private void frmMainMenu_Load(object sender, EventArgs e)

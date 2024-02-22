@@ -1,4 +1,5 @@
-﻿using Hotel_Business;
+﻿using Hotel.Items;
+using Hotel_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,5 +61,21 @@ namespace Hotel.OrderItems.UserControls
             _RefreshOrderItemsList();
         }
 
+        private void cmsEditProfile_Opening(object sender, CancelEventArgs e)
+        {
+            cmsEditProfile.Enabled = (dgvOrderItemsList.RowCount > 0);
+        }
+
+        private void ShowItemInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShowItemInfo ShowItemInfo = new frmShowItemInfo((int)dgvOrderItemsList.CurrentRow.Cells["ItemID"].Value, false);
+            ShowItemInfo.ShowDialog();
+        }
+
+        private void dgvOrderItemsList_DoubleClick(object sender, EventArgs e)
+        {
+            frmShowItemInfo ShowItemInfo = new frmShowItemInfo((int)dgvOrderItemsList.CurrentRow.Cells["ItemID"].Value, false);
+            ShowItemInfo.ShowDialog();
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace Hotel.People.UserControls
             lblNationalNo.Text = _Person.NationalNo;
             lblFullName.Text = _Person.FullName;
             lblGender.Text = _Person.GenderText;
-            lblEmail.Text = _Person.Email ?? "None";
+            lblEmail.Text = _Person.Email ?? "N/A";
             lblPhone.Text = _Person.Phone;
             lblDateOfBirth.Text = clsFormat.DateToShort(_Person.DateOfBirth);
             lblCountry.Text = _Person.CountryInfo.CountryName;

@@ -98,9 +98,10 @@
             this.Controls.Add(this.ucRoomCard1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowRoomInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmShowRoomDetails";
+            this.Text = "Show Room Details";
             this.ResumeLayout(false);
 
         }

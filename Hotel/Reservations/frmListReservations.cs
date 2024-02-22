@@ -200,6 +200,7 @@ namespace Hotel.Reservations
             cmsEditProfile.Enabled = dgvReservationList.Rows.Count > 0;
 
             string Status = (string)dgvReservationList.CurrentRow.Cells["Status"].Value;
+            int? ReservationID = _GetReservationIDFromDGV();
 
             EditReservationToolStripMenuItem.Enabled =
             ConfirmReservationToolStripMenuItem1.Enabled =
@@ -212,12 +213,13 @@ namespace Hotel.Reservations
 
             CheckInToolStripMenuItem.Enabled =
             (Status == enReservationStatus.Confirmed.ToString()) &&
-            !(clsReservation.IsReservationChecked((int)dgvReservationList.CurrentRow.Cells["ReservationID"].Value));
+            !(clsReservation.IsReservationChecked(ReservationID));
 
             AddGuestCompanionToolStripMenuItem.Enabled =
             (Status == enReservationStatus.Confirmed.ToString()) &&
-            (clsReservation.IsReservationChecked((int)dgvReservationList.CurrentRow.Cells["ReservationID"].Value)) &&
-            (clsGuestCompanion.GetAllGuestCompanionsForGuestCount(_GetGuestIDFromReservationID()) < _GetNumberOfPeopleFromDGV());
+            (clsReservation.IsReservationChecked(ReservationID)) &&
+            (clsGuestCompanion.GetAllGuestCompanionsForGuestCount(_GetGuestIDFromReservationID()) < _GetNumberOfPeopleFromDGV()) &&
+            !(clsBooking.IsBookingCompleted(clsReservation.GetBookingIDByReservationID(ReservationID)));
         }
 
         private void ConfirmReservationToolStripMenuItem1_Click(object sender, System.EventArgs e)

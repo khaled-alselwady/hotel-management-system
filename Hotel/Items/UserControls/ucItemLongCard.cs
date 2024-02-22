@@ -53,7 +53,7 @@ namespace Hotel.Items.UserControls
             lblItemName.Text = _Item.ItemName;
             lblItemType.Text = _Item.ItemTypeInfo.ItemTypeName;
             lblPrice.Text = _Item.ItemPrice.ToString("C");
-            lblDescription.Text = _Item.Description ?? "None";
+            lblDescription.Text = _Item.Description ?? "N/A";
 
             _LoadItemImage();
 

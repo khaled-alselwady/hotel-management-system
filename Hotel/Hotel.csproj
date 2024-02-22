@@ -94,12 +94,6 @@
     <Compile Include="Dashboard\frmDashboard.Designer.cs">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmTest.Designer.cs">
-      <DependentUpon>frmTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalClasses\clsFormat.cs" />
     <Compile Include="GlobalClasses\clsGlobal.cs" />
     <Compile Include="GlobalClasses\clsLogError.cs" />
@@ -224,6 +218,30 @@
     </Compile>
     <Compile Include="Orders\UserControls\ucOrderCard.Designer.cs">
       <DependentUpon>ucOrderCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payments\frmListPayments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payments\frmListPayments.Designer.cs">
+      <DependentUpon>frmListPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payments\frmPaymentInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payments\frmPaymentInvoice.Designer.cs">
+      <DependentUpon>frmPaymentInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payments\UserControls\ucInvoiceCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Payments\UserControls\ucInvoiceCard.Designer.cs">
+      <DependentUpon>ucInvoiceCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payments\UserControls\ucPaymentCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Payments\UserControls\ucPaymentCard.Designer.cs">
+      <DependentUpon>ucPaymentCard.cs</DependentUpon>
     </Compile>
     <Compile Include="People\frmAddEditPerson.cs">
       <SubType>Form</SubType>
@@ -398,9 +416,6 @@
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTest.resx">
-      <DependentUpon>frmTest.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GuestCompanions\frmAddEditGuestCompanions.resx">
       <DependentUpon>frmAddEditGuestCompanions.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,6 +475,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Orders\UserControls\ucOrderCard.resx">
       <DependentUpon>ucOrderCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payments\frmListPayments.resx">
+      <DependentUpon>frmListPayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payments\frmPaymentInvoice.resx">
+      <DependentUpon>frmPaymentInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payments\UserControls\ucInvoiceCard.resx">
+      <DependentUpon>ucInvoiceCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payments\UserControls\ucPaymentCard.resx">
+      <DependentUpon>ucPaymentCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="People\frmAddEditPerson.resx">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
@@ -845,6 +872,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add-order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-payments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guests-list.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

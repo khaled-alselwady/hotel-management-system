@@ -29,6 +29,9 @@ namespace Hotel.Orders
                 case "Order Type":
                     return "OrderType";
 
+                case "Payment ID":
+                    return "PaymentID";
+
                 default:
                     return "None";
             }
@@ -62,12 +65,15 @@ namespace Hotel.Orders
 
                 dgvOrdersList.Columns[6].HeaderText = "Order Date";
                 dgvOrdersList.Columns[6].Width = 300;
+
+                dgvOrdersList.Columns[7].HeaderText = "Payment ID";
+                dgvOrdersList.Columns[7].Width = 130;
             }
         }
 
         private int? _GetOrderIDFromDGV()
         {
-            return (int?)dgvOrdersList.CurrentRow.Cells["OrderID"].Value;
+            return (int?)dgvOrdersList.CurrentRow?.Cells["OrderID"].Value;
         }
 
         private void frmListOrders_Load(object sender, System.EventArgs e)
@@ -166,7 +172,7 @@ namespace Hotel.Orders
 
         private void cmsEditProfile_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            cmsEditProfile.Visible = (dgvOrdersList.Rows.Count > 0);
+            cmsEditProfile.Enabled = (dgvOrdersList.RowCount > 0);
         }
 
         private void dgvOrdersList_DoubleClick(object sender, System.EventArgs e)

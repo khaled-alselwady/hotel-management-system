@@ -10,41 +10,49 @@ namespace Hotel_Business
         public enMode Mode = enMode.AddNew;
 
         public int? PaymentID { get; set; }
-        public int BookingID { get; set; }
-        public int PersonID { get; set; }
         public DateTime PaymentDate { get; set; }
         public decimal PaymentAmount { get; set; }
+        public int? GuestID { get; }
+        public int? BookingID { get; }
+
+        public clsGuest GuestInfo { get; }
+        public clsBooking BookingInfo { get; }
 
         public clsPayment()
         {
             this.PaymentID = null;
-            this.BookingID = -1;
-            this.PersonID = -1;
+            this.BookingID = null;
+            this.GuestID = null;
             this.PaymentDate = DateTime.Now;
             this.PaymentAmount = -1M;
-            Mode = enMode.AddNew;
+            this.Mode = enMode.AddNew;
         }
 
-        private clsPayment(int? PaymentID, int BookingID, int PersonID, DateTime PaymentDate, decimal PaymentAmount)
+        private clsPayment(int? PaymentID,DateTime PaymentDate,
+             decimal PaymentAmount, int? GuestID, int? BookingID)
         {
             this.PaymentID = PaymentID;
-            this.BookingID = BookingID;
-            this.PersonID = PersonID;
             this.PaymentDate = PaymentDate;
             this.PaymentAmount = PaymentAmount;
-            Mode = enMode.Update;
+            this.GuestID = GuestID;
+            this.BookingID = BookingID;
+
+            this.GuestInfo = clsGuest.FindByGuestID(GuestID);
+            this.BookingInfo = clsBooking.Find(BookingID);
+
+            this.Mode = enMode.Update;
         }
 
         private bool _AddNewPayment()
         {
-            this.PaymentID = clsPaymentData.AddNewPayment(this.BookingID, this.PersonID, this.PaymentDate, this.PaymentAmount);
+            this.PaymentID = clsPaymentData.AddNewPayment(this.PaymentAmount);
 
             return (this.PaymentID.HasValue);
         }
 
         private bool _UpdatePayment()
         {
-            return clsPaymentData.UpdatePayment(this.PaymentID, this.BookingID, this.PersonID, this.PaymentDate, this.PaymentAmount);
+            return clsPaymentData.UpdatePayment(this.PaymentID, this.PaymentAmount);
         }
 
         public bool Save()
@@ -71,14 +79,20 @@ namespace Hotel_Business
 
         public static clsPayment Find(int? PaymentID)
         {
-            int BookingID = -1;
-            int PersonID = -1;
             DateTime PaymentDate = DateTime.Now;
             decimal PaymentAmount = -1M;
+            int? GuestID = null;
+            int? BookingID = null;
 
-            bool IsFound = clsPaymentData.GetPaymentInfoByID(PaymentID, ref BookingID, ref PersonID, ref PaymentDate, ref PaymentAmount);
+            bool IsFoundPaymentID = clsPaymentData.GetPaymentInfoByID(PaymentID,
+                ref PaymentDate, ref PaymentAmount);
 
-            return IsFound ? new clsPayment(PaymentID, BookingID, PersonID, PaymentDate, PaymentAmount) : null;
+            bool IsFoundGuestIDAndBookingID = clsPaymentData.GetGuestIDAndBookingIDByPaymentID(PaymentID,
+                ref GuestID, ref BookingID);
+
+            return IsFoundPaymentID && IsFoundGuestIDAndBookingID ?
+                   new clsPayment(PaymentID, PaymentDate, PaymentAmount, GuestID, BookingID) :
+                   null;
         }
 
         public static bool DeletePayment(int? PaymentID)
@@ -99,6 +113,11 @@ namespace Hotel_Business
         public static int Count()
         {
             return clsPaymentData.GetPaymentsCount();
+        }
+
+        public static bool GetGuestIDAndBookingIDByPaymentID(int? PaymentID, ref int? GuestID, ref int? BookingID)
+        {
+            return clsPaymentData.GetGuestIDAndBookingIDByPaymentID(PaymentID, ref GuestID, ref BookingID);
         }
     }
 

@@ -49,7 +49,7 @@
             this.btnClose.Image = global::Hotel.Properties.Resources.close_48;
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnClose.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnClose.Location = new System.Drawing.Point(712, 380);
+            this.btnClose.Location = new System.Drawing.Point(712, 398);
             this.btnClose.Name = "btnClose";
             this.btnClose.Padding = new System.Windows.Forms.Padding(9, 0, 0, 0);
             this.btnClose.Size = new System.Drawing.Size(155, 45);
@@ -75,7 +75,7 @@
             this.ucOrderCard1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucOrderCard1.Location = new System.Drawing.Point(5, 107);
             this.ucOrderCard1.Name = "ucOrderCard1";
-            this.ucOrderCard1.Size = new System.Drawing.Size(862, 255);
+            this.ucOrderCard1.Size = new System.Drawing.Size(862, 278);
             this.ucOrderCard1.TabIndex = 203;
             // 
             // frmShowOrderInfo
@@ -83,7 +83,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(872, 427);
+            this.ClientSize = new System.Drawing.Size(872, 445);
             this.Controls.Add(this.ucOrderCard1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);

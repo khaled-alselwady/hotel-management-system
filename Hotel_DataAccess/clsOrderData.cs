@@ -8,7 +8,7 @@ namespace Hotel_DataAccess
     {
         public static bool GetOrderInfoByID(int? OrderID, ref int? BookingID, ref int? GuestID,
             ref int? RoomID, ref short? RoomServiceID, ref byte OrderType, ref decimal Fees,
-            ref DateTime OrderDate, ref int? CreatedByUserID)
+            ref DateTime OrderDate, ref int? PaymentID, ref int? CreatedByUserID)
         {
             bool IsFound = false;
 
@@ -38,6 +38,7 @@ namespace Hotel_DataAccess
                                 OrderType = (byte)reader["OrderType"];
                                 Fees = (decimal)reader["Fees"];
                                 OrderDate = (DateTime)reader["OrderDate"];
+                                PaymentID = (reader["PaymentID"] != DBNull.Value) ? (int?)reader["PaymentID"] : null;
                                 CreatedByUserID = (reader["CreatedByUserID"] != DBNull.Value) ? (int?)reader["CreatedByUserID"] : null;
                             }
                             else
@@ -115,7 +116,7 @@ namespace Hotel_DataAccess
 
         public static bool UpdateOrder(int? OrderID, int? BookingID, int? GuestID, int? RoomID,
             short? RoomServiceID, byte OrderType, decimal Fees,
-             int? CreatedByUserID)
+            int? CreatedByUserID)
         {
             int RowAffected = 0;
 

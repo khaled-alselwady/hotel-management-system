@@ -6,7 +6,8 @@ namespace Hotel_DataAccess
 {
     public class clsInvoiceData
     {
-        public static bool GetInvoiceInfoByID(int? InvoiceID, ref int PaymentID, ref DateTime InvoiceDate)
+        public static bool GetInvoiceInfoByInvoiceID(int? InvoiceID, ref int? PaymentID,
+            ref DateTime InvoiceDate)
         {
             bool IsFound = false;
 
@@ -16,7 +17,7 @@ namespace Hotel_DataAccess
                 {
                     connection.Open();
 
-                    using (SqlCommand command = new SqlCommand("SP_GetInvoiceInfoByID", connection))
+                    using (SqlCommand command = new SqlCommand("SP_GetInvoiceInfoByInvoiceID", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
@@ -29,7 +30,7 @@ namespace Hotel_DataAccess
                                 // The record was found
                                 IsFound = true;
 
-                                PaymentID = (int)reader["PaymentID"];
+                                PaymentID = (reader["PaymentID"] != DBNull.Value) ? (int?)reader["PaymentID"] : null;
                                 InvoiceDate = (DateTime)reader["InvoiceDate"];
                             }
                             else
@@ -57,7 +58,59 @@ namespace Hotel_DataAccess
             return IsFound;
         }
 
-        public static int? AddNewInvoice(int PaymentID, DateTime InvoiceDate)
+        public static bool GetInvoiceInfoByPaymentID(int? PaymentID, ref int? InvoiceID, ref DateTime InvoiceDate)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetInvoiceInfoByPaymentID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+
+                                InvoiceID = (reader["InvoiceID"] != DBNull.Value) ? (int?)reader["InvoiceID"] : null;
+                                InvoiceDate = (DateTime)reader["InvoiceDate"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
+        }
+
+
+        public static int? AddNewInvoice(int? PaymentID)
         {
             // This function will return the new person id if succeeded and null if not
             int? InvoiceID = null;
@@ -72,8 +125,7 @@ namespace Hotel_DataAccess
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue("@PaymentID", PaymentID);
-                        command.Parameters.AddWithValue("@InvoiceDate", InvoiceDate);
+                        command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewInvoiceID", SqlDbType.Int)
                         {
@@ -99,7 +151,7 @@ namespace Hotel_DataAccess
             return InvoiceID;
         }
 
-        public static bool UpdateInvoice(int? InvoiceID, int PaymentID, DateTime InvoiceDate)
+        public static bool UpdateInvoice(int? InvoiceID, int? PaymentID)
         {
             int RowAffected = 0;
 
@@ -114,8 +166,7 @@ namespace Hotel_DataAccess
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@InvoiceID", (object)InvoiceID ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@PaymentID", PaymentID);
-                        command.Parameters.AddWithValue("@InvoiceDate", InvoiceDate);
+                        command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
 
                         RowAffected = command.ExecuteNonQuery();
                     }
@@ -244,6 +295,51 @@ namespace Hotel_DataAccess
             }
 
             return dt;
+        }
+
+        public static bool DoesPaymentHaveAnInvoice(int? PaymentID)
+        {
+            bool IsFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_DoesPaymentHaveAnInvoice", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@PaymentID", (object)PaymentID ?? DBNull.Value);
+
+                        // @ReturnVal could be any name, and we don't need to add it to the SP, just use it here in the code.
+                        SqlParameter returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        IsFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                IsFound = false;
+
+                clsLogError.LogError("General Exception", ex);
+            }
+
+            return IsFound;
         }
     }
 }

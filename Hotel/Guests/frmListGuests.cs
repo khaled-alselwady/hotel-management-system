@@ -71,7 +71,7 @@ namespace Hotel.Guests
                 dgvGuestsList.Columns[0].Width = 125;
 
                 dgvGuestsList.Columns[1].HeaderText = "Person ID";
-                dgvGuestsList.Columns[1].Width = 190;
+                dgvGuestsList.Columns[1].Width = 160;
 
                 dgvGuestsList.Columns[2].HeaderText = "National Number";
                 dgvGuestsList.Columns[2].Width = 190;
@@ -80,13 +80,13 @@ namespace Hotel.Guests
                 dgvGuestsList.Columns[3].Width = 380;
 
                 dgvGuestsList.Columns[4].HeaderText = "Gender";
-                dgvGuestsList.Columns[4].Width = 100;
+                dgvGuestsList.Columns[4].Width = 120;
 
                 dgvGuestsList.Columns[5].HeaderText = "Date Of Birth";
-                dgvGuestsList.Columns[5].Width = 130;
+                dgvGuestsList.Columns[5].Width = 150;
 
                 dgvGuestsList.Columns[6].HeaderText = "Nationality";
-                dgvGuestsList.Columns[6].Width = 100;
+                dgvGuestsList.Columns[6].Width = 130;
 
                 dgvGuestsList.Columns[7].HeaderText = "Phone";
                 dgvGuestsList.Columns[7].Width = 150;

@@ -31,6 +31,7 @@ namespace Hotel.Orders.UserControls
             lblOrderDate.Text = clsFormat.DateToShort(_Order.OrderDate);
             lblOrderType.Text = _Order.OrderTypeName;
             lblBookingID.Text = _Order.BookingID.ToString();
+            lblPaymentID.Text = _Order.PaymentID.ToString();
             lblAmountPaid.Text = _Order.Fees.ToString("C");
             lblCreatedByUser.Text = _Order.CreatedByUserInfo.Username;
 
@@ -52,6 +53,7 @@ namespace Hotel.Orders.UserControls
             lblOrderDate.Text = "[????]";
             lblOrderedBy.Text = "[????]";
             lblBookingID.Text = "[????]";
+            lblPaymentID.Text = "[????]";
             lblCreatedByUser.Text = "[????]";
             lblAmountPaid.Text = "[????]";
 
