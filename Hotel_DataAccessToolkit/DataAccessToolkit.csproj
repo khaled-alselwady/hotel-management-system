@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8629433A-7FEA-402F-837A-C6C785CD715F}</ProjectGuid>
+    <ProjectGuid>{D0180EE0-399E-4A76-A7BC-D9F78E18C0EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hotel_DataAccess</RootNamespace>
-    <AssemblyName>Hotel_DataAccess</AssemblyName>
+    <RootNamespace>DataAccessToolkit</RootNamespace>
+    <AssemblyName>DataAccessToolkit</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,29 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsBookingData.cs" />
-    <Compile Include="clsCountryData.cs" />
-    <Compile Include="clsGuestCompanionData.cs" />
-    <Compile Include="clsGuestData.cs" />
-    <Compile Include="clsInvoiceData.cs" />
-    <Compile Include="clsItemData.cs" />
-    <Compile Include="clsItemTypeData.cs" />
-    <Compile Include="clsOrderData.cs" />
-    <Compile Include="clsOrderItemData.cs" />
-    <Compile Include="clsPaymentData.cs" />
-    <Compile Include="clsPersonData.cs" />
-    <Compile Include="clsReservationData.cs" />
-    <Compile Include="clsRoomData.cs" />
-    <Compile Include="clsRoomServiceData.cs" />
-    <Compile Include="clsRoomTypeData.cs" />
-    <Compile Include="clsUserData.cs" />
+    <Compile Include="clsDataAccessHelper.cs" />
+    <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="clsErrorLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hotel_DataAccessToolkit\DataAccessToolkit.csproj">
-      <Project>{d0180ee0-399e-4a76-a7bc-d9f78e18c0eb}</Project>
-      <Name>DataAccessToolkit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

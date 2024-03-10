@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Hotel_DataAccess
+namespace DataAccessToolkit
 {
-    public static class clsLogError
+    public static class clsErrorLogger
     {
-        public static void LogError(string errorType, Exception ex)
+        public static void LogError(string sourceName, string errorType, Exception ex)
         {
-            // Specify the source name for the event log
-            string sourceName = "Hotel";
-
             // Create the event source if it does not exist
             if (!EventLog.SourceExists(sourceName))
             {

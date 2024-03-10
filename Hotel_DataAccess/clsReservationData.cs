@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using DataAccessToolkit;
 
 namespace Hotel_DataAccess
 {
@@ -52,13 +53,13 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return IsFound;
@@ -100,11 +101,11 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return ReservationID;
@@ -139,11 +140,11 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -171,11 +172,11 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -214,13 +215,13 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return IsFound;
@@ -228,73 +229,12 @@ namespace Hotel_DataAccess
 
         public static DataTable GetAllReservations()
         {
-            DataTable dt = new DataTable();
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_GetAllReservations", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                dt.Load(reader);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                clsLogError.LogError("Database Exception", ex);
-            }
-            catch (Exception ex)
-            {
-                clsLogError.LogError("General Exception", ex);
-            }
-
-            return dt;
+            return clsDataAccessHelper.GetAll("SP_GetAllReservations", "Hotel");
         }
 
         public static int GetReservationsCount()
         {
-            int Count = 0;
-
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SP_GetReservationsCount", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        object result = command.ExecuteScalar();
-
-                        if (result != null && int.TryParse(result.ToString(), out int Value))
-                        {
-                            Count = Value;
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                clsLogError.LogError("Database Exception", ex);
-            }
-            catch (Exception ex)
-            {
-                clsLogError.LogError("General Exception", ex);
-            }
-
-            return Count;
+            return clsDataAccessHelper.Count("SP_GetReservationsCount", "Hotel");
         }
 
         public static bool IsRoomReserved(int? RoomNumber, DateTime ReservedDate)
@@ -331,13 +271,13 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return IsFound;
@@ -366,11 +306,11 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsLogError.LogError("Database Exception", ex);
+                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger.LogError("Hotel", "General Exception", ex);
             }
 
             return (RowAffected > 0);
