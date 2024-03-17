@@ -1,7 +1,7 @@
+using DataAccessToolkit;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using DataAccessToolkit;
 
 namespace Hotel_DataAccess
 {
@@ -50,13 +50,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -97,11 +99,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return OrderItemID;
@@ -134,11 +138,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -166,11 +172,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -209,13 +217,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -223,12 +233,47 @@ namespace Hotel_DataAccess
 
         public static DataTable GetAllOrderItems()
         {
-            return clsDataAccessHelper.GetAll("SP_GetAllOrderItems", "Hotel");
+            return clsDataAccessHelper.GetAll("SP_GetAllOrderItems");
         }
 
         public static DataTable GetAllOrderItemsByOrderID(int? OrderID)
         {
-            return clsDataAccessHelper.GetAll("SP_GetAllOrderItemsByOrderID", "Hotel");
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("SP_GetAllOrderItemsByOrderID", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("OrderID", (object)OrderID ?? DBNull.Value);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dt.Load(reader);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
+            }
+            catch (Exception ex)
+            {
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
+            }
+
+            return dt;
         }
     }
 }

@@ -52,13 +52,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -97,11 +99,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return BookingID;
@@ -129,11 +133,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -161,11 +167,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -204,13 +212,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -218,12 +228,12 @@ namespace Hotel_DataAccess
 
         public static DataTable GetAllBookings()
         {
-            return clsDataAccessHelper.GetAll("SP_GetAllBookings", "Hotel");
+            return clsDataAccessHelper.GetAll("SP_GetAllBookings");
         }
 
         public static int GetBookingsCount()
         {
-            return clsDataAccessHelper.Count("SP_GetBookingsCount", "Hotel");
+            return clsDataAccessHelper.Count("SP_GetBookingsCount");
         }
 
         public static bool IsReservationChecked(int? ReservationID)
@@ -259,13 +269,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -301,11 +313,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return BookingID;
@@ -342,11 +356,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return BookingID;
@@ -385,13 +401,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;

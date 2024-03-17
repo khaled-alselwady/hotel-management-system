@@ -1,7 +1,7 @@
+using DataAccessToolkit;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using DataAccessToolkit;
 
 namespace Hotel_DataAccess
 {
@@ -55,13 +55,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -105,11 +107,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return OrderID;
@@ -146,11 +150,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -178,11 +184,13 @@ namespace Hotel_DataAccess
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return (RowAffected > 0);
@@ -221,13 +229,15 @@ namespace Hotel_DataAccess
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
                 IsFound = false;
 
-                clsErrorLogger.LogError("Hotel", "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return IsFound;
@@ -235,7 +245,7 @@ namespace Hotel_DataAccess
 
         public static DataTable GetAllOrders()
         {
-            return clsDataAccessHelper.GetAll("SP_GetAllOrders", "Hotel");
+            return clsDataAccessHelper.GetAll("SP_GetAllOrders");
         }
     }
 }

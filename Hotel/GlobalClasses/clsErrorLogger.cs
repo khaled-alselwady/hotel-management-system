@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataAccessToolkit
+namespace Hotel.GlobalClasses
 {
     public class clsErrorLogger
     {

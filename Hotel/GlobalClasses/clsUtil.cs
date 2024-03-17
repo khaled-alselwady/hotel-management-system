@@ -33,7 +33,8 @@ namespace CarRental.GlobalClasses
                 }
                 catch (Exception ex)
                 {
-                    clsLogError.LogError("General Exception", ex);
+                    clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                    loggerToEventViewer.LogError("General Exception", ex);
                     return false;
                 }
             }
@@ -73,12 +74,14 @@ namespace CarRental.GlobalClasses
             }
             catch (IOException iox)
             {
-                clsLogError.LogError("IO Exception", iox);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("IO Exception", iox);
                 return false;
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
                 return false;
             }
 

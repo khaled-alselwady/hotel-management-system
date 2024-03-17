@@ -3,9 +3,7 @@ using Hotel.GlobalClasses;
 using Hotel.Properties;
 using Hotel_Business;
 using System;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
-using TheArtOfDevHtmlRenderer.Adapters;
 using static Hotel.People.UserControls.ucPersonCardWithFilter;
 
 namespace Hotel.Users
@@ -85,7 +83,7 @@ namespace Hotel.Users
                 return;
             }
 
-            
+
             lblUserID.Text = _User.UserID.ToString();
             txtUsername.Text = _User.Username;
             txtPassword.Text = _User.Password;

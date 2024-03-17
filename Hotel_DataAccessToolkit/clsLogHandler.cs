@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 
-namespace Hotel.GlobalClasses
+namespace DataAccessToolkit
 {
-    public static class clsLogError
+    public class clsLogHandler
     {
-        public static void LogError(string errorType, Exception ex)
+        public static void LogToEventViewer(string errorType, Exception ex)
         {
-            // Specify the source name for the event log
-            string sourceName = "Hotel";
+            string sourceName = ConfigurationManager.AppSettings["ProjectName"];
 
             // Create the event source if it does not exist
             if (!EventLog.SourceExists(sourceName))

@@ -6,7 +6,7 @@ namespace DataAccessToolkit
 {
     public static class clsDataAccessHelper
     {
-        public static int Count(string StoredProcedureName, string ProjectName)
+        public static int Count(string StoredProcedureName)
         {
             int Count = 0;
 
@@ -31,17 +31,19 @@ namespace DataAccessToolkit
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError(ProjectName, "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError(ProjectName, "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return Count;
         }
 
-        public static DataTable GetAll(string StoredProcedureName, string ProjectName)
+        public static DataTable GetAll(string StoredProcedureName)
         {
             DataTable dt = new DataTable();
 
@@ -67,11 +69,13 @@ namespace DataAccessToolkit
             }
             catch (SqlException ex)
             {
-                clsErrorLogger.LogError(ProjectName, "Database Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Database Exception", ex);
             }
             catch (Exception ex)
             {
-                clsErrorLogger.LogError(ProjectName, "General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
             }
 
             return dt;

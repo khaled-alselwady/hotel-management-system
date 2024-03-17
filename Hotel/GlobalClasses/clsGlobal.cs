@@ -30,7 +30,8 @@ namespace Hotel.GlobalClasses
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
                 return false;
             }
         }
@@ -66,12 +67,14 @@ namespace Hotel.GlobalClasses
             }
             catch (UnauthorizedAccessException ex)
             {
-                clsLogError.LogError("Unauthorized Access Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("Unauthorized Access Exception", ex);
                 return false;
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer);
+                loggerToEventViewer.LogError("General Exception", ex);
                 return false;
             }
         }
@@ -93,7 +96,7 @@ namespace Hotel.GlobalClasses
             }
             catch (Exception ex)
             {
-                clsLogError.LogError("General Exception", ex);
+                clsErrorLogger loggerToEventViewer = new clsErrorLogger(clsLogHandler.LogToEventViewer); loggerToEventViewer.LogError("General Exception", ex);
                 return false;
             }
         }

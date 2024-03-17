@@ -45,6 +45,7 @@
     <Compile Include="clsDataAccessHelper.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsErrorLogger.cs" />
+    <Compile Include="clsLogHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
